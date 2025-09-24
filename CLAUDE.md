@@ -85,3 +85,14 @@ pnpm typecheck
 - Provide usage examples in Storybook
 - Include migration guides for breaking changes
 - Maintain changelog for releases
+
+## Resources & References
+
+### Base UI Information
+- **Documentation Source**: https://base-ui.com/llms.txt - Complete information about Base UI components, props, and usage patterns
+- **Component Categories**: Form components (Checkbox, Radio, Select, Input, Number Field, Switch, Toggle), Interactive components (Accordion, Collapsible, Dialog, Menu, Popover, Tabs, Tooltip), Navigation components, Feedback components (Alert Dialog, Progress, Toast), Data Display components (Avatar, Meter, Preview Card)
+- **Key Features**: Unstyled components for maximum customization, accessibility-first design, flexible composition patterns, RTL support
+
+### Library Research
+- **MCP Context7**: Use for up-to-date documentation and examples for any library or framework
+- **Usage**: Call mcp__context7__resolve-library-id first to get library ID, then mcp__context7__get-library-docs for detailed documentation
