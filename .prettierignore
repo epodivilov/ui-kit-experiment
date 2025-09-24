@@ -1,0 +1,19 @@
+# Build outputs
+dist/
+build/
+.next/
+
+# Dependencies
+node_modules/
+
+# Generated files
+*.generated.*
+coverage/
+
+# Config files that shouldn't be formatted
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Storybook build
+storybook-static/
