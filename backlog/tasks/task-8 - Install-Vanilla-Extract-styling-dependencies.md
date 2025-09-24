@@ -1,9 +1,11 @@
 ---
 id: task-8
 title: Install Vanilla-Extract styling dependencies
-status: To Do
-assignee: []
+status: In Progress
+assignee:
+  - '@developer'
 created_date: '2025-09-24 17:01'
+updated_date: '2025-09-24 21:05'
 labels:
   - dependencies
   - vanilla-extract
