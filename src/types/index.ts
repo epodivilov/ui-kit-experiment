@@ -106,12 +106,13 @@ export type Variant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'destructi
 export type Color = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info';
 
 // Utility types
-export type As<T = any> = React.ElementType<T>;
+export type As<T = Record<string, unknown>> = React.ElementType<T>;
 export type PropsOf<T extends As> = React.ComponentPropsWithoutRef<T>;
 
 // Polymorphic component props
 export type PolymorphicProps<T extends As = 'div'> = {
   readonly as?: T;
-} & PropsOf<T> & ComponentProps;
+} & PropsOf<T> &
+  ComponentProps;
 
 // More types will be added as components are developed
