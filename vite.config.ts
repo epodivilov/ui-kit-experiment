@@ -25,6 +25,11 @@ export default defineConfig({
       entry: {
         index: path.resolve(__dirname, 'src/index.ts'),
         styles: path.resolve(__dirname, 'src/styles/index.ts'),
+        'components/index': path.resolve(__dirname, 'src/components/index.ts'),
+        'themes/index': path.resolve(__dirname, 'src/themes/index.ts'),
+        'utils/index': path.resolve(__dirname, 'src/utils/index.ts'),
+        'hooks/index': path.resolve(__dirname, 'src/hooks/index.ts'),
+        'constants/index': path.resolve(__dirname, 'src/constants/index.ts'),
       },
       name: 'UIKit',
       formats: ['es', 'cjs'],
