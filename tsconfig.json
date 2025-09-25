@@ -1,7 +1,85 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "compilerOptions": {
+    // Base compilation settings
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "allowImportingTsExtensions": false,
+    "moduleDetection": "auto",
+    "jsx": "react-jsx",
+
+    // Strict type checking options
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "useUnknownInCatchVariables": true,
+
+    // Library-specific options
+    "declaration": true,
+    "declarationMap": true,
+    "composite": true,
+    "incremental": true,
+    "tsBuildInfoFile": "./.tsbuildinfo",
+
+    // Module resolution
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+
+    // Emit settings
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+
+    // Path mapping for development
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/styles/*": ["./src/styles/*"],
+      "@/tokens/*": ["./src/tokens/*"],
+      "@/utils/*": ["./src/utils/*"],
+      "@/types/*": ["./src/types/*"]
+    },
+
+    // React and JSX
+    "jsxImportSource": "react",
+
+    // Type imports optimization
+    "importsNotUsedAsValues": "remove",
+    "preserveValueImports": false,
+
+    // Additional checks
+    "noErrorTruncation": true,
+    "pretty": true
+  },
+
+  "include": [
+    "src/**/*"
+  ],
+
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    "coverage",
+    ".storybook",
+    "src/**/*.stories.*",
+    "src/**/*.test.*",
+    "src/**/*.spec.*",
+    "**/*.d.ts"
+  ],
+
 }
