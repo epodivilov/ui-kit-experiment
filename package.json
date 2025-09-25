@@ -1,23 +1,77 @@
 {
-  "name": "ui-kit-experiment",
-  "private": true,
-  "version": "0.0.0",
+  "name": "ui-kit",
+  "version": "0.1.0",
+  "description": "A modern, type-safe UI Kit built with Base UI, Vanilla-Extract, and design tokens",
   "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./styles": {
+      "types": "./dist/styles.d.ts",
+      "import": "./dist/styles.js",
+      "require": "./dist/styles.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "pnpm run clean && pnpm run build:lib && pnpm run build:types",
+    "build:lib": "vite build",
+    "build:types": "tsc --project tsconfig.build.json",
+    "clean": "rimraf dist",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,md}\"",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "tokens:build": "style-dictionary build"
   },
+  "keywords": [
+    "ui",
+    "ui-kit",
+    "component-library",
+    "react",
+    "typescript",
+    "vanilla-extract",
+    "base-ui",
+    "design-system",
+    "theme",
+    "accessible"
+  ],
+  "author": "UI Kit Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ui-kit-team/ui-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ui-kit-team/ui-kit/issues"
+  },
+  "homepage": "https://github.com/ui-kit-team/ui-kit#readme",
   "dependencies": {
     "@base-ui-components/react": "1.0.0-beta.3",
     "@vanilla-extract/css": "^1.17.4",
     "@vanilla-extract/css-utils": "^0.1.6",
-    "@vanilla-extract/recipes": "^0.5.7",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "@vanilla-extract/recipes": "^0.5.7"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.1",
@@ -32,6 +86,8 @@
     "@types/node": "^24.5.2",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
     "@typescript-eslint/eslint-plugin": "^8.44.1",
     "@typescript-eslint/parser": "^8.44.1",
     "@vanilla-extract/vite-plugin": "^5.1.1",
