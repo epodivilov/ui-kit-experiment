@@ -3,7 +3,7 @@ import type { ComponentProps } from 'react';
 /**
  * Button component props
  */
-export interface ButtonProps extends Omit<ComponentProps<'button'>, 'className'> {
+export interface ButtonProps extends ComponentProps<'button'> {
   /**
    * Visual style variant of the button
    * @default 'primary'
