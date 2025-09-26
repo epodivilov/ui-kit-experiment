@@ -15,7 +15,7 @@ export { Button } from './Button';
 export { Input } from './Input';
 export { Checkbox } from './Checkbox';
 // export { Radio } from './Radio';
-// export { Select } from './Select';
+export { Select } from './Select';
 // export { Switch } from './Switch';
 
 // Layout Components
@@ -25,7 +25,7 @@ export { Card, CardTitle, CardSubtitle } from './Card';
 // export { Grid } from './Grid';
 
 // Feedback Components
-// export { Alert } from './Alert';
+export { Alert } from './Alert';
 // export { Toast } from './Toast';
 // export { Spinner } from './Spinner';
 
