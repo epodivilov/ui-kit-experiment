@@ -37,7 +37,7 @@ export { Alert } from './Alert';
 // Overlay Components
 // export { Modal } from './Modal';
 // export { Popover } from './Popover';
-// export { Tooltip } from './Tooltip';
+export { Tooltip } from './Tooltip';
 
 // For now, export an empty object to prevent build errors
 export {};
