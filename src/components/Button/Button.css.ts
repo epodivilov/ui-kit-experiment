@@ -1,150 +1,190 @@
-import { style, styleVariants } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
+import { keyframes, globalStyle } from '@vanilla-extract/css';
+import { themeContract } from '../../themes/contracts/theme.css';
 
 /**
- * Base button styles
+ * Spinner keyframes for loading state
  */
-export const buttonBase = style({
+const spinKeyframes = keyframes({
+  '0%': { transform: 'rotate(0deg)' },
+  '100%': { transform: 'rotate(360deg)' },
+});
+
+/**
+ * Button recipe using Vanilla-Extract recipes with theme integration
+ */
+export const buttonRecipe = recipe({
+  base: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: themeContract.spacing[2],
+    border: 'none',
+    borderRadius: themeContract.border.radius.default,
+    fontFamily: themeContract.typography.fontFamily.sans,
+    fontWeight: themeContract.typography.fontWeight.medium,
+    lineHeight: themeContract.typography.lineHeight.none,
+    cursor: 'pointer',
+    textDecoration: 'none',
+    outline: 'none',
+    position: 'relative',
+    transition: 'all 0.15s ease-in-out',
+    userSelect: 'none',
+
+    ':focus-visible': {
+      outline: `2px solid ${themeContract.color.semantic.border.accent}`,
+      outlineOffset: '2px',
+    },
+
+    ':disabled': {
+      cursor: 'not-allowed',
+      opacity: 0.6,
+    },
+
+    // Ensure icons and text are properly aligned
+    selectors: {
+      '&:where([data-disabled])': {
+        cursor: 'not-allowed',
+        opacity: 0.6,
+      },
+    },
+  },
+
+  variants: {
+    variant: {
+      primary: {
+        backgroundColor: themeContract.color.core.primary[500],
+        color: themeContract.color.semantic.text.inverse,
+        border: `${themeContract.border.width.default} solid transparent`,
+
+        ':hover:not(:disabled):not([data-disabled])': {
+          backgroundColor: themeContract.color.core.primary[600],
+        },
+
+        ':active:not(:disabled):not([data-disabled])': {
+          backgroundColor: themeContract.color.core.primary[700],
+        },
+      },
+      secondary: {
+        backgroundColor: themeContract.color.semantic.surface.muted,
+        color: themeContract.color.semantic.text.default,
+        border: `${themeContract.border.width.default} solid ${themeContract.color.semantic.border.default}`,
+
+        ':hover:not(:disabled):not([data-disabled])': {
+          backgroundColor: themeContract.color.semantic.surface.emphasis,
+          borderColor: themeContract.color.semantic.border.emphasis,
+        },
+
+        ':active:not(:disabled):not([data-disabled])': {
+          backgroundColor: themeContract.color.semantic.surface.emphasis,
+        },
+      },
+      ghost: {
+        backgroundColor: 'transparent',
+        color: themeContract.color.semantic.text.accent,
+        border: `${themeContract.border.width.default} solid transparent`,
+
+        ':hover:not(:disabled):not([data-disabled])': {
+          backgroundColor: themeContract.color.semantic.surface.subtle,
+        },
+
+        ':active:not(:disabled):not([data-disabled])': {
+          backgroundColor: themeContract.color.semantic.surface.muted,
+        },
+      },
+      danger: {
+        backgroundColor: themeContract.color.core.error[500],
+        color: themeContract.color.semantic.text.inverse,
+        border: `${themeContract.border.width.default} solid transparent`,
+
+        ':hover:not(:disabled):not([data-disabled])': {
+          backgroundColor: themeContract.color.core.error[600],
+        },
+
+        ':active:not(:disabled):not([data-disabled])': {
+          backgroundColor: themeContract.color.core.error[700],
+        },
+      },
+    },
+
+    size: {
+      small: {
+        height: '32px',
+        paddingLeft: themeContract.spacing[3],
+        paddingRight: themeContract.spacing[3],
+        fontSize: themeContract.typography.fontSize.sm,
+      },
+      medium: {
+        height: '40px',
+        paddingLeft: themeContract.spacing[4],
+        paddingRight: themeContract.spacing[4],
+        fontSize: themeContract.typography.fontSize.base,
+      },
+      large: {
+        height: '48px',
+        paddingLeft: themeContract.spacing[5],
+        paddingRight: themeContract.spacing[5],
+        fontSize: themeContract.typography.fontSize.lg,
+      },
+    },
+
+    fullWidth: {
+      true: {
+        width: '100%',
+      },
+    },
+
+    loading: {
+      true: {
+        color: 'transparent',
+        pointerEvents: 'none',
+      },
+    },
+  },
+
+  defaultVariants: {
+    variant: 'primary',
+    size: 'medium',
+    fullWidth: false,
+    loading: false,
+  },
+});
+
+// Global styles for button child elements
+globalStyle('.button-icon', {
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: '8px',
-  border: 'none',
-  borderRadius: '6px',
-  fontFamily: 'inherit',
-  fontWeight: 500,
-  lineHeight: 1,
-  cursor: 'pointer',
-  transition: 'all 0.2s ease-in-out',
-  textDecoration: 'none',
-  outline: 'none',
-
-  ':focus-visible': {
-    outline: '2px solid currentColor',
-    outlineOffset: '2px',
-  },
-
-  ':disabled': {
-    cursor: 'not-allowed',
-    opacity: 0.6,
-  },
+  flexShrink: 0,
 });
 
-/**
- * Button size variants
- */
-export const buttonSizes = styleVariants({
-  small: {
-    height: '32px',
-    padding: '0 12px',
-    fontSize: '14px',
-  },
-  medium: {
-    height: '40px',
-    padding: '0 16px',
-    fontSize: '16px',
-  },
-  large: {
-    height: '48px',
-    padding: '0 20px',
-    fontSize: '18px',
-  },
+globalStyle('.button-text', {
+  display: 'inline-block',
 });
 
-/**
- * Button variant styles
- * These will be connected to theme contracts later
- */
-export const buttonVariants = styleVariants({
-  primary: {
-    backgroundColor: '#007bff',
-    color: '#ffffff',
-
-    ':hover:not(:disabled)': {
-      backgroundColor: '#0056b3',
-    },
-
-    ':active:not(:disabled)': {
-      backgroundColor: '#004085',
-    },
-  },
-  secondary: {
-    backgroundColor: '#6c757d',
-    color: '#ffffff',
-
-    ':hover:not(:disabled)': {
-      backgroundColor: '#545b62',
-    },
-
-    ':active:not(:disabled)': {
-      backgroundColor: '#3d4147',
-    },
-  },
-  ghost: {
-    backgroundColor: 'transparent',
-    color: '#007bff',
-    border: '1px solid #007bff',
-
-    ':hover:not(:disabled)': {
-      backgroundColor: '#007bff',
-      color: '#ffffff',
-    },
-
-    ':active:not(:disabled)': {
-      backgroundColor: '#0056b3',
-    },
-  },
-  danger: {
-    backgroundColor: '#dc3545',
-    color: '#ffffff',
-
-    ':hover:not(:disabled)': {
-      backgroundColor: '#c82333',
-    },
-
-    ':active:not(:disabled)': {
-      backgroundColor: '#a71e2a',
-    },
-  },
+globalStyle('.button-spinner', {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '16px',
+  height: '16px',
+  border: `2px solid currentColor`,
+  borderTopColor: 'transparent',
+  borderRadius: '50%',
+  animation: `${spinKeyframes} 1s linear infinite`,
 });
 
-/**
- * Full width button modifier
- */
-export const buttonFullWidth = style({
-  width: '100%',
+// Loading state styles
+globalStyle(`${buttonRecipe({ loading: true })} .button-spinner`, {
+  color: 'inherit',
 });
 
-/**
- * Loading state styles
- */
-export const buttonLoading = style({
-  position: 'relative',
-  color: 'transparent',
-
-  '::after': {
-    content: '',
-    position: 'absolute',
-    inset: 0,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '16px',
-    height: '16px',
-    margin: 'auto',
-    border: '2px solid currentColor',
-    borderTop: '2px solid transparent',
-    borderRadius: '50%',
-    animation: 'spin 1s linear infinite',
-  },
+// Ensure proper spacing for icons
+globalStyle(`${buttonRecipe()} .button-icon + .button-text`, {
+  marginLeft: themeContract.spacing[1],
 });
 
-// Add keyframes for loading spinner
-// Note: This will be moved to a global styles file later
-const spinKeyframes = '@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }';
-
-// Inject keyframes into document head
-if (typeof document !== 'undefined') {
-  const style = document.createElement('style');
-  style.textContent = spinKeyframes;
-  document.head.appendChild(style);
-}
+globalStyle(`${buttonRecipe()} .button-text + .button-icon`, {
+  marginLeft: themeContract.spacing[1],
+});
