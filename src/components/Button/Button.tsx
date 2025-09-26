@@ -1,19 +1,14 @@
 import { forwardRef } from 'react';
+// Base UI doesn't export a Button component, using HTML button element
 import { clsx } from 'clsx';
 import type { ButtonProps } from './Button.types';
-import {
-  buttonBase,
-  buttonSizes,
-  buttonVariants,
-  buttonFullWidth,
-  buttonLoading,
-} from './Button.css';
+import { buttonRecipe } from './Button.css';
 
 /**
  * Button Component
  *
- * A flexible button component that supports different variants,
- * sizes, and states with full accessibility support.
+ * A flexible button component built on Base UI with theme system integration.
+ * Supports different variants, sizes, and states with full accessibility support.
  */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -26,6 +21,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       startIcon,
       endIcon,
       disabled,
+      className,
       ...props
     },
     ref
@@ -33,23 +29,36 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref}
+        type="button"
         className={clsx(
-          buttonBase,
-          buttonSizes[size],
-          buttonVariants[variant],
-          fullWidth && buttonFullWidth,
-          isLoading && buttonLoading
+          buttonRecipe({
+            variant,
+            size,
+            fullWidth,
+            loading: isLoading,
+          }),
+          className
         )}
         disabled={disabled || isLoading}
         aria-disabled={disabled || isLoading}
         {...props}
       >
-        {!isLoading && startIcon && (
-          <span aria-hidden="true">{startIcon}</span>
-        )}
-        <span>{children}</span>
-        {!isLoading && endIcon && (
-          <span aria-hidden="true">{endIcon}</span>
+        {isLoading ? (
+          <span className="button-spinner" aria-label="Loading" />
+        ) : (
+          <>
+            {startIcon && (
+              <span className="button-icon" aria-hidden="true">
+                {startIcon}
+              </span>
+            )}
+            <span className="button-text">{children}</span>
+            {endIcon && (
+              <span className="button-icon" aria-hidden="true">
+                {endIcon}
+              </span>
+            )}
+          </>
         )}
       </button>
     );
