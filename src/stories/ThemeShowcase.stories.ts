@@ -1,6 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
+
 import { useTheme } from '../themes';
+
+import type { Meta, StoryObj } from '@storybook/react';
 
 // Theme showcase component to test theme switching
 const ThemeShowcaseComponent: React.FC = () => {

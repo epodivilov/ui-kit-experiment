@@ -1,6 +1,6 @@
-import { forwardRef, useId, useMemo } from 'react';
 import { clsx } from 'clsx';
-import type { InputProps, ValidationState } from './Input.types';
+import { forwardRef, useId, useMemo } from 'react';
+
 import {
   inputContainer,
   inputContainerFullWidth,
@@ -15,6 +15,9 @@ import {
   inputWarningText,
   inputErrorText,
 } from './Input.css';
+
+import type { InputProps, ValidationState } from './Input.types';
+
 
 /**
  * Input Component

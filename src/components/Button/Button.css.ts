@@ -1,5 +1,6 @@
-import { recipe } from '@vanilla-extract/recipes';
 import { keyframes, globalStyle } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
+
 import { themeContract } from '../../themes/contracts/theme.css';
 
 /**

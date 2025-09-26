@@ -1,8 +1,11 @@
-import { forwardRef } from 'react';
-// Base UI doesn't export a Button component, using HTML button element
 import { clsx } from 'clsx';
-import type { ButtonProps } from './Button.types';
+import { forwardRef } from 'react';
+
+// Base UI doesn't export a Button component, using HTML button element
 import { buttonRecipe } from './Button.css';
+
+import type { ButtonProps } from './Button.types';
+
 
 /**
  * Button Component
@@ -25,8 +28,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       ...props
     },
     ref
-  ) => {
-    return (
+  ) => (
       <button
         ref={ref}
         type="button"
@@ -61,8 +63,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           </>
         )}
       </button>
-    );
-  }
+    )
 );
 
 Button.displayName = 'Button';

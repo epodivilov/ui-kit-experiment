@@ -1,7 +1,6 @@
-import { forwardRef } from 'react';
-import type { ComponentProps } from 'react';
 import { clsx } from 'clsx';
-import type { CardProps } from './Card.types';
+import { forwardRef } from 'react';
+
 import {
   cardRecipe,
   cardMedia,
@@ -13,6 +12,10 @@ import {
   cardSubtitle,
   cardLoadingOverlay,
 } from './Card.css';
+
+import type { CardProps } from './Card.types';
+import type { ComponentProps } from 'react';
+
 
 /**
  * Card Component

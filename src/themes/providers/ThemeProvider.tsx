@@ -7,8 +7,9 @@
  */
 
 import React, { createContext, useContext, useState, useCallback, useMemo } from 'react';
-import { lightTheme } from '../light.css';
+
 import { darkTheme } from '../dark.css';
+import { lightTheme } from '../light.css';
 
 export type ThemeMode = 'light' | 'dark' | 'system';
 
@@ -71,9 +72,7 @@ export function ThemeProvider({
   }, [mode, enableSystem, getSystemTheme]);
 
   // Get the appropriate theme class
-  const themeClass = useMemo(() => {
-    return resolvedTheme === 'dark' ? themes.dark : themes.light;
-  }, [resolvedTheme, themes]);
+  const themeClass = useMemo(() => resolvedTheme === 'dark' ? themes.dark : themes.light, [resolvedTheme, themes]);
 
   // Set theme mode
   const setTheme = useCallback((theme: ThemeMode) => {

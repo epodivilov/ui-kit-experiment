@@ -6,7 +6,7 @@
  */
 
 import { createTheme } from '@vanilla-extract/css';
-import { themeContract } from './contracts/theme.css';
+
 import {
   // Colors
   ColorCoreNeutral0,
@@ -161,6 +161,8 @@ import {
   AnimationEasingEaseOut,
   AnimationEasingEaseInOut,
 } from '../tokens/generated/tokens';
+
+import { themeContract } from './contracts/theme.css';
 
 export const lightTheme = createTheme(themeContract, {
   color: {
