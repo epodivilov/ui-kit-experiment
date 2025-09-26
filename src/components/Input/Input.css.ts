@@ -1,26 +1,44 @@
-import { style, styleVariants } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
+import { style, keyframes, globalStyle } from '@vanilla-extract/css';
+import { themeContract } from '../../themes/contracts/theme.css';
 
 /**
- * Input container wrapper
+ * Loading spinner keyframes
+ */
+const spinKeyframes = keyframes({
+  '0%': { transform: 'rotate(0deg)' },
+  '100%': { transform: 'rotate(360deg)' },
+});
+
+/**
+ * Input container styles
  */
 export const inputContainer = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: '4px',
+  gap: themeContract.spacing[1],
 });
 
 /**
  * Input label styles
  */
 export const inputLabel = style({
-  fontSize: '14px',
-  fontWeight: 500,
-  color: '#374151',
-  lineHeight: 1.4,
+  fontSize: themeContract.typography.fontSize.sm,
+  fontWeight: themeContract.typography.fontWeight.medium,
+  color: themeContract.color.semantic.text.default,
+  lineHeight: themeContract.typography.lineHeight.normal,
+  fontFamily: themeContract.typography.fontFamily.sans,
+
+  selectors: {
+    '&[data-required="true"]::after': {
+      content: ' *',
+      color: themeContract.color.semantic.text.error,
+    },
+  },
 });
 
 /**
- * Input field wrapper for positioning icons
+ * Input wrapper for positioning icons and loading state
  */
 export const inputWrapper = style({
   position: 'relative',
@@ -29,83 +47,153 @@ export const inputWrapper = style({
 });
 
 /**
- * Base input field styles
+ * Input field recipe with theme integration
  */
-export const inputBase = style({
-  width: '100%',
-  border: '1px solid #d1d5db',
-  borderRadius: '6px',
-  backgroundColor: '#ffffff',
-  fontSize: '16px',
-  lineHeight: 1.5,
-  color: '#111827',
-  transition: 'all 0.2s ease-in-out',
-  outline: 'none',
+export const inputRecipe = recipe({
+  base: {
+    width: '100%',
+    border: `${themeContract.border.width.default} solid ${themeContract.color.semantic.border.default}`,
+    borderRadius: themeContract.border.radius.default,
+    backgroundColor: themeContract.color.semantic.surface.default,
+    fontSize: themeContract.typography.fontSize.base,
+    lineHeight: themeContract.typography.lineHeight.normal,
+    color: themeContract.color.semantic.text.default,
+    fontFamily: themeContract.typography.fontFamily.sans,
+    transition: 'all 0.15s ease-in-out',
+    outline: 'none',
 
-  '::placeholder': {
-    color: '#9ca3af',
+    '::placeholder': {
+      color: themeContract.color.semantic.text.muted,
+    },
+
+    ':focus': {
+      borderColor: themeContract.color.semantic.border.accent,
+      boxShadow: `0 0 0 3px ${themeContract.color.core.primary[100]}`,
+    },
+
+    ':disabled': {
+      backgroundColor: themeContract.color.semantic.surface.muted,
+      color: themeContract.color.semantic.text.muted,
+      cursor: 'not-allowed',
+      borderColor: themeContract.color.semantic.border.muted,
+    },
+
+    selectors: {
+      '&:where([data-loading="true"])': {
+        pointerEvents: 'none',
+      },
+    },
   },
 
-  ':focus': {
-    borderColor: '#007bff',
-    boxShadow: '0 0 0 3px rgba(0, 123, 255, 0.1)',
+  variants: {
+    size: {
+      small: {
+        height: '32px',
+        padding: `0 ${themeContract.spacing[2]}`,
+        fontSize: themeContract.typography.fontSize.sm,
+      },
+      medium: {
+        height: '40px',
+        padding: `0 ${themeContract.spacing[3]}`,
+        fontSize: themeContract.typography.fontSize.base,
+      },
+      large: {
+        height: '48px',
+        padding: `0 ${themeContract.spacing[4]}`,
+        fontSize: themeContract.typography.fontSize.lg,
+      },
+    },
+
+    validationState: {
+      default: {},
+      success: {
+        borderColor: themeContract.color.semantic.border.success,
+
+        ':focus': {
+          borderColor: themeContract.color.semantic.border.success,
+          boxShadow: `0 0 0 3px ${themeContract.color.core.success[100]}`,
+        },
+      },
+      warning: {
+        borderColor: themeContract.color.semantic.border.warning,
+
+        ':focus': {
+          borderColor: themeContract.color.semantic.border.warning,
+          boxShadow: `0 0 0 3px ${themeContract.color.core.warning[100]}`,
+        },
+      },
+      error: {
+        borderColor: themeContract.color.semantic.border.error,
+
+        ':focus': {
+          borderColor: themeContract.color.semantic.border.error,
+          boxShadow: `0 0 0 3px ${themeContract.color.core.error[100]}`,
+        },
+      },
+    },
+
+    fullWidth: {
+      true: {
+        width: '100%',
+      },
+    },
+
+    hasStartIcon: {
+      true: {},
+    },
+
+    hasEndIcon: {
+      true: {},
+    },
+
+    loading: {
+      true: {
+        paddingRight: '40px', // Make room for loading spinner
+      },
+    },
   },
 
-  ':disabled': {
-    backgroundColor: '#f9fafb',
-    color: '#6b7280',
-    cursor: 'not-allowed',
-  },
-});
+  compoundVariants: [
+    // Start icon padding adjustments by size
+    {
+      variants: { size: 'small', hasStartIcon: true },
+      style: { paddingLeft: '32px' },
+    },
+    {
+      variants: { size: 'medium', hasStartIcon: true },
+      style: { paddingLeft: '40px' },
+    },
+    {
+      variants: { size: 'large', hasStartIcon: true },
+      style: { paddingLeft: '48px' },
+    },
+    // End icon padding adjustments by size
+    {
+      variants: { size: 'small', hasEndIcon: true },
+      style: { paddingRight: '32px' },
+    },
+    {
+      variants: { size: 'medium', hasEndIcon: true },
+      style: { paddingRight: '40px' },
+    },
+    {
+      variants: { size: 'large', hasEndIcon: true },
+      style: { paddingRight: '48px' },
+    },
+    // Loading state with end icon
+    {
+      variants: { hasEndIcon: true, loading: true },
+      style: { paddingRight: '64px' },
+    },
+  ],
 
-/**
- * Input size variants
- */
-export const inputSizes = styleVariants({
-  small: {
-    height: '32px',
-    padding: '0 8px',
-    fontSize: '14px',
-  },
-  medium: {
-    height: '40px',
-    padding: '0 12px',
-    fontSize: '16px',
-  },
-  large: {
-    height: '48px',
-    padding: '0 16px',
-    fontSize: '18px',
-  },
-});
-
-/**
- * Input with start icon
- */
-export const inputWithStartIcon = styleVariants({
-  small: {
-    paddingLeft: '32px',
-  },
-  medium: {
-    paddingLeft: '40px',
-  },
-  large: {
-    paddingLeft: '48px',
-  },
-});
-
-/**
- * Input with end icon
- */
-export const inputWithEndIcon = styleVariants({
-  small: {
-    paddingRight: '32px',
-  },
-  medium: {
-    paddingRight: '40px',
-  },
-  large: {
-    paddingRight: '48px',
+  defaultVariants: {
+    size: 'medium',
+    validationState: 'default',
+    fullWidth: false,
+    hasStartIcon: false,
+    hasEndIcon: false,
+    loading: false,
   },
 });
 
@@ -117,55 +205,100 @@ export const inputIcon = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  color: '#6b7280',
+  color: themeContract.color.semantic.text.muted,
   pointerEvents: 'none',
+  zIndex: 1,
 });
 
 export const inputStartIcon = style([
   inputIcon,
   {
-    left: '12px',
+    left: themeContract.spacing[3],
   },
 ]);
 
 export const inputEndIcon = style([
   inputIcon,
   {
-    right: '12px',
+    right: themeContract.spacing[3],
   },
 ]);
 
 /**
- * Error state styles
+ * Loading spinner styles
  */
-export const inputError = style({
-  borderColor: '#dc3545',
-
-  ':focus': {
-    borderColor: '#dc3545',
-    boxShadow: '0 0 0 3px rgba(220, 53, 69, 0.1)',
+export const inputSpinner = style([
+  inputIcon,
+  {
+    right: themeContract.spacing[3],
+    width: '16px',
+    height: '16px',
+    border: `2px solid ${themeContract.color.semantic.text.muted}`,
+    borderTopColor: 'transparent',
+    borderRadius: '50%',
+    animation: `${spinKeyframes} 1s linear infinite`,
   },
-});
+]);
 
 /**
- * Help text and error message styles
+ * Message styles for help text, success, warning, error
  */
-export const inputHelpText = style({
-  fontSize: '12px',
-  color: '#6b7280',
-  lineHeight: 1.4,
+export const messageBase = style({
+  fontSize: themeContract.typography.fontSize.xs,
+  lineHeight: themeContract.typography.lineHeight.normal,
+  fontFamily: themeContract.typography.fontFamily.sans,
+  marginTop: themeContract.spacing[1],
 });
+
+export const inputHelpText = style([
+  messageBase,
+  {
+    color: themeContract.color.semantic.text.muted,
+  },
+]);
+
+export const inputSuccessText = style([
+  messageBase,
+  {
+    color: themeContract.color.semantic.text.success,
+  },
+]);
+
+export const inputWarningText = style([
+  messageBase,
+  {
+    color: themeContract.color.semantic.text.warning,
+  },
+]);
 
 export const inputErrorText = style([
-  inputHelpText,
+  messageBase,
   {
-    color: '#dc3545',
+    color: themeContract.color.semantic.text.error,
   },
 ]);
 
 /**
- * Full width modifier
+ * Full width container modifier
  */
-export const inputFullWidth = style({
+export const inputContainerFullWidth = style({
   width: '100%',
+});
+
+// Global styles for better icon positioning with loading state
+globalStyle(`${inputWrapper}[data-loading="true"] ${inputEndIcon}`, {
+  right: '44px', // Move end icon further right when loading
+});
+
+// Ensure start icons have proper size constraints
+globalStyle(`${inputStartIcon} > *`, {
+  width: '16px',
+  height: '16px',
+  flexShrink: 0,
+});
+
+globalStyle(`${inputEndIcon} > *`, {
+  width: '16px',
+  height: '16px',
+  flexShrink: 0,
 });
