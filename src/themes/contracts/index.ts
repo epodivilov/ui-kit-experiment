@@ -8,11 +8,8 @@
  */
 
 // Main theme contract
-// export { themeContract } from './theme.css';
+export { themeContract, type ThemeContract } from './theme.css';
 
 // Component-specific contracts
 // export { buttonContract } from './button.css';
 // export { inputContract } from './input.css';
-
-// For now, export an empty object to prevent build errors
-export {};

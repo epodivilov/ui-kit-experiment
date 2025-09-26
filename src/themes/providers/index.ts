@@ -6,10 +6,10 @@
  */
 
 // Theme provider and context
-// export { ThemeProvider } from './ThemeProvider';
-// export { useTheme } from './useTheme';
-// export { ColorModeProvider } from './ColorModeProvider';
-// export { useColorMode } from './useColorMode';
-
-// For now, export an empty object to prevent build errors
-export {};
+export {
+  ThemeProvider,
+  useTheme,
+  type ThemeMode,
+  type ThemeContextValue,
+  type ThemeProviderProps,
+} from './ThemeProvider';

@@ -17,6 +17,6 @@ export * from './contracts';
 export * from './providers';
 
 // Pre-built themes
-// export { lightTheme } from './light';
-// export { darkTheme } from './dark';
+export { lightTheme } from './light.css';
+export { darkTheme } from './dark.css';
 // export { highContrastTheme } from './high-contrast';
