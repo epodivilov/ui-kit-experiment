@@ -1,0 +1,259 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --component-button-ghost-background-default: rgba(0, 0, 0, 0); /** Ghost button background */
+  --animation-duration-instant: 0ms; /** Instant animation */
+  --animation-duration-fast: 150ms; /** Fast animation */
+  --animation-duration-normal: 300ms; /** Normal animation */
+  --animation-duration-slow: 500ms; /** Slow animation */
+  --animation-duration-slower: 750ms; /** Slower animation */
+  --animation-easing-linear: linear; /** Linear easing */
+  --animation-easing-ease: ease; /** Default ease */
+  --animation-easing-ease-in: ease-in; /** Ease in */
+  --animation-easing-ease-out: ease-out; /** Ease out */
+  --animation-easing-ease-in-out: ease-in-out; /** Ease in out */
+  --animation-easing-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55); /** Spring easing */
+  --animation-easing-bounce: cubic-bezier(0.68, 1.55, 0.265, 1); /** Bounce easing */
+  --border-radius-none: 0px; /** No border radius */
+  --border-radius-sm: 2px; /** Small border radius */
+  --border-radius-base: 4px; /** Base border radius */
+  --border-radius-md: 6px; /** Medium border radius */
+  --border-radius-lg: 8px; /** Large border radius */
+  --border-radius-xl: 12px; /** Extra large border radius */
+  --border-radius-2xl: 16px; /** 2XL border radius */
+  --border-radius-3xl: 24px; /** 3XL border radius */
+  --border-radius-full: 9999px; /** Full border radius (pill shape) */
+  --border-width-0: 0px; /** No border width */
+  --border-width-1: 1px; /** Thin border */
+  --border-width-2: 2px; /** Medium border */
+  --border-width-4: 4px; /** Thick border */
+  --border-width-8: 8px; /** Very thick border */
+  --border-style-solid: solid; /** Solid border style */
+  --border-style-dashed: dashed; /** Dashed border style */
+  --border-style-dotted: dotted; /** Dotted border style */
+  --color-core-neutral-0: #ffffff; /** Pure white */
+  --color-core-neutral-50: #fafafa; /** Lightest neutral */
+  --color-core-neutral-100: #f4f4f5; /** Very light neutral */
+  --color-core-neutral-200: #e4e4e7; /** Light neutral */
+  --color-core-neutral-300: #d4d4d8; /** Light-medium neutral */
+  --color-core-neutral-400: #a1a1aa; /** Medium neutral */
+  --color-core-neutral-500: #71717a; /** Medium-dark neutral */
+  --color-core-neutral-600: #52525b; /** Dark neutral */
+  --color-core-neutral-700: #3f3f46; /** Very dark neutral */
+  --color-core-neutral-800: #27272a; /** Darkest neutral */
+  --color-core-neutral-900: #18181b; /** Near black */
+  --color-core-neutral-950: #09090b; /** Almost black */
+  --color-core-primary-50: #eff6ff; /** Lightest primary blue */
+  --color-core-primary-100: #dbeafe; /** Very light primary blue */
+  --color-core-primary-200: #bfdbfe; /** Light primary blue */
+  --color-core-primary-300: #93c5fd; /** Light-medium primary blue */
+  --color-core-primary-400: #60a5fa; /** Medium primary blue */
+  --color-core-primary-500: #3b82f6; /** Primary blue */
+  --color-core-primary-600: #2563eb; /** Medium-dark primary blue */
+  --color-core-primary-700: #1d4ed8; /** Dark primary blue */
+  --color-core-primary-800: #1e40af; /** Very dark primary blue */
+  --color-core-primary-900: #1e3a8a; /** Darkest primary blue */
+  --color-core-primary-950: #172554; /** Almost black primary blue */
+  --color-core-success-50: #f0fdf4; /** Lightest success green */
+  --color-core-success-100: #dcfce7; /** Very light success green */
+  --color-core-success-200: #bbf7d0; /** Light success green */
+  --color-core-success-300: #86efac; /** Light-medium success green */
+  --color-core-success-400: #4ade80; /** Medium success green */
+  --color-core-success-500: #22c55e; /** Success green */
+  --color-core-success-600: #16a34a; /** Medium-dark success green */
+  --color-core-success-700: #15803d; /** Dark success green */
+  --color-core-success-800: #166534; /** Very dark success green */
+  --color-core-success-900: #14532d; /** Darkest success green */
+  --color-core-success-950: #052e16; /** Almost black success green */
+  --color-core-warning-50: #fffbeb; /** Lightest warning amber */
+  --color-core-warning-100: #fef3c7; /** Very light warning amber */
+  --color-core-warning-200: #fde68a; /** Light warning amber */
+  --color-core-warning-300: #fcd34d; /** Light-medium warning amber */
+  --color-core-warning-400: #fbbf24; /** Medium warning amber */
+  --color-core-warning-500: #f59e0b; /** Warning amber */
+  --color-core-warning-600: #d97706; /** Medium-dark warning amber */
+  --color-core-warning-700: #b45309; /** Dark warning amber */
+  --color-core-warning-800: #92400e; /** Very dark warning amber */
+  --color-core-warning-900: #78350f; /** Darkest warning amber */
+  --color-core-warning-950: #451a03; /** Almost black warning amber */
+  --color-core-error-50: #fef2f2; /** Lightest error red */
+  --color-core-error-100: #fee2e2; /** Very light error red */
+  --color-core-error-200: #fecaca; /** Light error red */
+  --color-core-error-300: #fca5a5; /** Light-medium error red */
+  --color-core-error-400: #f87171; /** Medium error red */
+  --color-core-error-500: #ef4444; /** Error red */
+  --color-core-error-600: #dc2626; /** Medium-dark error red */
+  --color-core-error-700: #b91c1c; /** Dark error red */
+  --color-core-error-800: #991b1b; /** Very dark error red */
+  --color-core-error-900: #7f1d1d; /** Darkest error red */
+  --color-core-error-950: #450a0a; /** Almost black error red */
+  --color-background-overlay: rgba(0, 0, 0, 0.5); /** Overlay background color */
+  --shadow-core-none: none; /** No shadow */
+  --shadow-core-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /** Extra small shadow */
+  --shadow-core-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1); /** Small shadow */
+  --shadow-core-base: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /** Base shadow */
+  --shadow-core-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); /** Medium shadow */
+  --shadow-core-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /** Large shadow */
+  --shadow-core-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /** Extra large shadow */
+  --shadow-core-2xl: 0 35px 60px -12px rgba(0, 0, 0, 0.25); /** 2XL shadow */
+  --shadow-core-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05); /** Inner shadow */
+  --shadow-focus-ring: 0 0 0 2px rgba(59, 130, 246, 0.3); /** Focus ring shadow */
+  --shadow-focus-error: 0 0 0 2px rgba(239, 68, 68, 0.3); /** Error focus ring shadow */
+  --shadow-focus-success: 0 0 0 2px rgba(34, 197, 94, 0.3); /** Success focus ring shadow */
+  --spacing-core-0: 0px; /** No spacing */
+  --spacing-core-1: 4px; /** Extra small spacing */
+  --spacing-core-2: 8px; /** Small spacing */
+  --spacing-core-3: 12px; /** Small-medium spacing */
+  --spacing-core-4: 16px; /** Medium spacing */
+  --spacing-core-5: 20px; /** Medium-large spacing */
+  --spacing-core-6: 24px; /** Large spacing */
+  --spacing-core-7: 28px; /** Large spacing */
+  --spacing-core-8: 32px; /** Extra large spacing */
+  --spacing-core-9: 36px; /** Extra large spacing */
+  --spacing-core-10: 40px; /** 2XL spacing */
+  --spacing-core-11: 44px; /** 2XL spacing */
+  --spacing-core-12: 48px; /** 3XL spacing */
+  --spacing-core-14: 56px; /** 3XL spacing */
+  --spacing-core-16: 64px; /** 4XL spacing */
+  --spacing-core-20: 80px; /** 5XL spacing */
+  --spacing-core-24: 96px; /** 6XL spacing */
+  --spacing-core-28: 112px; /** 7XL spacing */
+  --spacing-core-32: 128px; /** 8XL spacing */
+  --spacing-core-36: 144px; /** 9XL spacing */
+  --spacing-core-40: 160px; /** 10XL spacing */
+  --spacing-core-44: 176px; /** 11XL spacing */
+  --spacing-core-48: 192px; /** 12XL spacing */
+  --spacing-core-52: 208px; /** 13XL spacing */
+  --spacing-core-56: 224px; /** 14XL spacing */
+  --spacing-core-60: 240px; /** 15XL spacing */
+  --spacing-core-64: 256px; /** 16XL spacing */
+  --spacing-core-72: 288px; /** 18XL spacing */
+  --spacing-core-80: 320px; /** 20XL spacing */
+  --spacing-core-96: 384px; /** 24XL spacing */
+  --typography-font-family-sans: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; /** Primary sans-serif font stack */
+  --typography-font-family-mono: 'SF Mono', Monaco, Inconsolata, 'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace; /** Monospace font stack for code */
+  --typography-font-weight-thin: 100; /** Thin font weight */
+  --typography-font-weight-extralight: 200; /** Extra light font weight */
+  --typography-font-weight-light: 300; /** Light font weight */
+  --typography-font-weight-normal: 400; /** Normal font weight */
+  --typography-font-weight-medium: 500; /** Medium font weight */
+  --typography-font-weight-semibold: 600; /** Semi-bold font weight */
+  --typography-font-weight-bold: 700; /** Bold font weight */
+  --typography-font-weight-extrabold: 800; /** Extra bold font weight */
+  --typography-font-weight-black: 900; /** Black font weight */
+  --typography-font-size-xs: 12px; /** Extra small font size */
+  --typography-font-size-sm: 14px; /** Small font size */
+  --typography-font-size-base: 16px; /** Base font size */
+  --typography-font-size-lg: 18px; /** Large font size */
+  --typography-font-size-xl: 20px; /** Extra large font size */
+  --typography-font-size-2xl: 24px; /** 2XL font size */
+  --typography-font-size-3xl: 30px; /** 3XL font size */
+  --typography-font-size-4xl: 36px; /** 4XL font size */
+  --typography-font-size-5xl: 48px; /** 5XL font size */
+  --typography-font-size-6xl: 60px; /** 6XL font size */
+  --typography-font-size-7xl: 72px; /** 7XL font size */
+  --typography-font-size-8xl: 96px; /** 8XL font size */
+  --typography-font-size-9xl: 128px; /** 9XL font size */
+  --typography-font-line-height-none: 1; /** No line height */
+  --typography-font-line-height-tight: 1.25; /** Tight line height */
+  --typography-font-line-height-snug: 1.375; /** Snug line height */
+  --typography-font-line-height-normal: 1.5; /** Normal line height */
+  --typography-font-line-height-relaxed: 1.625; /** Relaxed line height */
+  --typography-font-line-height-loose: 2; /** Loose line height */
+  --component-button-height-small: var(--spacing-core-8); /** Small button height */
+  --component-button-height-medium: var(--spacing-core-10); /** Medium button height */
+  --component-button-height-large: var(--spacing-core-12); /** Large button height */
+  --component-button-padding-x-small: var(--spacing-core-3); /** Small button horizontal padding */
+  --component-button-padding-x-medium: var(--spacing-core-4); /** Medium button horizontal padding */
+  --component-button-padding-x-large: var(--spacing-core-5); /** Large button horizontal padding */
+  --component-button-border-radius: var(--border-radius-md); /** Button border radius */
+  --component-button-font-size-small: var(--typography-font-size-sm); /** Small button font size */
+  --component-button-font-size-medium: var(--typography-font-size-base); /** Medium button font size */
+  --component-button-font-size-large: var(--typography-font-size-lg); /** Large button font size */
+  --component-button-font-weight: var(--typography-font-weight-medium); /** Button font weight */
+  --component-button-gap: var(--spacing-core-2); /** Gap between button icon and text */
+  --component-button-primary-background-default: var(--color-core-primary-500); /** Primary button background */
+  --component-button-primary-background-hover: var(--color-core-primary-600); /** Primary button hover background */
+  --component-button-primary-background-active: var(--color-core-primary-700); /** Primary button active background */
+  --component-button-primary-background-disabled: var(--color-core-neutral-300); /** Primary button disabled background */
+  --component-button-primary-text-default: var(--color-core-neutral-0); /** Primary button text color */
+  --component-button-primary-text-disabled: var(--color-core-neutral-500); /** Primary button disabled text color */
+  --component-button-secondary-background-default: var(--color-core-neutral-100); /** Secondary button background */
+  --component-button-secondary-background-hover: var(--color-core-neutral-200); /** Secondary button hover background */
+  --component-button-secondary-background-active: var(--color-core-neutral-300); /** Secondary button active background */
+  --component-button-secondary-text-default: var(--color-core-neutral-700); /** Secondary button text color */
+  --component-button-secondary-border-default: var(--color-core-neutral-300); /** Secondary button border color */
+  --component-button-secondary-border-hover: var(--color-core-neutral-400); /** Secondary button hover border color */
+  --component-button-ghost-background-hover: var(--color-core-neutral-100); /** Ghost button hover background */
+  --component-button-ghost-background-active: var(--color-core-neutral-200); /** Ghost button active background */
+  --component-button-ghost-text-default: var(--color-core-primary-600); /** Ghost button text color */
+  --component-button-danger-background-default: var(--color-core-error-500); /** Danger button background */
+  --component-button-danger-background-hover: var(--color-core-error-600); /** Danger button hover background */
+  --component-button-danger-background-active: var(--color-core-error-700); /** Danger button active background */
+  --component-button-danger-text-default: var(--color-core-neutral-0); /** Danger button text color */
+  --component-input-height-small: var(--spacing-core-8); /** Small input height */
+  --component-input-height-medium: var(--spacing-core-10); /** Medium input height */
+  --component-input-height-large: var(--spacing-core-12); /** Large input height */
+  --component-input-padding-x-small: var(--spacing-core-2); /** Small input horizontal padding */
+  --component-input-padding-x-medium: var(--spacing-core-3); /** Medium input horizontal padding */
+  --component-input-padding-x-large: var(--spacing-core-4); /** Large input horizontal padding */
+  --component-input-border-radius: var(--border-radius-md); /** Input border radius */
+  --component-input-border-width: var(--border-width-1); /** Input border width */
+  --component-input-font-size-small: var(--typography-font-size-sm); /** Small input font size */
+  --component-input-font-size-medium: var(--typography-font-size-base); /** Medium input font size */
+  --component-input-font-size-large: var(--typography-font-size-lg); /** Large input font size */
+  --component-input-background-default: var(--color-core-neutral-0); /** Input background color */
+  --component-input-background-disabled: var(--color-core-neutral-50); /** Disabled input background color */
+  --component-input-border-error: var(--color-core-error-500); /** Input error border color */
+  --component-input-border-success: var(--color-core-success-500); /** Input success border color */
+  --component-input-label-font-size: var(--typography-font-size-sm); /** Input label font size */
+  --component-input-label-font-weight: var(--typography-font-weight-medium); /** Input label font weight */
+  --component-input-label-spacing: var(--spacing-core-1); /** Space between label and input */
+  --component-input-help-text-font-size: var(--typography-font-size-xs); /** Input help text font size */
+  --component-input-help-text-spacing: var(--spacing-core-1); /** Space between input and help text */
+  --component-input-icon-size: var(--spacing-core-4); /** Input icon size */
+  --component-input-icon-spacing: var(--spacing-core-3); /** Space between icon and input edge */
+  --component-input-focus-box-shadow: var(--shadow-focus-ring); /** Input focus box shadow */
+  --transition-all: all var(--animation-duration-normal) var(--animation-easing-ease-in-out); /** Default transition for all properties */
+  --transition-colors: color var(--animation-duration-normal) var(--animation-easing-ease-in-out), background-color var(--animation-duration-normal) var(--animation-easing-ease-in-out), border-color var(--animation-duration-normal) var(--animation-easing-ease-in-out); /** Color transitions */
+  --transition-transform: transform var(--animation-duration-normal) var(--animation-easing-ease-in-out); /** Transform transition */
+  --transition-opacity: opacity var(--animation-duration-normal) var(--animation-easing-ease-in-out); /** Opacity transition */
+  --color-text-primary: var(--color-core-neutral-900); /** Primary text color */
+  --color-text-secondary: var(--color-core-neutral-600); /** Secondary text color */
+  --color-text-tertiary: var(--color-core-neutral-400); /** Tertiary text color */
+  --color-text-disabled: var(--color-core-neutral-300); /** Disabled text color */
+  --color-text-inverse: var(--color-core-neutral-0); /** Inverse text color (white on dark) */
+  --color-text-link: var(--color-core-primary-600); /** Link text color */
+  --color-text-link-hover: var(--color-core-primary-700); /** Link hover text color */
+  --color-background-primary: var(--color-core-neutral-0); /** Primary background color */
+  --color-background-secondary: var(--color-core-neutral-50); /** Secondary background color */
+  --color-background-tertiary: var(--color-core-neutral-100); /** Tertiary background color */
+  --color-border-default: var(--color-core-neutral-200); /** Default border color */
+  --color-border-muted: var(--color-core-neutral-100); /** Muted border color */
+  --color-border-strong: var(--color-core-neutral-300); /** Strong border color */
+  --color-border-focus: var(--color-core-primary-500); /** Focus border color */
+  --color-status-success-text: var(--color-core-success-700); /** Success text color */
+  --color-status-success-background: var(--color-core-success-50); /** Success background color */
+  --color-status-success-border: var(--color-core-success-200); /** Success border color */
+  --color-status-warning-text: var(--color-core-warning-700); /** Warning text color */
+  --color-status-warning-background: var(--color-core-warning-50); /** Warning background color */
+  --color-status-warning-border: var(--color-core-warning-200); /** Warning border color */
+  --color-status-error-text: var(--color-core-error-700); /** Error text color */
+  --color-status-error-background: var(--color-core-error-50); /** Error background color */
+  --color-status-error-border: var(--color-core-error-200); /** Error border color */
+  --color-status-info-text: var(--color-core-primary-700); /** Info text color */
+  --color-status-info-background: var(--color-core-primary-50); /** Info background color */
+  --color-status-info-border: var(--color-core-primary-200); /** Info border color */
+  --component-input-border-default: var(--color-border-default); /** Input border color */
+  --component-input-border-hover: var(--color-border-strong); /** Input hover border color */
+  --component-input-border-focus: var(--color-border-focus); /** Input focus border color */
+  --component-input-text-default: var(--color-text-primary); /** Input text color */
+  --component-input-text-placeholder: var(--color-text-tertiary); /** Input placeholder text color */
+  --component-input-text-disabled: var(--color-text-disabled); /** Disabled input text color */
+  --component-input-label-color: var(--color-text-primary); /** Input label text color */
+  --component-input-help-text-color-default: var(--color-text-secondary); /** Input help text color */
+  --component-input-help-text-color-error: var(--color-status-error-text); /** Input error help text color */
+  --component-input-icon-color: var(--color-text-tertiary); /** Input icon color */
+}

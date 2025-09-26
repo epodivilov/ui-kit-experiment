@@ -64,7 +64,7 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "tokens:build": "style-dictionary build"
+    "tokens:build": "style-dictionary build --config ./style-dictionary.config.js"
   },
   "keywords": [
     "ui",
