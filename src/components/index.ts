@@ -19,7 +19,7 @@ export { Input } from './Input';
 // export { Switch } from './Switch';
 
 // Layout Components
-// export { Card } from './Card';
+export { Card, CardTitle, CardSubtitle } from './Card';
 // export { Container } from './Container';
 // export { Stack } from './Stack';
 // export { Grid } from './Grid';
