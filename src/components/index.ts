@@ -13,7 +13,7 @@
 // Form Components
 export { Button } from './Button';
 export { Input } from './Input';
-// export { Checkbox } from './Checkbox';
+export { Checkbox } from './Checkbox';
 // export { Radio } from './Radio';
 // export { Select } from './Select';
 // export { Switch } from './Switch';
