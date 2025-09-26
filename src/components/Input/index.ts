@@ -1,16 +1,22 @@
 /**
  * Input Component
  *
- * A flexible input field component with support for different
- * variants, states, and accessibility features.
+ * A flexible input field component with support for validation states,
+ * accessibility features, and theme integration.
  *
  * @example
  * ```tsx
  * import { Input } from 'ui-kit';
  *
- * <Input placeholder="Enter your name" label="Name" />
+ * <Input
+ *   label="Email"
+ *   placeholder="Enter your email"
+ *   required
+ *   validationState="error"
+ *   error="Please enter a valid email address"
+ * />
  * ```
  */
 
 export { Input } from './Input';
-export type { InputProps } from './Input.types';
+export type { InputProps, ValidationState } from './Input.types';
