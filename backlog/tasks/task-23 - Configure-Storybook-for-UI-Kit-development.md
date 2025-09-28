@@ -1,9 +1,10 @@
 ---
 id: task-23
 title: Configure Storybook for UI Kit development
-status: To Do
+status: Done
 assignee: []
 created_date: '2025-09-24 17:03'
+completed_date: '2025-09-28 21:10'
 labels:
   - storybook
   - configuration

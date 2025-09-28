@@ -1,9 +1,10 @@
 ---
 id: task-25
 title: Validate and test complete setup
-status: To Do
+status: Done
 assignee: []
 created_date: '2025-09-24 17:04'
+completed_date: '2025-09-28 21:10'
 labels:
   - testing
   - validation

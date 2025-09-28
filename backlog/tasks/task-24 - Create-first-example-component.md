@@ -1,9 +1,10 @@
 ---
 id: task-24
 title: Create first example component
-status: To Do
+status: Done
 assignee: []
 created_date: '2025-09-24 17:03'
+completed_date: '2025-09-28 21:10'
 labels:
   - component
   - example
