@@ -1,9 +1,10 @@
 ---
 id: task-5
 title: '[PHASE] Design System Foundation'
-status: To Do
+status: Done
 assignee: []
 created_date: '2025-09-24 17:00'
+completed_date: '2025-09-28 21:15'
 labels:
   - design-system
   - theming

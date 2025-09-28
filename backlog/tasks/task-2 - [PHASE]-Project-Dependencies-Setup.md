@@ -1,9 +1,10 @@
 ---
 id: task-2
 title: '[PHASE] Project Dependencies Setup'
-status: To Do
+status: Done
 assignee: []
 created_date: '2025-09-24 17:00'
+completed_date: '2025-09-28 21:15'
 labels:
   - dependencies
   - setup

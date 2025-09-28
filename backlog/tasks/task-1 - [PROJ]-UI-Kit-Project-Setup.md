@@ -1,9 +1,10 @@
 ---
 id: task-1
 title: '[PROJ] UI Kit Project Setup'
-status: To Do
+status: Done
 assignee: []
 created_date: '2025-09-24 16:58'
+completed_date: '2025-09-28 21:15'
 labels:
   - project
   - setup
