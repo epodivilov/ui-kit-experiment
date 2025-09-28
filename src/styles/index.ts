@@ -1,8 +1,8 @@
 // Styles entry point
 // This file exports all CSS-in-JS styles, themes, and design tokens
 
-// Re-export themes
-export * from './themes';
+// Re-export themes from the main themes directory
+export * from '../themes';
 
 // Re-export design tokens
 export * from '../tokens';
