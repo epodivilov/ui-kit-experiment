@@ -1,0 +1,12 @@
+{
+  "primitives": {
+    "border-radius": {
+      "none": { "value": "0px" },
+      "sm": { "value": "{primitives.size.1}" },
+      "md": { "value": "{primitives.size.2}" },
+      "lg": { "value": "{primitives.size.3}" },
+      "xl": { "value": "{primitives.size.4}" },
+      "full": { "value": "9999px" }
+    }
+  }
+}

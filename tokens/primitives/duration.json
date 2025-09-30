@@ -1,0 +1,11 @@
+{
+  "primitives": {
+    "duration": {
+      "instant": { "value": "0ms" },
+      "fast": { "value": "100ms" },
+      "normal": { "value": "200ms" },
+      "slow": { "value": "300ms" },
+      "slower": { "value": "500ms" }
+    }
+  }
+}
