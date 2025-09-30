@@ -3,7 +3,10 @@
     "toast": {
       "_base": {
         "border-radius": { "value": "{semantic.border-radius.lg}", "type": "borderRadius" },
-        "typography": { "value": "{semantic.typography.body.sm}", "type": "typography" },
+        "font-family": { "value": "{primitives.typography.font-family.sans}", "type": "fontFamily" },
+        "font-size": { "value": "{primitives.typography.font-size.200}", "type": "fontSize" },
+        "font-weight": { "value": "{primitives.typography.font-weight.regular}", "type": "fontWeight" },
+        "line-height": { "value": "{primitives.typography.line-height.150}", "type": "lineHeight" },
         "padding-inline": { "value": "{semantic.spacing.inline.md}", "type": "spacing" },
         "padding-block": { "value": "{semantic.spacing.block.sm}", "type": "spacing" },
         "shadow": { "value": "{semantic.shadow.elevation-3}", "type": "boxShadow" },

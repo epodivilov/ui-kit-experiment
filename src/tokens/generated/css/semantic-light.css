@@ -1,0 +1,78 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+[data-theme="light"] {
+  --semantic-color-background-default: var(--primitives-color-white);
+  --semantic-color-background-surface: var(--primitives-color-neutral-50);
+  --semantic-color-background-surface-elevated: var(--primitives-color-white);
+  --semantic-color-background-primary-default: var(--primitives-color-blue-600);
+  --semantic-color-background-primary-hover: var(--primitives-color-blue-700);
+  --semantic-color-background-primary-active: var(--primitives-color-blue-800);
+  --semantic-color-background-secondary-default: var(--primitives-color-neutral-100);
+  --semantic-color-background-secondary-hover: var(--primitives-color-neutral-200);
+  --semantic-color-background-secondary-active: var(--primitives-color-neutral-300);
+  --semantic-color-background-danger-default: var(--primitives-color-red-600);
+  --semantic-color-background-danger-hover: var(--primitives-color-red-700);
+  --semantic-color-background-danger-active: var(--primitives-color-red-800);
+  --semantic-color-background-success-default: var(--primitives-color-green-600);
+  --semantic-color-background-success-hover: var(--primitives-color-green-700);
+  --semantic-color-background-success-active: var(--primitives-color-green-800);
+  --semantic-color-background-warning-default: var(--primitives-color-yellow-500);
+  --semantic-color-background-warning-hover: var(--primitives-color-yellow-600);
+  --semantic-color-background-warning-active: var(--primitives-color-yellow-700);
+  --semantic-color-background-disabled: var(--primitives-color-neutral-100);
+  --semantic-color-foreground-default: var(--primitives-color-neutral-900);
+  --semantic-color-foreground-subtle: var(--primitives-color-neutral-600);
+  --semantic-color-foreground-accent: var(--primitives-color-blue-600);
+  --semantic-color-foreground-on-primary: var(--primitives-color-white);
+  --semantic-color-foreground-on-secondary: var(--primitives-color-neutral-900);
+  --semantic-color-foreground-on-danger: var(--primitives-color-white);
+  --semantic-color-foreground-on-success: var(--primitives-color-white);
+  --semantic-color-foreground-on-warning: var(--primitives-color-neutral-900);
+  --semantic-color-foreground-disabled: var(--primitives-color-neutral-400);
+  --semantic-color-border-default: var(--primitives-color-neutral-300);
+  --semantic-color-border-hover: var(--primitives-color-neutral-400);
+  --semantic-color-border-focus: var(--primitives-color-blue-600);
+  --semantic-color-border-disabled: var(--primitives-color-neutral-200);
+  --semantic-typography-display-lg: var(--primitives-typography-font-weight-bold) var(--primitives-typography-font-size-900)/var(--primitives-typography-line-height-120) var(--primitives-typography-font-family-sans);
+  --semantic-typography-display-md: var(--primitives-typography-font-weight-bold) var(--primitives-typography-font-size-800)/var(--primitives-typography-line-height-120) var(--primitives-typography-font-family-sans);
+  --semantic-typography-display-sm: var(--primitives-typography-font-weight-bold) var(--primitives-typography-font-size-700)/var(--primitives-typography-line-height-120) var(--primitives-typography-font-family-sans);
+  --semantic-typography-heading-lg: var(--primitives-typography-font-weight-semibold) var(--primitives-typography-font-size-600)/var(--primitives-typography-line-height-140) var(--primitives-typography-font-family-sans);
+  --semantic-typography-heading-md: var(--primitives-typography-font-weight-semibold) var(--primitives-typography-font-size-500)/var(--primitives-typography-line-height-140) var(--primitives-typography-font-family-sans);
+  --semantic-typography-heading-sm: var(--primitives-typography-font-weight-semibold) var(--primitives-typography-font-size-400)/var(--primitives-typography-line-height-140) var(--primitives-typography-font-family-sans);
+  --semantic-typography-body-lg: var(--primitives-typography-font-weight-regular) var(--primitives-typography-font-size-400)/var(--primitives-typography-line-height-150) var(--primitives-typography-font-family-sans);
+  --semantic-typography-body-md: var(--primitives-typography-font-weight-regular) var(--primitives-typography-font-size-300)/var(--primitives-typography-line-height-150) var(--primitives-typography-font-family-sans);
+  --semantic-typography-body-sm: var(--primitives-typography-font-weight-regular) var(--primitives-typography-font-size-200)/var(--primitives-typography-line-height-150) var(--primitives-typography-font-family-sans);
+  --semantic-typography-caption-md: var(--primitives-typography-font-weight-medium) var(--primitives-typography-font-size-200)/var(--primitives-typography-line-height-140) var(--primitives-typography-font-family-sans);
+  --semantic-typography-caption-sm: var(--primitives-typography-font-weight-medium) var(--primitives-typography-font-size-100)/var(--primitives-typography-line-height-140) var(--primitives-typography-font-family-sans);
+  --semantic-spacing-block-xs: var(--primitives-size-1);
+  --semantic-spacing-block-sm: var(--primitives-size-2);
+  --semantic-spacing-block-md: var(--primitives-size-4);
+  --semantic-spacing-block-lg: var(--primitives-size-6);
+  --semantic-spacing-block-xl: var(--primitives-size-8);
+  --semantic-spacing-inline-xs: var(--primitives-size-1);
+  --semantic-spacing-inline-sm: var(--primitives-size-2);
+  --semantic-spacing-inline-md: var(--primitives-size-4);
+  --semantic-spacing-inline-lg: var(--primitives-size-6);
+  --semantic-spacing-inline-xl: var(--primitives-size-8);
+  --semantic-spacing-inset-xs: var(--primitives-size-1);
+  --semantic-spacing-inset-sm: var(--primitives-size-2);
+  --semantic-spacing-inset-md: var(--primitives-size-4);
+  --semantic-spacing-inset-lg: var(--primitives-size-6);
+  --semantic-spacing-inset-xl: var(--primitives-size-8);
+  --semantic-size-icon-sm: var(--primitives-size-4);
+  --semantic-size-icon-md: var(--primitives-size-6);
+  --semantic-size-icon-lg: var(--primitives-size-8);
+  --semantic-size-target-sm: var(--primitives-size-8);
+  --semantic-size-target-md: var(--primitives-size-10);
+  --semantic-size-target-lg: var(--primitives-size-12);
+  --semantic-border-radius-full: var(--primitives-border-radius-full);
+  --semantic-shadow-elevation-1: var(--primitives-shadow-1);
+  --semantic-shadow-elevation-2: var(--primitives-shadow-2);
+  --semantic-shadow-elevation-3: var(--primitives-shadow-3);
+  --semantic-shadow-elevation-4: var(--primitives-shadow-4);
+  --semantic-border-radius-sm: var(--primitives-border-radius-sm);
+  --semantic-border-radius-md: var(--primitives-border-radius-md);
+  --semantic-border-radius-lg: var(--primitives-border-radius-lg);
+}

@@ -1,15 +1,17 @@
 /**
  * Style Dictionary Configuration
  *
- * This configuration defines how design tokens are processed and transformed
- * into various formats for use across different platforms and technologies.
+ * This configuration transforms design tokens from JSON into usable formats
+ * for both CSS and Vanilla-Extract styling systems.
  */
 
 export default {
   // Source files containing design tokens
+  // Note: We exclude semantic/contract.json to avoid collisions - themes override it
   source: [
-    'src/tokens/**/*.json',
-    'src/tokens/**/*.js'
+    'tokens/primitives/**/*.json',
+    'tokens/themes/**/*.json',
+    'tokens/components/**/*.json'
   ],
 
   // Define different platforms/outputs
@@ -17,200 +19,104 @@ export default {
     // CSS Custom Properties for web applications
     css: {
       transformGroup: 'css',
-      buildPath: 'src/styles/tokens/',
+      buildPath: 'src/tokens/generated/css/',
       files: [
         {
-          destination: 'variables.css',
+          destination: 'primitives.css',
           format: 'css/variables',
+          filter: (token) => token.path[0] === 'primitives',
           options: {
-            outputReferences: true
-          }
-        }
-      ]
-    },
-
-    // JavaScript/TypeScript exports
-    js: {
-      transformGroup: 'js',
-      buildPath: 'src/tokens/generated/',
-      files: [
-        {
-          destination: 'tokens.js',
-          format: 'javascript/es6',
-          options: {
-            outputReferences: true
+            outputReferences: true,
+            selector: ':root'
           }
         },
         {
-          destination: 'tokens.d.ts',
-          format: 'typescript/es6-declarations'
+          destination: 'semantic-light.css',
+          format: 'css/variables',
+          filter: (token) => token.filePath.includes('themes/light'),
+          options: {
+            outputReferences: true,
+            selector: '[data-theme="light"]'
+          }
+        },
+        {
+          destination: 'semantic-dark.css',
+          format: 'css/variables',
+          filter: (token) => token.filePath.includes('themes/dark'),
+          options: {
+            outputReferences: true,
+            selector: '[data-theme="dark"]'
+          }
+        },
+        {
+          destination: 'components.css',
+          format: 'css/variables',
+          filter: (token) => token.path[0] === 'components',
+          options: {
+            outputReferences: true,
+            selector: ':root'
+          }
         }
       ]
     },
 
-    // JSON for documentation and tooling
+    // JavaScript/TypeScript exports for Vanilla-Extract
+    js: {
+      transformGroup: 'js',
+      buildPath: 'src/tokens/generated/js/',
+      files: [
+        {
+          destination: 'primitives.ts',
+          format: 'javascript/es6',
+          filter: (token) => token.path[0] === 'primitives',
+          options: {
+            outputReferences: false
+          }
+        },
+        {
+          destination: 'semantic-light.ts',
+          format: 'javascript/es6',
+          filter: (token) => token.filePath.includes('themes/light'),
+          options: {
+            outputReferences: false
+          }
+        },
+        {
+          destination: 'semantic-dark.ts',
+          format: 'javascript/es6',
+          filter: (token) => token.filePath.includes('themes/dark'),
+          options: {
+            outputReferences: false
+          }
+        },
+        {
+          destination: 'components.ts',
+          format: 'javascript/es6',
+          filter: (token) => token.path[0] === 'components',
+          options: {
+            outputReferences: false
+          }
+        }
+      ]
+    },
+
+    // JSON for documentation and debugging
     json: {
       transformGroup: 'js',
-      buildPath: 'src/tokens/generated/',
+      buildPath: 'src/tokens/generated/json/',
       files: [
         {
-          destination: 'tokens.json',
-          format: 'json/flat'
+          destination: 'all-tokens.json',
+          format: 'json/nested'
         }
       ]
-    },
-
-    // Vanilla-Extract compatible tokens
-    vanillaExtract: {
-      transformGroup: 'js',
-      buildPath: 'src/tokens/generated/',
-      files: [
-        {
-          destination: 'vanilla-extract.ts',
-          format: 'javascript/es6',
-          filter: (token) => {
-            // Only include tokens that are suitable for CSS-in-JS
-            return !token.type || ['color', 'dimension', 'fontFamily', 'fontWeight', 'duration'].includes(token.type);
-          },
-          options: {
-            outputReferences: false,
-            formatting: {
-              prefix: 'export const ',
-              commentStyle: 'long'
-            }
-          }
-        }
-      ]
-    }
-  },
-
-  // Custom transforms
-  transform: {
-    // Transform for CSS custom property names
-    'name/cti/css': {
-      type: 'name',
-      transformer: (token) => {
-        return `--${token.path.join('-')}`;
-      }
-    },
-
-    // Transform for camelCase JavaScript names
-    'name/cti/camel': {
-      type: 'name',
-      transformer: (token) => {
-        return token.path.reduce((acc, part, index) => {
-          if (index === 0) return part;
-          return acc + part.charAt(0).toUpperCase() + part.slice(1);
-        }, '');
-      }
-    },
-
-    // Transform for kebab-case names
-    'name/cti/kebab': {
-      type: 'name',
-      transformer: (token) => {
-        return token.path.join('-');
-      }
-    },
-
-    // Transform px values to rem
-    'size/px-to-rem': {
-      type: 'value',
-      matcher: (token) => {
-        return token.type === 'dimension' && typeof token.value === 'string' && token.value.includes('px');
-      },
-      transformer: (token) => {
-        const pxValue = parseFloat(token.value);
-        return `${pxValue / 16}rem`;
-      }
-    }
-  },
-
-  // Custom formats
-  format: {
-    // Custom CSS variables format with better organization
-    'css/variables-organized': {
-      formatter: (dictionary) => {
-        const tokens = dictionary.allTokens;
-        const categories = {};
-
-        // Group tokens by category
-        tokens.forEach(token => {
-          const category = token.path[0];
-          if (!categories[category]) {
-            categories[category] = [];
-          }
-          categories[category].push(token);
-        });
-
-        let output = ':root {\n';
-
-        // Generate CSS variables grouped by category
-        Object.keys(categories).sort().forEach(category => {
-          output += `  /* ${category.toUpperCase()} TOKENS */\n`;
-          categories[category].forEach(token => {
-            const comment = token.comment ? ` /* ${token.comment} */` : '';
-            output += `  --${token.path.join('-')}: ${token.value};${comment}\n`;
-          });
-          output += '\n';
-        });
-
-        output += '}\n';
-        return output;
-      }
-    },
-
-    // TypeScript interface format
-    'typescript/interfaces': {
-      formatter: (dictionary) => {
-        const tokens = dictionary.allTokens;
-        let output = '/**\n * Design Tokens TypeScript Interfaces\n * Generated by Style Dictionary\n */\n\n';
-
-        // Generate interface for all tokens
-        output += 'export interface DesignTokens {\n';
-        tokens.forEach(token => {
-          const name = token.path.reduce((acc, part, index) => {
-            if (index === 0) return part;
-            return acc + part.charAt(0).toUpperCase() + part.slice(1);
-          }, '');
-          const comment = token.comment ? `  /** ${token.comment} */\n` : '';
-          output += `${comment}  ${name}: string;\n`;
-        });
-        output += '}\n\n';
-
-        // Generate token categories
-        const categories = {};
-        tokens.forEach(token => {
-          const category = token.path[0];
-          if (!categories[category]) {
-            categories[category] = [];
-          }
-          categories[category].push(token);
-        });
-
-        Object.keys(categories).forEach(category => {
-          const interfaceName = category.charAt(0).toUpperCase() + category.slice(1) + 'Tokens';
-          output += `export interface ${interfaceName} {\n`;
-          categories[category].forEach(token => {
-            const name = token.path.slice(1).reduce((acc, part, index) => {
-              if (index === 0) return part;
-              return acc + part.charAt(0).toUpperCase() + part.slice(1);
-            }, '');
-            const comment = token.comment ? `  /** ${token.comment} */\n` : '';
-            output += `${comment}  ${name || 'value'}: string;\n`;
-          });
-          output += '}\n\n';
-        });
-
-        return output;
-      }
     }
   },
 
   // Logging configuration
   log: {
     warnings: 'warn',
-    verbosity: 'verbose',
+    verbosity: 'default',
     errors: {
       brokenReferences: 'throw'
     }

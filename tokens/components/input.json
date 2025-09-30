@@ -3,7 +3,10 @@
     "input": {
       "_base": {
         "border-radius": { "value": "{semantic.border-radius.md}", "type": "borderRadius" },
-        "typography": { "value": "{semantic.typography.body.md}", "type": "typography" },
+        "font-family": { "value": "{primitives.typography.font-family.sans}", "type": "fontFamily" },
+        "font-size": { "value": "{primitives.typography.font-size.300}", "type": "fontSize" },
+        "font-weight": { "value": "{primitives.typography.font-weight.regular}", "type": "fontWeight" },
+        "line-height": { "value": "{primitives.typography.line-height.150}", "type": "lineHeight" },
         "padding-inline": { "value": "{semantic.spacing.inline.sm}", "type": "spacing" },
         "padding-block": { "value": "{semantic.spacing.block.sm}", "type": "spacing" },
         "min-height": { "value": "{semantic.size.target.md}", "type": "sizing" },
