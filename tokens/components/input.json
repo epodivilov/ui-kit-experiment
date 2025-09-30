@@ -1,0 +1,48 @@
+{
+  "components": {
+    "input": {
+      "_base": {
+        "border-radius": { "value": "{semantic.border-radius.md}", "type": "borderRadius" },
+        "typography": { "value": "{semantic.typography.body.md}", "type": "typography" },
+        "padding-inline": { "value": "{semantic.spacing.inline.sm}", "type": "spacing" },
+        "padding-block": { "value": "{semantic.spacing.block.sm}", "type": "spacing" },
+        "min-height": { "value": "{semantic.size.target.md}", "type": "sizing" },
+        "border-width": { "value": "1px", "type": "borderWidth" },
+        "transition-duration": { "value": "{primitives.duration.normal}", "type": "duration" }
+      },
+      "default": {
+        "background-color": {
+          "default": { "value": "{semantic.color.background.surface}", "type": "color" },
+          "disabled": { "value": "{semantic.color.background.disabled}", "type": "color" }
+        },
+        "foreground-color": {
+          "default": { "value": "{semantic.color.foreground.default}", "type": "color" },
+          "disabled": { "value": "{semantic.color.foreground.disabled}", "type": "color" }
+        },
+        "placeholder-foreground-color": {
+          "default": { "value": "{semantic.color.foreground.subtle}", "type": "color" },
+          "disabled": { "value": "{semantic.color.foreground.disabled}", "type": "color" }
+        },
+        "border-color": {
+          "default": { "value": "{semantic.color.border.default}", "type": "color" },
+          "hover": { "value": "{semantic.color.border.hover}", "type": "color" },
+          "focus": { "value": "{semantic.color.border.focus}", "type": "color" },
+          "disabled": { "value": "{semantic.color.border.disabled}", "type": "color" }
+        }
+      },
+      "error": {
+        "background-color": {
+          "default": { "value": "{semantic.color.background.surface}", "type": "color" }
+        },
+        "foreground-color": {
+          "default": { "value": "{semantic.color.foreground.default}", "type": "color" }
+        },
+        "border-color": {
+          "default": { "value": "{semantic.color.background.danger.default}", "type": "color" },
+          "hover": { "value": "{semantic.color.background.danger.hover}", "type": "color" },
+          "focus": { "value": "{semantic.color.background.danger.default}", "type": "color" }
+        }
+      }
+    }
+  }
+}
