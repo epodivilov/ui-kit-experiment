@@ -8,9 +8,7 @@
 import { createThemeContract, createTheme } from '@vanilla-extract/css';
 
 // Import generated tokens
-import * as primitives from '../tokens/generated/js/primitives';
 import * as semantic from '../tokens/generated/js/semantic-light';
-import * as components from '../tokens/generated/js/components';
 
 /**
  * Theme contract defines the structure of all themes

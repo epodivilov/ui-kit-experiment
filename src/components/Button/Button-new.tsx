@@ -5,8 +5,9 @@
  * Design Tokens → Style Dictionary → Component Tokens → Vanilla-Extract Recipes
  */
 
-import { forwardRef } from 'react';
 import { clsx } from 'clsx';
+import { forwardRef } from 'react';
+
 import { buttonRecipe, buttonIcon, buttonText } from './Button-new.css';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -47,28 +48,26 @@ export const ButtonNew = forwardRef<HTMLButtonElement, ButtonProps>(
       ...props
     },
     ref
-  ) => {
-    return (
-      <button
-        ref={ref}
-        type="button"
-        className={clsx(
-          buttonRecipe({
-            variant,
-            fullWidth,
-          }),
-          className
-        )}
-        disabled={disabled}
-        aria-disabled={disabled}
-        {...props}
-      >
-        {startIcon && <span className={buttonIcon}>{startIcon}</span>}
-        <span className={buttonText}>{children}</span>
-        {endIcon && <span className={buttonIcon}>{endIcon}</span>}
-      </button>
-    );
-  }
+  ) => (
+    <button
+      ref={ref}
+      type="button"
+      className={clsx(
+        buttonRecipe({
+          variant,
+          fullWidth,
+        }),
+        className
+      )}
+      disabled={disabled}
+      aria-disabled={disabled}
+      {...props}
+    >
+      {startIcon && <span className={buttonIcon}>{startIcon}</span>}
+      <span className={buttonText}>{children}</span>
+      {endIcon && <span className={buttonIcon}>{endIcon}</span>}
+    </button>
+  )
 );
 
 ButtonNew.displayName = 'ButtonNew';

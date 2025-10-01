@@ -2,8 +2,8 @@
  * Input Component Styles with Component Tokens
  */
 
-import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
+
 import * as componentTokens from '../../tokens/generated/js/components';
 
 export const inputRecipe = recipe({
@@ -26,23 +26,22 @@ export const inputRecipe = recipe({
     color: componentTokens.ComponentsInputDefaultForegroundColorDefault,
     borderColor: componentTokens.ComponentsInputDefaultBorderColorDefault,
 
-    '::placeholder': {
-      color: componentTokens.ComponentsInputDefaultPlaceholderForegroundColorDefault,
-    },
-
-    ':hover:not(:disabled)': {
-      borderColor: componentTokens.ComponentsInputDefaultBorderColorHover,
-    },
-
-    ':focus': {
-      borderColor: componentTokens.ComponentsInputDefaultBorderColorFocus,
-    },
-
-    ':disabled': {
-      backgroundColor: componentTokens.ComponentsInputDefaultBackgroundColorDisabled,
-      color: componentTokens.ComponentsInputDefaultForegroundColorDisabled,
-      borderColor: componentTokens.ComponentsInputDefaultBorderColorDisabled,
-      cursor: 'not-allowed',
+    selectors: {
+      '&::placeholder': {
+        color: componentTokens.ComponentsInputDefaultPlaceholderForegroundColorDefault,
+      },
+      '&:hover:not(:disabled)': {
+        borderColor: componentTokens.ComponentsInputDefaultBorderColorHover,
+      },
+      '&:focus': {
+        borderColor: componentTokens.ComponentsInputDefaultBorderColorFocus,
+      },
+      '&:disabled': {
+        backgroundColor: componentTokens.ComponentsInputDefaultBackgroundColorDisabled,
+        color: componentTokens.ComponentsInputDefaultForegroundColorDisabled,
+        borderColor: componentTokens.ComponentsInputDefaultBorderColorDisabled,
+        cursor: 'not-allowed',
+      },
     },
   },
 

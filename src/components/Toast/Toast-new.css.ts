@@ -4,6 +4,7 @@
 
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
+
 import * as componentTokens from '../../tokens/generated/js/components';
 
 export const toastRecipe = recipe({

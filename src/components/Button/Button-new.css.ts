@@ -7,9 +7,8 @@
 
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
+
 import * as componentTokens from '../../tokens/generated/js/components';
-import * as primitiveTokens from '../../tokens/generated/js/primitives';
-import { themeVars } from '../../themes/theme.css';
 
 /**
  * Base button styles shared across all variants
