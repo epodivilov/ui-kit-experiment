@@ -8,57 +8,57 @@ export const PrimitivesBorderRadiusMd = "8px";
 export const PrimitivesBorderRadiusLg = "12px";
 export const PrimitivesBorderRadiusXl = "16px";
 export const PrimitivesBorderRadiusFull = "9999px";
-export const PrimitivesColorNeutral50 = "#FAFAFA";
-export const PrimitivesColorNeutral100 = "#F5F5F5";
-export const PrimitivesColorNeutral200 = "#E5E5E5";
-export const PrimitivesColorNeutral300 = "#D4D4D4";
-export const PrimitivesColorNeutral400 = "#A3A3A3";
+export const PrimitivesColorNeutral50 = "#fafafa";
+export const PrimitivesColorNeutral100 = "#f5f5f5";
+export const PrimitivesColorNeutral200 = "#e5e5e5";
+export const PrimitivesColorNeutral300 = "#d4d4d4";
+export const PrimitivesColorNeutral400 = "#a3a3a3";
 export const PrimitivesColorNeutral500 = "#737373";
 export const PrimitivesColorNeutral600 = "#525252";
 export const PrimitivesColorNeutral700 = "#404040";
 export const PrimitivesColorNeutral800 = "#262626";
 export const PrimitivesColorNeutral900 = "#171717";
-export const PrimitivesColorBlue50 = "#EFF6FF";
-export const PrimitivesColorBlue100 = "#DBEAFE";
-export const PrimitivesColorBlue200 = "#BFDBFE";
-export const PrimitivesColorBlue300 = "#93C5FD";
-export const PrimitivesColorBlue400 = "#60A5FA";
-export const PrimitivesColorBlue500 = "#3B82F6";
-export const PrimitivesColorBlue600 = "#2563EB";
-export const PrimitivesColorBlue700 = "#1D4ED8";
-export const PrimitivesColorBlue800 = "#1E40AF";
-export const PrimitivesColorBlue900 = "#1E3A8A";
-export const PrimitivesColorRed50 = "#FEF2F2";
-export const PrimitivesColorRed100 = "#FEE2E2";
-export const PrimitivesColorRed200 = "#FECACA";
-export const PrimitivesColorRed300 = "#FCA5A5";
-export const PrimitivesColorRed400 = "#F87171";
-export const PrimitivesColorRed500 = "#EF4444";
-export const PrimitivesColorRed600 = "#DC2626";
-export const PrimitivesColorRed700 = "#B91C1C";
-export const PrimitivesColorRed800 = "#991B1B";
-export const PrimitivesColorRed900 = "#7F1D1D";
-export const PrimitivesColorGreen50 = "#F0FDF4";
-export const PrimitivesColorGreen100 = "#DCFCE7";
-export const PrimitivesColorGreen200 = "#BBF7D0";
-export const PrimitivesColorGreen300 = "#86EFAC";
-export const PrimitivesColorGreen400 = "#4ADE80";
-export const PrimitivesColorGreen500 = "#22C55E";
-export const PrimitivesColorGreen600 = "#16A34A";
-export const PrimitivesColorGreen700 = "#15803D";
+export const PrimitivesColorBlue50 = "#eff6ff";
+export const PrimitivesColorBlue100 = "#dbeafe";
+export const PrimitivesColorBlue200 = "#bfdbfe";
+export const PrimitivesColorBlue300 = "#93c5fd";
+export const PrimitivesColorBlue400 = "#60a5fa";
+export const PrimitivesColorBlue500 = "#3b82f6";
+export const PrimitivesColorBlue600 = "#2563eb";
+export const PrimitivesColorBlue700 = "#1d4ed8";
+export const PrimitivesColorBlue800 = "#1e40af";
+export const PrimitivesColorBlue900 = "#1e3a8a";
+export const PrimitivesColorRed50 = "#fef2f2";
+export const PrimitivesColorRed100 = "#fee2e2";
+export const PrimitivesColorRed200 = "#fecaca";
+export const PrimitivesColorRed300 = "#fca5a5";
+export const PrimitivesColorRed400 = "#f87171";
+export const PrimitivesColorRed500 = "#ef4444";
+export const PrimitivesColorRed600 = "#dc2626";
+export const PrimitivesColorRed700 = "#b91c1c";
+export const PrimitivesColorRed800 = "#991b1b";
+export const PrimitivesColorRed900 = "#7f1d1d";
+export const PrimitivesColorGreen50 = "#f0fdf4";
+export const PrimitivesColorGreen100 = "#dcfce7";
+export const PrimitivesColorGreen200 = "#bbf7d0";
+export const PrimitivesColorGreen300 = "#86efac";
+export const PrimitivesColorGreen400 = "#4ade80";
+export const PrimitivesColorGreen500 = "#22c55e";
+export const PrimitivesColorGreen600 = "#16a34a";
+export const PrimitivesColorGreen700 = "#15803d";
 export const PrimitivesColorGreen800 = "#166534";
-export const PrimitivesColorGreen900 = "#14532D";
-export const PrimitivesColorYellow50 = "#FEFCE8";
-export const PrimitivesColorYellow100 = "#FEF9C3";
-export const PrimitivesColorYellow200 = "#FEF08A";
-export const PrimitivesColorYellow300 = "#FDE047";
-export const PrimitivesColorYellow400 = "#FACC15";
-export const PrimitivesColorYellow500 = "#EAB308";
-export const PrimitivesColorYellow600 = "#CA8A04";
-export const PrimitivesColorYellow700 = "#A16207";
-export const PrimitivesColorYellow800 = "#854D0E";
-export const PrimitivesColorYellow900 = "#713F12";
-export const PrimitivesColorWhite = "#FFFFFF";
+export const PrimitivesColorGreen900 = "#14532d";
+export const PrimitivesColorYellow50 = "#fefce8";
+export const PrimitivesColorYellow100 = "#fef9c3";
+export const PrimitivesColorYellow200 = "#fef08a";
+export const PrimitivesColorYellow300 = "#fde047";
+export const PrimitivesColorYellow400 = "#facc15";
+export const PrimitivesColorYellow500 = "#eab308";
+export const PrimitivesColorYellow600 = "#ca8a04";
+export const PrimitivesColorYellow700 = "#a16207";
+export const PrimitivesColorYellow800 = "#854d0e";
+export const PrimitivesColorYellow900 = "#713f12";
+export const PrimitivesColorWhite = "#ffffff";
 export const PrimitivesColorBlack = "#000000";
 export const PrimitivesDurationInstant = "0ms";
 export const PrimitivesDurationFast = "100ms";
@@ -77,32 +77,104 @@ export const PrimitivesOpacity70 = "0.7";
 export const PrimitivesOpacity80 = "0.8";
 export const PrimitivesOpacity90 = "0.9";
 export const PrimitivesOpacity100 = "1";
-export const PrimitivesShadow1 = "0px 1px 2px rgba(23, 23, 23, 0.1)";
-export const PrimitivesShadow2 =
-  "0px 2px 4px rgba(23, 23, 23, 0.1), 0px 1px 2px rgba(23, 23, 23, 0.05)";
-export const PrimitivesShadow3 =
-  "0px 4px 8px rgba(23, 23, 23, 0.1), 0px 2px 4px rgba(23, 23, 23, 0.05)";
-export const PrimitivesShadow4 =
-  "0px 8px 16px rgba(23, 23, 23, 0.1), 0px 4px 8px rgba(23, 23, 23, 0.05)";
-export const PrimitivesShadow5 =
-  "0px 16px 32px rgba(23, 23, 23, 0.2), 0px 8px 16px rgba(23, 23, 23, 0.1)";
-export const PrimitivesSize0 = "0px";
-export const PrimitivesSize1 = "4px";
-export const PrimitivesSize2 = "8px";
-export const PrimitivesSize3 = "12px";
-export const PrimitivesSize4 = "16px";
-export const PrimitivesSize5 = "20px";
-export const PrimitivesSize6 = "24px";
-export const PrimitivesSize7 = "28px";
-export const PrimitivesSize8 = "32px";
-export const PrimitivesSize9 = "36px";
-export const PrimitivesSize10 = "40px";
-export const PrimitivesSize12 = "48px";
-export const PrimitivesSize14 = "56px";
-export const PrimitivesSize16 = "64px";
-export const PrimitivesSize20 = "80px";
-export const PrimitivesSize24 = "96px";
-export const PrimitivesSize32 = "128px";
+export const PrimitivesShadow1 = {
+  x: "0",
+  y: "1",
+  blur: "2",
+  spread: "0",
+  color: "#171717",
+  type: "dropShadow",
+};
+export const PrimitivesShadow2 = [
+  {
+    x: "0",
+    y: "2",
+    blur: "4",
+    spread: "0",
+    color: "#171717",
+    type: "dropShadow",
+  },
+  {
+    x: "0",
+    y: "1",
+    blur: "2",
+    spread: "0",
+    color: "#171717",
+    type: "dropShadow",
+  },
+];
+export const PrimitivesShadow3 = [
+  {
+    x: "0",
+    y: "4",
+    blur: "8",
+    spread: "0",
+    color: "#171717",
+    type: "dropShadow",
+  },
+  {
+    x: "0",
+    y: "2",
+    blur: "4",
+    spread: "0",
+    color: "#171717",
+    type: "dropShadow",
+  },
+];
+export const PrimitivesShadow4 = [
+  {
+    x: "0",
+    y: "8",
+    blur: "16",
+    spread: "0",
+    color: "#171717",
+    type: "dropShadow",
+  },
+  {
+    x: "0",
+    y: "4",
+    blur: "8",
+    spread: "0",
+    color: "#171717",
+    type: "dropShadow",
+  },
+];
+export const PrimitivesShadow5 = [
+  {
+    x: "0",
+    y: "16",
+    blur: "32",
+    spread: "0",
+    color: "#171717",
+    type: "dropShadow",
+  },
+  {
+    x: "0",
+    y: "8",
+    blur: "16",
+    spread: "0",
+    color: "#171717",
+    type: "dropShadow",
+  },
+];
+export const PrimitivesSizing0 = "0px";
+export const PrimitivesSizing1 = "4px";
+export const PrimitivesSizing2 = "8px";
+export const PrimitivesSizing3 = "12px";
+export const PrimitivesSizing4 = "16px";
+export const PrimitivesSizing5 = "20px";
+export const PrimitivesSizing6 = "24px";
+export const PrimitivesSizing7 = "28px";
+export const PrimitivesSizing8 = "32px";
+export const PrimitivesSizing9 = "36px";
+export const PrimitivesSizing10 = "40px";
+export const PrimitivesSizing12 = "48px";
+export const PrimitivesSizing14 = "56px";
+export const PrimitivesSizing16 = "64px";
+export const PrimitivesSizing20 = "80px";
+export const PrimitivesSizing24 = "96px";
+export const PrimitivesSizing32 = "128px";
+export const PrimitivesSizingBase = "4px";
 export const PrimitivesTypographyFontFamilySans =
   "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
 export const PrimitivesTypographyFontFamilyMono =

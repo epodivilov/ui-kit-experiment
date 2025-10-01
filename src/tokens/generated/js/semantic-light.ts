@@ -2,38 +2,38 @@
  * Do not edit directly, this file was auto-generated.
  */
 
-export const SemanticColorBackgroundDefault = "#FFFFFF";
-export const SemanticColorBackgroundSurface = "#FAFAFA";
-export const SemanticColorBackgroundSurfaceElevated = "#FFFFFF";
-export const SemanticColorBackgroundPrimaryDefault = "#2563EB";
-export const SemanticColorBackgroundPrimaryHover = "#1D4ED8";
-export const SemanticColorBackgroundPrimaryActive = "#1E40AF";
-export const SemanticColorBackgroundSecondaryDefault = "#F5F5F5";
-export const SemanticColorBackgroundSecondaryHover = "#E5E5E5";
-export const SemanticColorBackgroundSecondaryActive = "#D4D4D4";
-export const SemanticColorBackgroundDangerDefault = "#DC2626";
-export const SemanticColorBackgroundDangerHover = "#B91C1C";
-export const SemanticColorBackgroundDangerActive = "#991B1B";
-export const SemanticColorBackgroundSuccessDefault = "#16A34A";
-export const SemanticColorBackgroundSuccessHover = "#15803D";
+export const SemanticColorBackgroundDefault = "#ffffff";
+export const SemanticColorBackgroundSurface = "#fafafa";
+export const SemanticColorBackgroundSurfaceElevated = "#ffffff";
+export const SemanticColorBackgroundPrimaryDefault = "#2563eb";
+export const SemanticColorBackgroundPrimaryHover = "#1d4ed8";
+export const SemanticColorBackgroundPrimaryActive = "#1e40af";
+export const SemanticColorBackgroundSecondaryDefault = "#f5f5f5";
+export const SemanticColorBackgroundSecondaryHover = "#e5e5e5";
+export const SemanticColorBackgroundSecondaryActive = "#d4d4d4";
+export const SemanticColorBackgroundDangerDefault = "#dc2626";
+export const SemanticColorBackgroundDangerHover = "#b91c1c";
+export const SemanticColorBackgroundDangerActive = "#991b1b";
+export const SemanticColorBackgroundSuccessDefault = "#16a34a";
+export const SemanticColorBackgroundSuccessHover = "#15803d";
 export const SemanticColorBackgroundSuccessActive = "#166534";
-export const SemanticColorBackgroundWarningDefault = "#EAB308";
-export const SemanticColorBackgroundWarningHover = "#CA8A04";
-export const SemanticColorBackgroundWarningActive = "#A16207";
-export const SemanticColorBackgroundDisabled = "#F5F5F5";
+export const SemanticColorBackgroundWarningDefault = "#eab308";
+export const SemanticColorBackgroundWarningHover = "#ca8a04";
+export const SemanticColorBackgroundWarningActive = "#a16207";
+export const SemanticColorBackgroundDisabled = "#f5f5f5";
 export const SemanticColorForegroundDefault = "#171717";
 export const SemanticColorForegroundSubtle = "#525252";
-export const SemanticColorForegroundAccent = "#2563EB";
-export const SemanticColorForegroundOnPrimary = "#FFFFFF";
+export const SemanticColorForegroundAccent = "#2563eb";
+export const SemanticColorForegroundOnPrimary = "#ffffff";
 export const SemanticColorForegroundOnSecondary = "#171717";
-export const SemanticColorForegroundOnDanger = "#FFFFFF";
-export const SemanticColorForegroundOnSuccess = "#FFFFFF";
+export const SemanticColorForegroundOnDanger = "#ffffff";
+export const SemanticColorForegroundOnSuccess = "#ffffff";
 export const SemanticColorForegroundOnWarning = "#171717";
-export const SemanticColorForegroundDisabled = "#A3A3A3";
-export const SemanticColorBorderDefault = "#D4D4D4";
-export const SemanticColorBorderHover = "#A3A3A3";
-export const SemanticColorBorderFocus = "#2563EB";
-export const SemanticColorBorderDisabled = "#E5E5E5";
+export const SemanticColorForegroundDisabled = "#a3a3a3";
+export const SemanticColorBorderDefault = "#d4d4d4";
+export const SemanticColorBorderHover = "#a3a3a3";
+export const SemanticColorBorderFocus = "#2563eb";
+export const SemanticColorBorderDisabled = "#e5e5e5";
 export const SemanticTypographyDisplayLg = {
   fontFamily:
     "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
@@ -136,10 +136,65 @@ export const SemanticBorderRadiusSm = "4px";
 export const SemanticBorderRadiusMd = "8px";
 export const SemanticBorderRadiusLg = "12px";
 export const SemanticBorderRadiusFull = "9999px";
-export const SemanticShadowElevation1 = "0px 1px 2px rgba(23, 23, 23, 0.1)";
-export const SemanticShadowElevation2 =
-  "0px 2px 4px rgba(23, 23, 23, 0.1), 0px 1px 2px rgba(23, 23, 23, 0.05)";
-export const SemanticShadowElevation3 =
-  "0px 4px 8px rgba(23, 23, 23, 0.1), 0px 2px 4px rgba(23, 23, 23, 0.05)";
-export const SemanticShadowElevation4 =
-  "0px 8px 16px rgba(23, 23, 23, 0.1), 0px 4px 8px rgba(23, 23, 23, 0.05)";
+export const SemanticShadowElevation1 = {
+  x: "0",
+  y: "1",
+  blur: "2",
+  spread: "0",
+  color: "#171717",
+  type: "dropShadow",
+};
+export const SemanticShadowElevation2 = [
+  {
+    x: "0",
+    y: "2",
+    blur: "4",
+    spread: "0",
+    color: "#171717",
+    type: "dropShadow",
+  },
+  {
+    x: "0",
+    y: "1",
+    blur: "2",
+    spread: "0",
+    color: "#171717",
+    type: "dropShadow",
+  },
+];
+export const SemanticShadowElevation3 = [
+  {
+    x: "0",
+    y: "4",
+    blur: "8",
+    spread: "0",
+    color: "#171717",
+    type: "dropShadow",
+  },
+  {
+    x: "0",
+    y: "2",
+    blur: "4",
+    spread: "0",
+    color: "#171717",
+    type: "dropShadow",
+  },
+];
+export const SemanticShadowElevation4 = [
+  {
+    x: "0",
+    y: "8",
+    blur: "16",
+    spread: "0",
+    color: "#171717",
+    type: "dropShadow",
+  },
+  {
+    x: "0",
+    y: "4",
+    blur: "8",
+    spread: "0",
+    color: "#171717",
+    type: "dropShadow",
+  },
+];
