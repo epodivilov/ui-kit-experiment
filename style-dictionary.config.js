@@ -48,8 +48,17 @@ function mathPreprocessor(dictionary) {
       if (resolved.includes('*') || resolved.includes('+') || resolved.includes('-') || resolved.includes('/')) {
         // Extract unit
         const unit = resolved.match(/(px|rem|em|%)/)?.[0] || '';
-        // Remove units for calculation
+
+        // Only evaluate if the expression looks like a math expression (numbers + operators + units)
+        // Skip if it contains non-numeric characters (like font family names)
         const numericExpr = resolved.replace(/px|rem|em|%/g, '').trim();
+
+        // Check if expression only contains numbers, operators, spaces and parentheses
+        if (!/^[\d\s+\-*/().]+$/.test(numericExpr)) {
+          // Not a math expression, return as-is
+          return resolved;
+        }
+
         // Evaluate
         const result = eval(numericExpr);
         return result + unit;
