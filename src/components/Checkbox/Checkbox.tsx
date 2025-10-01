@@ -1,6 +1,6 @@
+import { Checkbox as BaseCheckbox } from '@base-ui-components/react/checkbox';
 import { clsx } from 'clsx';
 import { forwardRef, useEffect, useRef } from 'react';
-import { Checkbox as BaseCheckbox } from '@base-ui-components/react/checkbox';
 
 import {
   checkboxRecipe,

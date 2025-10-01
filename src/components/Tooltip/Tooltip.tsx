@@ -1,6 +1,6 @@
+import { Tooltip as BaseTooltip } from '@base-ui-components/react/tooltip';
 import { clsx } from 'clsx';
 import { forwardRef } from 'react';
-import { Tooltip as BaseTooltip } from '@base-ui-components/react/tooltip';
 
 import {
   tooltipPopup,

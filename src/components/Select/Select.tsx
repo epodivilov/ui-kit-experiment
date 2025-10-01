@@ -1,6 +1,6 @@
+import { Select as BaseSelect } from '@base-ui-components/react/select';
 import { clsx } from 'clsx';
 import { forwardRef } from 'react';
-import { Select as BaseSelect } from '@base-ui-components/react/select';
 
 import {
   selectContainer,

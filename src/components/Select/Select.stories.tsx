@@ -1,9 +1,10 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+
 
 import { Select } from './Select';
 
 import type { SelectProps } from './Select.types';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const sampleOptions = [
   { value: 'apple', label: 'Apple' },

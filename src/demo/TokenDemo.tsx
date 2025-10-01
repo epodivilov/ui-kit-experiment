@@ -5,9 +5,10 @@
  */
 
 import { ButtonNew } from '../components/Button/Button-new';
+import { CheckboxNew } from '../components/Checkbox/Checkbox-new';
 import { InputNew } from '../components/Input/Input-new';
 import { ToastNew } from '../components/Toast/Toast-new';
-import { CheckboxNew } from '../components/Checkbox/Checkbox-new';
+
 import { demoContainer, demoSection, demoTitle, demoGrid, demoCard } from './TokenDemo.css';
 
 export function TokenDemo() {
