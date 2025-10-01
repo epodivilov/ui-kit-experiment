@@ -67,6 +67,11 @@
   --semantic-size-target-lg: var(--primitives-sizing-12);
   --semantic-border-radius-md: var(--primitives-sizing-2);
   --semantic-border-radius-lg: var(--primitives-sizing-3);
+  --semantic-border-width-thin: var(--primitives-sizing-025);
+  --semantic-border-width-default: var(--primitives-sizing-05);
+  --semantic-border-width-thick: var(--primitives-sizing-075);
+  --semantic-sizing-container-min: var(--primitives-sizing-80);
+  --semantic-sizing-container-max: var(--primitives-sizing-120);
   --semantic-spacing-block-xs: var(--primitives-sizing-1);
   --semantic-spacing-inline-xs: var(--primitives-sizing-1);
   --semantic-spacing-inset-xs: var(--primitives-sizing-1);

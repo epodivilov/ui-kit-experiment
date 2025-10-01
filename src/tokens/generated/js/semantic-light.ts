@@ -198,3 +198,8 @@ export const SemanticShadowElevation4 = [
     type: "dropShadow",
   },
 ];
+export const SemanticBorderWidthThin = "1px";
+export const SemanticBorderWidthDefault = "2px";
+export const SemanticBorderWidthThick = "3px";
+export const SemanticSizingContainerMin = "320px";
+export const SemanticSizingContainerMax = "480px";

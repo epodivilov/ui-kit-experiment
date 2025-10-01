@@ -174,7 +174,12 @@ export const PrimitivesSizing16 = "64px";
 export const PrimitivesSizing20 = "80px";
 export const PrimitivesSizing24 = "96px";
 export const PrimitivesSizing32 = "128px";
+export const PrimitivesSizing80 = "320px";
+export const PrimitivesSizing120 = "480px";
 export const PrimitivesSizingBase = "4px";
+export const PrimitivesSizing025 = "1px";
+export const PrimitivesSizing05 = "2px";
+export const PrimitivesSizing075 = "3px";
 export const PrimitivesTypographyFontFamilySans =
   "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
 export const PrimitivesTypographyFontFamilyMono =

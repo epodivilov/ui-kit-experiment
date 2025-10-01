@@ -193,7 +193,12 @@
       "20": "80px",
       "24": "96px",
       "32": "128px",
-      "base": "4px"
+      "80": "320px",
+      "120": "480px",
+      "base": "4px",
+      "025": "1px",
+      "05": "2px",
+      "075": "3px"
     },
     "typography": {
       "font-family": {
@@ -458,6 +463,17 @@
           "type": "dropShadow"
         }
       ]
+    },
+    "border-width": {
+      "thin": "1px",
+      "default": "2px",
+      "thick": "3px"
+    },
+    "sizing": {
+      "container": {
+        "min": "320px",
+        "max": "480px"
+      }
     }
   },
   "components": {
@@ -526,7 +542,7 @@
       "_base": {
         "border-radius": "4px",
         "size": "24px",
-        "border-width": "2px",
+        "border-width": "3px",
         "transition-duration": "200ms"
       },
       "default": {

@@ -3,33 +3,31 @@
  */
 
 :root {
+  --components-button-base-font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --components-button-base-font-size: 16px;
   --components-button-base-font-weight: 500;
   --components-button-base-line-height: 1.5;
-  --components-checkbox-base-border-width: 2px;
+  --components-input-base-font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --components-input-base-font-size: 16px;
   --components-input-base-font-weight: 400;
   --components-input-base-line-height: 1.5;
-  --components-input-base-border-width: 1px;
+  --components-toast-base-font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --components-toast-base-font-size: 14px;
   --components-toast-base-font-weight: 400;
   --components-toast-base-line-height: 1.5;
-  --components-toast-base-min-width: 320px;
-  --components-toast-base-max-width: 480px;
   --components-button-base-border-radius: var(--primitives-sizing-2);
-  --components-button-base-font-family: var(--primitives-typography-font-family-sans);
   --components-button-base-transition-duration: var(--primitives-duration-normal);
   --components-button-primary-foreground-color-default: var(--primitives-color-white);
   --components-button-secondary-foreground-color-default: var(--primitives-color-neutral-900);
   --components-button-destructive-foreground-color-default: var(--primitives-color-white);
+  --components-checkbox-base-border-width: var(--primitives-sizing-075);
   --components-checkbox-base-transition-duration: var(--primitives-duration-normal);
   --components-checkbox-default-indicator-foreground-color-default: var(--primitives-color-white);
   --components-checkbox-error-indicator-foreground-color-default: var(--primitives-color-white);
   --components-input-base-border-radius: var(--primitives-sizing-2);
-  --components-input-base-font-family: var(--primitives-typography-font-family-sans);
+  --components-input-base-border-width: var(--primitives-sizing-025);
   --components-input-base-transition-duration: var(--primitives-duration-normal);
   --components-toast-base-border-radius: var(--primitives-sizing-3);
-  --components-toast-base-font-family: var(--primitives-typography-font-family-sans);
   --components-toast-default-background-color-default: var(--primitives-color-white);
   --components-toast-success-foreground-color-default: var(--primitives-color-white);
   --components-toast-success-icon-foreground-color-default: var(--primitives-color-white);
@@ -106,6 +104,8 @@
   --components-toast-base-padding-inline: var(--semantic-spacing-inline-md);
   --components-toast-base-padding-block: var(--semantic-spacing-block-sm);
   --components-toast-base-shadow: var(--primitives-shadow-3);
+  --components-toast-base-min-width: var(--semantic-sizing-container-min);
+  --components-toast-base-max-width: var(--semantic-sizing-container-max);
   --components-toast-default-foreground-color-default: var(--semantic-color-foreground-default);
   --components-toast-default-border-color-default: var(--semantic-color-border-default);
   --components-toast-success-background-color-default: var(--semantic-color-background-success-default);
