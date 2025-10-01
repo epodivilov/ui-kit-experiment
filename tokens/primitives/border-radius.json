@@ -1,12 +1,12 @@
 {
   "primitives": {
     "border-radius": {
-      "none": { "value": "0px" },
-      "sm": { "value": "{primitives.size.1}" },
-      "md": { "value": "{primitives.size.2}" },
-      "lg": { "value": "{primitives.size.3}" },
-      "xl": { "value": "{primitives.size.4}" },
-      "full": { "value": "9999px" }
+      "none": { "value": "0px", "type": "borderRadius" },
+      "sm": { "value": "{primitives.sizing.1}", "type": "borderRadius" },
+      "md": { "value": "{primitives.sizing.2}", "type": "borderRadius" },
+      "lg": { "value": "{primitives.sizing.3}", "type": "borderRadius" },
+      "xl": { "value": "{primitives.sizing.4}", "type": "borderRadius" },
+      "full": { "value": "9999px", "type": "borderRadius" }
     }
   }
 }
