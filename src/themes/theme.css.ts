@@ -9,6 +9,7 @@ import { createThemeContract, createTheme } from '@vanilla-extract/css';
 
 // Import generated tokens
 import * as semantic from '../tokens/generated/js/semantic-light';
+import { shadowToString } from '../tokens/helpers';
 
 /**
  * Theme contract defines the structure of all themes
@@ -210,10 +211,10 @@ export const lightTheme = createTheme(themeVars, {
     full: semantic.SemanticBorderRadiusFull,
   },
   shadow: {
-    elevation1: semantic.SemanticShadowElevation1,
-    elevation2: semantic.SemanticShadowElevation2,
-    elevation3: semantic.SemanticShadowElevation3,
-    elevation4: semantic.SemanticShadowElevation4,
+    elevation1: shadowToString(semantic.SemanticShadowElevation1),
+    elevation2: shadowToString(semantic.SemanticShadowElevation2),
+    elevation3: shadowToString(semantic.SemanticShadowElevation3),
+    elevation4: shadowToString(semantic.SemanticShadowElevation4),
   },
 });
 
