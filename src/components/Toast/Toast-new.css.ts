@@ -6,6 +6,7 @@ import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import * as componentTokens from '../../tokens/generated/js/components';
+import { shadowToString } from '../../tokens/helpers';
 
 export const toastRecipe = recipe({
   base: {
@@ -19,7 +20,7 @@ export const toastRecipe = recipe({
     lineHeight: componentTokens.ComponentsToastBaseLineHeight,
     paddingInline: componentTokens.ComponentsToastBasePaddingInline,
     paddingBlock: componentTokens.ComponentsToastBasePaddingBlock,
-    boxShadow: componentTokens.ComponentsToastBaseShadow,
+    boxShadow: shadowToString(componentTokens.ComponentsToastBaseShadow),
     minWidth: componentTokens.ComponentsToastBaseMinWidth,
     maxWidth: componentTokens.ComponentsToastBaseMaxWidth,
     position: 'relative',
