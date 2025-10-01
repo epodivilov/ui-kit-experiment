@@ -135,6 +135,9 @@ importers:
       style-dictionary:
         specifier: ^5.0.4
         version: 5.0.4
+      style-dictionary-utils:
+        specifier: ^4.1.0
+        version: 4.1.0(style-dictionary@5.0.4)
       typescript:
         specifier: ~5.8.3
         version: 5.8.3
@@ -1279,6 +1282,9 @@ packages:
 
   color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
+
+  color2k@2.0.3:
+    resolution: {integrity: sha512-zW190nQTIoXcGCaU08DvVNFTmQhUpnJfVuAKfWqUQkflXKpaDdpaYoM0iluLS9lgJNHyBF58KKA2FBEwkD7wog==}
 
   commander@12.1.0:
     resolution: {integrity: sha512-Vw8qHK3bZM9y/P10u3Vib8o/DdkvA2OtPtZvD871QKjy74Wj1WSKFILMPRPSdUSx5RFK1arlJzEtA4PkFgnbuA==}
@@ -2658,6 +2664,11 @@ packages:
 
   strip-literal@3.0.0:
     resolution: {integrity: sha512-TcccoMhJOM3OebGhSBEmp3UZ2SfDMZUEBdRA/9ynfLi8yYajyWX3JiXArcJt4Umh4vISpspkQIY8ZZoCqjbviA==}
+
+  style-dictionary-utils@4.1.0:
+    resolution: {integrity: sha512-UDdDlMtWBPmlHSuT7S7sqpXgZ4gKy5W7w+u4KTS7wlmHKv8oMfeNyIhPcE/3JQN0RYUlRej8IKzX/+4cXQ/nHQ==}
+    peerDependencies:
+      style-dictionary: ^4
 
   style-dictionary@5.0.4:
     resolution: {integrity: sha512-+k82riDTHnCpOYzKz1Xa4W219dEOI8pc2a2jnWZuAFY11PHvRL1Ao55Lle3t/kQbiRU5QACdC3xeUNuByaKE3w==}
@@ -4158,6 +4169,8 @@ snapshots:
 
   color-name@1.1.4: {}
 
+  color2k@2.0.3: {}
+
   commander@12.1.0: {}
 
   component-emitter@2.0.0: {}
@@ -5630,6 +5643,11 @@ snapshots:
   strip-literal@3.0.0:
     dependencies:
       js-tokens: 9.0.1
+
+  style-dictionary-utils@4.1.0(style-dictionary@5.0.4):
+    dependencies:
+      color2k: 2.0.3
+      style-dictionary: 5.0.4
 
   style-dictionary@5.0.4:
     dependencies:
