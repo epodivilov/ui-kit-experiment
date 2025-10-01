@@ -48,9 +48,6 @@ importers:
       '@storybook/addon-themes':
         specifier: ^9.1.8
         version: 9.1.8(storybook@9.1.8(@testing-library/dom@10.4.1)(prettier@3.6.2)(rolldown-vite@7.1.12(@types/node@24.5.2)(esbuild@0.25.10)))
-      '@storybook/addon-viewport':
-        specifier: 9.1.0-alpha.5
-        version: 9.1.0-alpha.5
       '@storybook/addon-vitest':
         specifier: ^9.1.8
         version: 9.1.8(@vitest/browser@3.2.4(playwright@1.55.1)(rolldown-vite@7.1.12(@types/node@24.5.2)(esbuild@0.25.10))(vitest@3.2.4))(@vitest/runner@3.2.4)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(storybook@9.1.8(@testing-library/dom@10.4.1)(prettier@3.6.2)(rolldown-vite@7.1.12(@types/node@24.5.2)(esbuild@0.25.10)))(vitest@3.2.4(@types/node@24.5.2)(@vitest/browser@3.2.4)(esbuild@0.25.10))
@@ -797,9 +794,6 @@ packages:
     resolution: {integrity: sha512-knxh0y9WHgdqhU56calh6FqPlnWbNA4hoLabMVEq9Hs9CaIBRRNe7e2EuVIjLV05sKdUQljLPIzQc6t61RIC5g==}
     peerDependencies:
       storybook: ^9.1.8
-
-  '@storybook/addon-viewport@9.1.0-alpha.5':
-    resolution: {integrity: sha512-4A/O+XXftoAcHRhoiHRFg6ipPJRuabaT34boiFgGAEhsjz9eQaX2naSFDDyVVttOJLwAWy6MwQ+aIZGURCfJRA==}
 
   '@storybook/addon-vitest@9.1.8':
     resolution: {integrity: sha512-F1AgGpIuDxrGXErMRTfF9zUXvGSUgQPbAXggs74p9vz0855nlRMEny1cYY9BtktVr4JGyq+Mz2774hCt9HR3KQ==}
@@ -3532,8 +3526,6 @@ snapshots:
     dependencies:
       storybook: 9.1.8(@testing-library/dom@10.4.1)(prettier@3.6.2)(rolldown-vite@7.1.12(@types/node@24.5.2)(esbuild@0.25.10))
       ts-dedent: 2.2.0
-
-  '@storybook/addon-viewport@9.1.0-alpha.5': {}
 
   '@storybook/addon-vitest@9.1.8(@vitest/browser@3.2.4(playwright@1.55.1)(rolldown-vite@7.1.12(@types/node@24.5.2)(esbuild@0.25.10))(vitest@3.2.4))(@vitest/runner@3.2.4)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(storybook@9.1.8(@testing-library/dom@10.4.1)(prettier@3.6.2)(rolldown-vite@7.1.12(@types/node@24.5.2)(esbuild@0.25.10)))(vitest@3.2.4(@types/node@24.5.2)(@vitest/browser@3.2.4)(esbuild@0.25.10))':
     dependencies:
