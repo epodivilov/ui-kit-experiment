@@ -10,7 +10,7 @@
         "padding-inline": { "value": "{semantic.spacing.inline.sm}", "type": "spacing" },
         "padding-block": { "value": "{semantic.spacing.block.sm}", "type": "spacing" },
         "min-height": { "value": "{semantic.size.target.md}", "type": "sizing" },
-        "border-width": { "value": "1px", "type": "borderWidth" },
+        "border-width": { "value": "{semantic.border-width.thin}", "type": "borderWidth" },
         "transition-duration": { "value": "{primitives.duration.normal}", "type": "duration" }
       },
       "default": {

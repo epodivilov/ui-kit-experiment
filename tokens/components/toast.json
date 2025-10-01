@@ -10,8 +10,8 @@
         "padding-inline": { "value": "{semantic.spacing.inline.md}", "type": "spacing" },
         "padding-block": { "value": "{semantic.spacing.block.sm}", "type": "spacing" },
         "shadow": { "value": "{semantic.shadow.elevation-3}", "type": "boxShadow" },
-        "min-width": { "value": "320px", "type": "sizing" },
-        "max-width": { "value": "480px", "type": "sizing" }
+        "min-width": { "value": "{semantic.sizing.container.min}", "type": "sizing" },
+        "max-width": { "value": "{semantic.sizing.container.max}", "type": "sizing" }
       },
       "default": {
         "background-color": {

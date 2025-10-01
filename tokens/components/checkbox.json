@@ -4,7 +4,7 @@
       "_base": {
         "border-radius": { "value": "{semantic.border-radius.sm}", "type": "borderRadius" },
         "size": { "value": "{semantic.size.icon.md}", "type": "sizing" },
-        "border-width": { "value": "2px", "type": "borderWidth" },
+        "border-width": { "value": "{semantic.border-width.thick}", "type": "borderWidth" },
         "transition-duration": { "value": "{primitives.duration.normal}", "type": "duration" }
       },
       "default": {
