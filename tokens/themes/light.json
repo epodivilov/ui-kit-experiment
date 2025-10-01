@@ -205,6 +205,17 @@
       "elevation-2": { "value": "{primitives.shadow.2}", "type": "boxShadow" },
       "elevation-3": { "value": "{primitives.shadow.3}", "type": "boxShadow" },
       "elevation-4": { "value": "{primitives.shadow.4}", "type": "boxShadow" }
+    },
+    "border-width": {
+      "thin": { "value": "{primitives.sizing.025}", "type": "borderWidth" },
+      "default": { "value": "{primitives.sizing.05}", "type": "borderWidth" },
+      "thick": { "value": "{primitives.sizing.075}", "type": "borderWidth" }
+    },
+    "sizing": {
+      "container": {
+        "min": { "value": "{primitives.sizing.80}", "type": "sizing" },
+        "max": { "value": "{primitives.sizing.120}", "type": "sizing" }
+      }
     }
   }
 }

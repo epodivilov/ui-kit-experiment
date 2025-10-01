@@ -117,6 +117,17 @@
       "elevation-2": { "value": "{DO-NOT-USE}", "type": "boxShadow" },
       "elevation-3": { "value": "{DO-NOT-USE}", "type": "boxShadow" },
       "elevation-4": { "value": "{DO-NOT-USE}", "type": "boxShadow" }
+    },
+    "border-width": {
+      "thin": { "value": "{DO-NOT-USE}", "type": "borderWidth" },
+      "default": { "value": "{DO-NOT-USE}", "type": "borderWidth" },
+      "thick": { "value": "{DO-NOT-USE}", "type": "borderWidth" }
+    },
+    "sizing": {
+      "container": {
+        "min": { "value": "{DO-NOT-USE}", "type": "sizing" },
+        "max": { "value": "{DO-NOT-USE}", "type": "sizing" }
+      }
     }
   }
 }
