@@ -1,0 +1,34 @@
+{
+  "font-family": {
+    "ui": {
+      "value": "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+      "type": "fontFamilies"
+    },
+    "mono": {
+      "value": "'JetBrains Mono', 'Fira Code', 'Courier New', monospace",
+      "type": "fontFamilies"
+    }
+  },
+  "font-size": {
+    "100": { "value": "0.75rem", "type": "fontSizes" },
+    "200": { "value": "0.875rem", "type": "fontSizes" },
+    "300": { "value": "1rem", "type": "fontSizes" },
+    "400": { "value": "1.125rem", "type": "fontSizes" },
+    "500": { "value": "1.25rem", "type": "fontSizes" },
+    "600": { "value": "1.5rem", "type": "fontSizes" },
+    "700": { "value": "1.875rem", "type": "fontSizes" },
+    "800": { "value": "2.25rem", "type": "fontSizes" },
+    "900": { "value": "3rem", "type": "fontSizes" }
+  },
+  "font-weight": {
+    "regular": { "value": "400", "type": "fontWeights" },
+    "medium": { "value": "500", "type": "fontWeights" },
+    "semibold": { "value": "600", "type": "fontWeights" },
+    "bold": { "value": "700", "type": "fontWeights" }
+  },
+  "line-height": {
+    "tight": { "value": "1.2", "type": "lineHeights" },
+    "normal": { "value": "1.5", "type": "lineHeights" },
+    "relaxed": { "value": "1.75", "type": "lineHeights" }
+  }
+}

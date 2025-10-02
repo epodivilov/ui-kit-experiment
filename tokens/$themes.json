@@ -1,0 +1,38 @@
+{
+  "$themes": [
+    {
+      "name": "Light",
+      "id": "light",
+      "selectedTokenSets": {
+        "1-core/colors": "source",
+        "1-core/dimensions": "source",
+        "1-core/typography": "source",
+        "1-core/opacity": "source",
+        "2-semantic/contract": "enabled",
+        "3-themes/base": "enabled",
+        "3-themes/light/theme": "enabled",
+        "4-components/button": "enabled",
+        "4-components/input": "enabled",
+        "4-components/checkbox": "enabled",
+        "4-components/toast": "enabled"
+      }
+    },
+    {
+      "name": "Dark",
+      "id": "dark",
+      "selectedTokenSets": {
+        "1-core/colors": "source",
+        "1-core/dimensions": "source",
+        "1-core/typography": "source",
+        "1-core/opacity": "source",
+        "2-semantic/contract": "enabled",
+        "3-themes/base": "enabled",
+        "3-themes/dark/theme": "enabled",
+        "4-components/button": "enabled",
+        "4-components/input": "enabled",
+        "4-components/checkbox": "enabled",
+        "4-components/toast": "enabled"
+      }
+    }
+  ]
+}

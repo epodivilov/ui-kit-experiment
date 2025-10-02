@@ -1,0 +1,47 @@
+{
+  "checkbox": {
+    "global": {
+      "border-radius": { "value": "{radius.sm}", "type": "borderRadius" },
+      "border-width": { "value": "{stroke.default}", "type": "borderWidth" },
+      "size": { "value": "{sizing.md}", "type": "sizing" }
+    },
+    "default": {
+      "background-color": {
+        "default": { "value": "{background.surface}", "type": "color" },
+        "hover": { "value": "{background.surface}", "type": "color" },
+        "checked": { "value": "{interactive.primary.default.background}", "type": "color" },
+        "checked-hover": { "value": "{interactive.primary.hover.background}", "type": "color" },
+        "disabled": { "value": "{background.disabled}", "type": "color" }
+      },
+      "border-color": {
+        "default": { "value": "{border.default}", "type": "color" },
+        "hover": { "value": "{border.hover}", "type": "color" },
+        "focus": { "value": "{border.focus}", "type": "color" },
+        "checked": { "value": "{interactive.primary.default.background}", "type": "color" },
+        "checked-hover": { "value": "{interactive.primary.hover.background}", "type": "color" },
+        "disabled": { "value": "{border.disabled}", "type": "color" }
+      },
+      "indicator-color": {
+        "default": { "value": "{foreground.on-interactive}", "type": "color" },
+        "disabled": { "value": "{foreground.disabled}", "type": "color" }
+      }
+    },
+    "error": {
+      "background-color": {
+        "default": { "value": "{background.surface}", "type": "color" },
+        "checked": { "value": "{interactive.danger.default.background}", "type": "color" },
+        "checked-hover": { "value": "{interactive.danger.hover.background}", "type": "color" }
+      },
+      "border-color": {
+        "default": { "value": "{interactive.danger.default.background}", "type": "color" },
+        "hover": { "value": "{interactive.danger.hover.background}", "type": "color" },
+        "focus": { "value": "{interactive.danger.default.background}", "type": "color" },
+        "checked": { "value": "{interactive.danger.default.background}", "type": "color" },
+        "checked-hover": { "value": "{interactive.danger.hover.background}", "type": "color" }
+      },
+      "indicator-color": {
+        "default": { "value": "{foreground.on-danger}", "type": "color" }
+      }
+    }
+  }
+}

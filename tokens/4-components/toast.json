@@ -1,0 +1,47 @@
+{
+  "toast": {
+    "global": {
+      "border-radius": { "value": "{radius.lg}", "type": "borderRadius" },
+      "padding-inline": { "value": "{spacing.md}", "type": "spacing" },
+      "padding-block": { "value": "{spacing.sm}", "type": "spacing" },
+      "typography": { "value": "{typography.body-s}", "type": "typography" },
+      "min-width": { "value": "{size.80}", "type": "sizing" },
+      "max-width": { "value": "{size.120}", "type": "sizing" }
+    },
+    "default": {
+      "background-color": {
+        "default": { "value": "{background.elevated}", "type": "color" }
+      },
+      "foreground-color": {
+        "default": { "value": "{foreground.default}", "type": "color" }
+      },
+      "border-color": {
+        "default": { "value": "{border.default}", "type": "color" }
+      }
+    },
+    "success": {
+      "background-color": {
+        "default": { "value": "{interactive.success.default.background}", "type": "color" }
+      },
+      "foreground-color": {
+        "default": { "value": "{foreground.on-success}", "type": "color" }
+      }
+    },
+    "error": {
+      "background-color": {
+        "default": { "value": "{interactive.danger.default.background}", "type": "color" }
+      },
+      "foreground-color": {
+        "default": { "value": "{foreground.on-danger}", "type": "color" }
+      }
+    },
+    "warning": {
+      "background-color": {
+        "default": { "value": "{interactive.warning.default.background}", "type": "color" }
+      },
+      "foreground-color": {
+        "default": { "value": "{foreground.on-warning}", "type": "color" }
+      }
+    }
+  }
+}
