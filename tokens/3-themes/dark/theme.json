@@ -26,7 +26,12 @@
           "foreground": { "value": "{core.color.white}", "type": "color" }
         },
         "active": {
-          "background": { "value": "{core.color.blue.300}", "type": "color" }
+          "background": { "value": "{core.color.blue.300}", "type": "color" },
+          "foreground": { "value": "{core.color.white}", "type": "color" }
+        },
+        "focus": {
+          "background": { "value": "{core.color.blue.500}", "type": "color" },
+          "foreground": { "value": "{core.color.white}", "type": "color" }
         },
         "disabled": {
           "background": { "value": "{core.color.neutral.800}", "type": "color" },
@@ -43,7 +48,12 @@
           "foreground": { "value": "{core.color.neutral.50}", "type": "color" }
         },
         "active": {
-          "background": { "value": "{core.color.neutral.500}", "type": "color" }
+          "background": { "value": "{core.color.neutral.500}", "type": "color" },
+          "foreground": { "value": "{core.color.neutral.50}", "type": "color" }
+        },
+        "focus": {
+          "background": { "value": "{core.color.neutral.700}", "type": "color" },
+          "foreground": { "value": "{core.color.neutral.50}", "type": "color" }
         },
         "disabled": {
           "background": { "value": "{core.color.neutral.800}", "type": "color" },
@@ -60,7 +70,16 @@
           "foreground": { "value": "{core.color.white}", "type": "color" }
         },
         "active": {
-          "background": { "value": "{core.color.red.300}", "type": "color" }
+          "background": { "value": "{core.color.red.300}", "type": "color" },
+          "foreground": { "value": "{core.color.white}", "type": "color" }
+        },
+        "focus": {
+          "background": { "value": "{core.color.red.500}", "type": "color" },
+          "foreground": { "value": "{core.color.white}", "type": "color" }
+        },
+        "disabled": {
+          "background": { "value": "{core.color.neutral.800}", "type": "color" },
+          "foreground": { "value": "{core.color.neutral.600}", "type": "color" }
         }
       },
       "success": {
@@ -69,7 +88,20 @@
           "foreground": { "value": "{core.color.white}", "type": "color" }
         },
         "hover": {
-          "background": { "value": "{core.color.green.400}", "type": "color" }
+          "background": { "value": "{core.color.green.400}", "type": "color" },
+          "foreground": { "value": "{core.color.white}", "type": "color" }
+        },
+        "active": {
+          "background": { "value": "{core.color.green.300}", "type": "color" },
+          "foreground": { "value": "{core.color.white}", "type": "color" }
+        },
+        "focus": {
+          "background": { "value": "{core.color.green.500}", "type": "color" },
+          "foreground": { "value": "{core.color.white}", "type": "color" }
+        },
+        "disabled": {
+          "background": { "value": "{core.color.neutral.800}", "type": "color" },
+          "foreground": { "value": "{core.color.neutral.600}", "type": "color" }
         }
       },
       "warning": {
@@ -78,7 +110,20 @@
           "foreground": { "value": "{core.color.neutral.900}", "type": "color" }
         },
         "hover": {
-          "background": { "value": "{core.color.yellow.400}", "type": "color" }
+          "background": { "value": "{core.color.yellow.400}", "type": "color" },
+          "foreground": { "value": "{core.color.neutral.900}", "type": "color" }
+        },
+        "active": {
+          "background": { "value": "{core.color.yellow.300}", "type": "color" },
+          "foreground": { "value": "{core.color.neutral.900}", "type": "color" }
+        },
+        "focus": {
+          "background": { "value": "{core.color.yellow.500}", "type": "color" },
+          "foreground": { "value": "{core.color.neutral.900}", "type": "color" }
+        },
+        "disabled": {
+          "background": { "value": "{core.color.neutral.800}", "type": "color" },
+          "foreground": { "value": "{core.color.neutral.600}", "type": "color" }
         }
       }
     },

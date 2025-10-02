@@ -11,17 +11,22 @@
         "default": { "value": "{semantic.interactive.primary.default.background}", "type": "color" },
         "hover": { "value": "{semantic.interactive.primary.hover.background}", "type": "color" },
         "active": { "value": "{semantic.interactive.primary.active.background}", "type": "color" },
+        "focus": { "value": "{semantic.interactive.primary.focus.background}", "type": "color" },
         "disabled": { "value": "{semantic.interactive.primary.disabled.background}", "type": "color" }
       },
       "foreground-color": {
         "default": { "value": "{semantic.interactive.primary.default.foreground}", "type": "color" },
         "hover": { "value": "{semantic.interactive.primary.hover.foreground}", "type": "color" },
+        "active": { "value": "{semantic.interactive.primary.active.foreground}", "type": "color" },
+        "focus": { "value": "{semantic.interactive.primary.focus.foreground}", "type": "color" },
         "disabled": { "value": "{semantic.interactive.primary.disabled.foreground}", "type": "color" }
       },
       "border-color": {
         "default": { "value": "{semantic.interactive.primary.default.background}", "type": "color" },
         "hover": { "value": "{semantic.interactive.primary.hover.background}", "type": "color" },
-        "focus": { "value": "{semantic.border.focus}", "type": "color" }
+        "active": { "value": "{semantic.interactive.primary.active.background}", "type": "color" },
+        "focus": { "value": "{semantic.border.focus}", "type": "color" },
+        "disabled": { "value": "{semantic.interactive.primary.disabled.background}", "type": "color" }
       }
     },
     "secondary": {
@@ -29,33 +34,45 @@
         "default": { "value": "{semantic.interactive.secondary.default.background}", "type": "color" },
         "hover": { "value": "{semantic.interactive.secondary.hover.background}", "type": "color" },
         "active": { "value": "{semantic.interactive.secondary.active.background}", "type": "color" },
+        "focus": { "value": "{semantic.interactive.secondary.focus.background}", "type": "color" },
         "disabled": { "value": "{semantic.interactive.secondary.disabled.background}", "type": "color" }
       },
       "foreground-color": {
         "default": { "value": "{semantic.interactive.secondary.default.foreground}", "type": "color" },
         "hover": { "value": "{semantic.interactive.secondary.hover.foreground}", "type": "color" },
+        "active": { "value": "{semantic.interactive.secondary.active.foreground}", "type": "color" },
+        "focus": { "value": "{semantic.interactive.secondary.focus.foreground}", "type": "color" },
         "disabled": { "value": "{semantic.interactive.secondary.disabled.foreground}", "type": "color" }
       },
       "border-color": {
         "default": { "value": "{semantic.border.default}", "type": "color" },
         "hover": { "value": "{semantic.border.hover}", "type": "color" },
-        "focus": { "value": "{semantic.border.focus}", "type": "color" }
+        "active": { "value": "{semantic.border.default}", "type": "color" },
+        "focus": { "value": "{semantic.border.focus}", "type": "color" },
+        "disabled": { "value": "{semantic.border.disabled}", "type": "color" }
       }
     },
     "danger": {
       "background-color": {
         "default": { "value": "{semantic.interactive.danger.default.background}", "type": "color" },
         "hover": { "value": "{semantic.interactive.danger.hover.background}", "type": "color" },
-        "active": { "value": "{semantic.interactive.danger.active.background}", "type": "color" }
+        "active": { "value": "{semantic.interactive.danger.active.background}", "type": "color" },
+        "focus": { "value": "{semantic.interactive.danger.focus.background}", "type": "color" },
+        "disabled": { "value": "{semantic.interactive.danger.disabled.background}", "type": "color" }
       },
       "foreground-color": {
         "default": { "value": "{semantic.interactive.danger.default.foreground}", "type": "color" },
-        "hover": { "value": "{semantic.interactive.danger.hover.foreground}", "type": "color" }
+        "hover": { "value": "{semantic.interactive.danger.hover.foreground}", "type": "color" },
+        "active": { "value": "{semantic.interactive.danger.active.foreground}", "type": "color" },
+        "focus": { "value": "{semantic.interactive.danger.focus.foreground}", "type": "color" },
+        "disabled": { "value": "{semantic.interactive.danger.disabled.foreground}", "type": "color" }
       },
       "border-color": {
         "default": { "value": "{semantic.interactive.danger.default.background}", "type": "color" },
         "hover": { "value": "{semantic.interactive.danger.hover.background}", "type": "color" },
-        "focus": { "value": "{semantic.border.focus}", "type": "color" }
+        "active": { "value": "{semantic.interactive.danger.active.background}", "type": "color" },
+        "focus": { "value": "{semantic.border.focus}", "type": "color" },
+        "disabled": { "value": "{semantic.interactive.danger.disabled.background}", "type": "color" }
       }
     }
   }

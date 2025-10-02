@@ -67,7 +67,12 @@ export const darkTheme = createTheme(tokens, {
         'foreground': '#ffffff'
       },
       'active': {
-        'background': '#93c5fd'
+        'background': '#93c5fd',
+        'foreground': '#ffffff'
+      },
+      'focus': {
+        'background': '#3b82f6',
+        'foreground': '#ffffff'
       },
       'disabled': {
         'background': '#262626',
@@ -84,7 +89,12 @@ export const darkTheme = createTheme(tokens, {
         'foreground': '#fafafa'
       },
       'active': {
-        'background': '#737373'
+        'background': '#737373',
+        'foreground': '#fafafa'
+      },
+      'focus': {
+        'background': '#404040',
+        'foreground': '#fafafa'
       },
       'disabled': {
         'background': '#262626',
@@ -101,7 +111,16 @@ export const darkTheme = createTheme(tokens, {
         'foreground': '#ffffff'
       },
       'active': {
-        'background': '#fca5a5'
+        'background': '#fca5a5',
+        'foreground': '#ffffff'
+      },
+      'focus': {
+        'background': '#ef4444',
+        'foreground': '#ffffff'
+      },
+      'disabled': {
+        'background': '#262626',
+        'foreground': '#525252'
       }
     },
     'success': {
@@ -110,7 +129,20 @@ export const darkTheme = createTheme(tokens, {
         'foreground': '#ffffff'
       },
       'hover': {
-        'background': '#4ade80'
+        'background': '#4ade80',
+        'foreground': '#ffffff'
+      },
+      'active': {
+        'background': '#86efac',
+        'foreground': '#ffffff'
+      },
+      'focus': {
+        'background': '#22c55e',
+        'foreground': '#ffffff'
+      },
+      'disabled': {
+        'background': '#262626',
+        'foreground': '#525252'
       }
     },
     'warning': {
@@ -119,7 +151,20 @@ export const darkTheme = createTheme(tokens, {
         'foreground': '#171717'
       },
       'hover': {
-        'background': '#facc15'
+        'background': '#facc15',
+        'foreground': '#171717'
+      },
+      'active': {
+        'background': '#fde047',
+        'foreground': '#171717'
+      },
+      'focus': {
+        'background': '#eab308',
+        'foreground': '#171717'
+      },
+      'disabled': {
+        'background': '#262626',
+        'foreground': '#525252'
       }
     }
   },

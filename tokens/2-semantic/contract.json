@@ -26,7 +26,12 @@
           "foreground": { "value": "{DO-NOT-USE}", "type": "color" }
         },
         "active": {
-          "background": { "value": "{DO-NOT-USE}", "type": "color" }
+          "background": { "value": "{DO-NOT-USE}", "type": "color" },
+          "foreground": { "value": "{DO-NOT-USE}", "type": "color" }
+        },
+        "focus": {
+          "background": { "value": "{DO-NOT-USE}", "type": "color" },
+          "foreground": { "value": "{DO-NOT-USE}", "type": "color" }
         },
         "disabled": {
           "background": { "value": "{DO-NOT-USE}", "type": "color" },
@@ -43,7 +48,12 @@
           "foreground": { "value": "{DO-NOT-USE}", "type": "color" }
         },
         "active": {
-          "background": { "value": "{DO-NOT-USE}", "type": "color" }
+          "background": { "value": "{DO-NOT-USE}", "type": "color" },
+          "foreground": { "value": "{DO-NOT-USE}", "type": "color" }
+        },
+        "focus": {
+          "background": { "value": "{DO-NOT-USE}", "type": "color" },
+          "foreground": { "value": "{DO-NOT-USE}", "type": "color" }
         },
         "disabled": {
           "background": { "value": "{DO-NOT-USE}", "type": "color" },
@@ -60,7 +70,16 @@
           "foreground": { "value": "{DO-NOT-USE}", "type": "color" }
         },
         "active": {
-          "background": { "value": "{DO-NOT-USE}", "type": "color" }
+          "background": { "value": "{DO-NOT-USE}", "type": "color" },
+          "foreground": { "value": "{DO-NOT-USE}", "type": "color" }
+        },
+        "focus": {
+          "background": { "value": "{DO-NOT-USE}", "type": "color" },
+          "foreground": { "value": "{DO-NOT-USE}", "type": "color" }
+        },
+        "disabled": {
+          "background": { "value": "{DO-NOT-USE}", "type": "color" },
+          "foreground": { "value": "{DO-NOT-USE}", "type": "color" }
         }
       },
       "success": {
@@ -69,7 +88,20 @@
           "foreground": { "value": "{DO-NOT-USE}", "type": "color" }
         },
         "hover": {
-          "background": { "value": "{DO-NOT-USE}", "type": "color" }
+          "background": { "value": "{DO-NOT-USE}", "type": "color" },
+          "foreground": { "value": "{DO-NOT-USE}", "type": "color" }
+        },
+        "active": {
+          "background": { "value": "{DO-NOT-USE}", "type": "color" },
+          "foreground": { "value": "{DO-NOT-USE}", "type": "color" }
+        },
+        "focus": {
+          "background": { "value": "{DO-NOT-USE}", "type": "color" },
+          "foreground": { "value": "{DO-NOT-USE}", "type": "color" }
+        },
+        "disabled": {
+          "background": { "value": "{DO-NOT-USE}", "type": "color" },
+          "foreground": { "value": "{DO-NOT-USE}", "type": "color" }
         }
       },
       "warning": {
@@ -78,7 +110,20 @@
           "foreground": { "value": "{DO-NOT-USE}", "type": "color" }
         },
         "hover": {
-          "background": { "value": "{DO-NOT-USE}", "type": "color" }
+          "background": { "value": "{DO-NOT-USE}", "type": "color" },
+          "foreground": { "value": "{DO-NOT-USE}", "type": "color" }
+        },
+        "active": {
+          "background": { "value": "{DO-NOT-USE}", "type": "color" },
+          "foreground": { "value": "{DO-NOT-USE}", "type": "color" }
+        },
+        "focus": {
+          "background": { "value": "{DO-NOT-USE}", "type": "color" },
+          "foreground": { "value": "{DO-NOT-USE}", "type": "color" }
+        },
+        "disabled": {
+          "background": { "value": "{DO-NOT-USE}", "type": "color" },
+          "foreground": { "value": "{DO-NOT-USE}", "type": "color" }
         }
       }
     },

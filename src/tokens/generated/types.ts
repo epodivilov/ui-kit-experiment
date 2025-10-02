@@ -30,7 +30,12 @@ export interface ThemeTokens {
         foreground: string
       };
       active: {
-        background: string
+        background: string;
+        foreground: string
+      };
+      focus: {
+        background: string;
+        foreground: string
       };
       disabled: {
         background: string;
@@ -47,7 +52,12 @@ export interface ThemeTokens {
         foreground: string
       };
       active: {
-        background: string
+        background: string;
+        foreground: string
+      };
+      focus: {
+        background: string;
+        foreground: string
       };
       disabled: {
         background: string;
@@ -64,7 +74,16 @@ export interface ThemeTokens {
         foreground: string
       };
       active: {
-        background: string
+        background: string;
+        foreground: string
+      };
+      focus: {
+        background: string;
+        foreground: string
+      };
+      disabled: {
+        background: string;
+        foreground: string
       }
     };
     success: {
@@ -73,7 +92,20 @@ export interface ThemeTokens {
         foreground: string
       };
       hover: {
-        background: string
+        background: string;
+        foreground: string
+      };
+      active: {
+        background: string;
+        foreground: string
+      };
+      focus: {
+        background: string;
+        foreground: string
+      };
+      disabled: {
+        background: string;
+        foreground: string
       }
     };
     warning: {
@@ -82,7 +114,20 @@ export interface ThemeTokens {
         foreground: string
       };
       hover: {
-        background: string
+        background: string;
+        foreground: string
+      };
+      active: {
+        background: string;
+        foreground: string
+      };
+      focus: {
+        background: string;
+        foreground: string
+      };
+      disabled: {
+        background: string;
+        foreground: string
       }
     }
   };

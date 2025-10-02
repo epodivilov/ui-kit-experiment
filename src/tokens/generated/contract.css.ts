@@ -31,7 +31,12 @@ export const tokens = createThemeContract({
         'foreground': null
       },
       'active': {
-        'background': null
+        'background': null,
+        'foreground': null
+      },
+      'focus': {
+        'background': null,
+        'foreground': null
       },
       'disabled': {
         'background': null,
@@ -48,7 +53,12 @@ export const tokens = createThemeContract({
         'foreground': null
       },
       'active': {
-        'background': null
+        'background': null,
+        'foreground': null
+      },
+      'focus': {
+        'background': null,
+        'foreground': null
       },
       'disabled': {
         'background': null,
@@ -65,7 +75,16 @@ export const tokens = createThemeContract({
         'foreground': null
       },
       'active': {
-        'background': null
+        'background': null,
+        'foreground': null
+      },
+      'focus': {
+        'background': null,
+        'foreground': null
+      },
+      'disabled': {
+        'background': null,
+        'foreground': null
       }
     },
     'success': {
@@ -74,7 +93,20 @@ export const tokens = createThemeContract({
         'foreground': null
       },
       'hover': {
-        'background': null
+        'background': null,
+        'foreground': null
+      },
+      'active': {
+        'background': null,
+        'foreground': null
+      },
+      'focus': {
+        'background': null,
+        'foreground': null
+      },
+      'disabled': {
+        'background': null,
+        'foreground': null
       }
     },
     'warning': {
@@ -83,7 +115,20 @@ export const tokens = createThemeContract({
         'foreground': null
       },
       'hover': {
-        'background': null
+        'background': null,
+        'foreground': null
+      },
+      'active': {
+        'background': null,
+        'foreground': null
+      },
+      'focus': {
+        'background': null,
+        'foreground': null
+      },
+      'disabled': {
+        'background': null,
+        'foreground': null
       }
     }
   },

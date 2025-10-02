@@ -67,7 +67,12 @@ export const lightTheme = createTheme(tokens, {
         'foreground': '#ffffff'
       },
       'active': {
-        'background': '#1e40af'
+        'background': '#1e40af',
+        'foreground': '#ffffff'
+      },
+      'focus': {
+        'background': '#2563eb',
+        'foreground': '#ffffff'
       },
       'disabled': {
         'background': '#f5f5f5',
@@ -84,7 +89,12 @@ export const lightTheme = createTheme(tokens, {
         'foreground': '#171717'
       },
       'active': {
-        'background': '#d4d4d4'
+        'background': '#d4d4d4',
+        'foreground': '#171717'
+      },
+      'focus': {
+        'background': '#f5f5f5',
+        'foreground': '#171717'
       },
       'disabled': {
         'background': '#f5f5f5',
@@ -101,7 +111,16 @@ export const lightTheme = createTheme(tokens, {
         'foreground': '#ffffff'
       },
       'active': {
-        'background': '#991b1b'
+        'background': '#991b1b',
+        'foreground': '#ffffff'
+      },
+      'focus': {
+        'background': '#dc2626',
+        'foreground': '#ffffff'
+      },
+      'disabled': {
+        'background': '#f5f5f5',
+        'foreground': '#a3a3a3'
       }
     },
     'success': {
@@ -110,7 +129,20 @@ export const lightTheme = createTheme(tokens, {
         'foreground': '#ffffff'
       },
       'hover': {
-        'background': '#15803d'
+        'background': '#15803d',
+        'foreground': '#ffffff'
+      },
+      'active': {
+        'background': '#166534',
+        'foreground': '#ffffff'
+      },
+      'focus': {
+        'background': '#16a34a',
+        'foreground': '#ffffff'
+      },
+      'disabled': {
+        'background': '#f5f5f5',
+        'foreground': '#a3a3a3'
       }
     },
     'warning': {
@@ -119,7 +151,20 @@ export const lightTheme = createTheme(tokens, {
         'foreground': '#171717'
       },
       'hover': {
-        'background': '#ca8a04'
+        'background': '#ca8a04',
+        'foreground': '#171717'
+      },
+      'active': {
+        'background': '#a16207',
+        'foreground': '#171717'
+      },
+      'focus': {
+        'background': '#eab308',
+        'foreground': '#171717'
+      },
+      'disabled': {
+        'background': '#f5f5f5',
+        'foreground': '#a3a3a3'
       }
     }
   },
