@@ -3,18 +3,19 @@
  * Auto-generated from design tokens - DO NOT EDIT
  */
 import { createTheme } from '@vanilla-extract/css';
+
 import { tokens } from './contract.css';
 
 export const lightTheme = createTheme(tokens, {
   'typography': {
-    'heading-xl': '{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif', fontWeight: '700', fontSize: '3rem', lineHeight: '120%' }',
-    'heading-l': '{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif', fontWeight: '700', fontSize: '2.25rem', lineHeight: '120%' }',
-    'heading-m': '{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif', fontWeight: '600', fontSize: '1.5rem', lineHeight: '120%' }',
-    'heading-s': '{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif', fontWeight: '600', fontSize: '1.25rem', lineHeight: '150%' }',
-    'body-l': '{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif', fontWeight: '400', fontSize: '1.125rem', lineHeight: '150%' }',
-    'body-m': '{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif', fontWeight: '400', fontSize: '1rem', lineHeight: '150%' }',
-    'body-s': '{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif', fontWeight: '400', fontSize: '0.875rem', lineHeight: '150%' }',
-    'caption': '{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif', fontWeight: '500', fontSize: '0.75rem', lineHeight: '150%' }'
+    'heading-xl': `{ fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", fontWeight: "700", fontSize: "3rem", lineHeight: "120%" }`,
+    'heading-l': `{ fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", fontWeight: "700", fontSize: "2.25rem", lineHeight: "120%" }`,
+    'heading-m': `{ fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", fontWeight: "600", fontSize: "1.5rem", lineHeight: "120%" }`,
+    'heading-s': `{ fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", fontWeight: "600", fontSize: "1.25rem", lineHeight: "150%" }`,
+    'body-l': `{ fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", fontWeight: "400", fontSize: "1.125rem", lineHeight: "150%" }`,
+    'body-m': `{ fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", fontWeight: "400", fontSize: "1rem", lineHeight: "150%" }`,
+    'body-s': `{ fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", fontWeight: "400", fontSize: "0.875rem", lineHeight: "150%" }`,
+    'caption': `{ fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", fontWeight: "500", fontSize: "0.75rem", lineHeight: "150%" }`
   },
   'sizing': {
     'xs': '0.5rem',

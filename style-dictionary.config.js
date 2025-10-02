@@ -108,9 +108,9 @@ const vanillaExtractTheme = ({ dictionary, options }) => {
           const val = value.value;
           if (typeof val === 'object') {
             const props = Object.entries(val)
-              .map(([k, v]) => `${k}: '${v}'`)
+              .map(([k, v]) => `${k}: "${v.replace(/"/g, '\\"')}"`)
               .join(', ');
-            return `${indent}'${key}': '{ ${props} }'`;
+            return `${indent}'${key}': \`{ ${props} }\``;
           }
           return `${indent}'${key}': '${val}'`;
         }
