@@ -9,38 +9,19 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "default": "./dist/index.js"
     },
-    "./styles": {
-      "types": "./dist/styles.d.ts",
-      "import": "./dist/styles.js",
-      "require": "./dist/styles.cjs"
+    "./components/*": {
+      "types": "./dist/components/*.d.ts",
+      "default": "./dist/components/*.js"
     },
-    "./components": {
-      "types": "./dist/components/index.d.ts",
-      "import": "./dist/components/index.js",
-      "require": "./dist/components/index.cjs"
+    "./themes/*": {
+      "types": "./dist/themes/*.d.ts",
+      "default": "./dist/themes/*.js"
     },
-    "./themes": {
-      "types": "./dist/themes/index.d.ts",
-      "import": "./dist/themes/index.js",
-      "require": "./dist/themes/index.cjs"
-    },
-    "./utils": {
-      "types": "./dist/utils/index.d.ts",
-      "import": "./dist/utils/index.js",
-      "require": "./dist/utils/index.cjs"
-    },
-    "./hooks": {
-      "types": "./dist/hooks/index.d.ts",
-      "import": "./dist/hooks/index.js",
-      "require": "./dist/hooks/index.cjs"
-    },
-    "./constants": {
-      "types": "./dist/constants/index.d.ts",
-      "import": "./dist/constants/index.js",
-      "require": "./dist/constants/index.cjs"
+    "./utils/*": {
+      "types": "./dist/utils/*.d.ts",
+      "default": "./dist/utils/*.js"
     }
   },
   "files": [
@@ -49,23 +30,16 @@
     "LICENSE"
   ],
   "scripts": {
-    "dev": "vite",
-    "build": "pnpm run clean && pnpm run build:lib && pnpm run build:types",
-    "build:lib": "vite build",
-    "build:types": "tsc --project tsconfig.build.json",
+    "dev": "vite -c config/vite.config.ts",
+    "build": "pnpm clean && pnpm build:tokens && pnpm build:components && pnpm build:lib",
+    "build:lib": "vite build -c config/vite.config.ts && tsc",
+    "build:tokens": "node config/build-tokens.js",
+    "build:components": "node config/generate-component-styles.js",
     "clean": "rimraf dist",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,md}\"",
-    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,md}\"",
+    "lint": "eslint . -c config/eslint.config.js",
     "typecheck": "tsc --noEmit",
-    "test": "vitest",
-    "test:ui": "vitest --ui",
-    "preview": "vite preview",
     "storybook": "storybook dev -p 6006 --no-open",
-    "build-storybook": "storybook build",
-    "tokens:build": "node build-tokens.js",
-    "components:generate": "node generate-component-styles.js"
+    "storybook:build": "storybook build"
   },
   "keywords": [
     "ui",
