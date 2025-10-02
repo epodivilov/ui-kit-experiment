@@ -1,6 +1,6 @@
 {
   "font-family": {
-    "ui": {
+    "sans": {
       "value": "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
       "type": "fontFamilies"
     },
@@ -21,14 +21,14 @@
     "900": { "value": "3rem", "type": "fontSizes" }
   },
   "font-weight": {
-    "regular": { "value": "400", "type": "fontWeights" },
-    "medium": { "value": "500", "type": "fontWeights" },
-    "semibold": { "value": "600", "type": "fontWeights" },
-    "bold": { "value": "700", "type": "fontWeights" }
+    "100": { "value": "400", "type": "fontWeights" },
+    "200": { "value": "500", "type": "fontWeights" },
+    "300": { "value": "600", "type": "fontWeights" },
+    "400": { "value": "700", "type": "fontWeights" }
   },
   "line-height": {
-    "tight": { "value": "1.2", "type": "lineHeights" },
-    "normal": { "value": "1.5", "type": "lineHeights" },
-    "relaxed": { "value": "1.75", "type": "lineHeights" }
+    "100": { "value": "120%", "type": "lineHeights" },
+    "200": { "value": "150%", "type": "lineHeights" },
+    "300": { "value": "175%", "type": "lineHeights" }
   }
 }
