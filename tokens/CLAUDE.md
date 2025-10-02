@@ -2,6 +2,33 @@
 
 This project uses a **4-tier hierarchical token architecture** managed through Token Studio for Figma. All design tokens are stored in the `tokens/` directory as separate JSON files.
 
+## Critical Rules
+
+### Naming Convention
+**ALWAYS use kebab-case** for token names:
+- ✅ `font-family`, `font-size`, `border-radius`, `on-interactive`
+- ❌ `fontFamily`, `fontSize`, `borderRadius`, `onInteractive`
+
+### Root-Level Namespacing
+**REQUIRED**: Each layer must have a root-level namespace matching its purpose:
+
+- **Layer 1 (Core)**: Root field MUST be `"core"`
+- **Layer 2 (Semantic)**: Root field MUST be `"semantic"`
+- **Layer 3 (Themes)**: Root field MUST be `"semantic"` (themes override semantic contract)
+- **Layer 4 (Components)**: Reference semantic tokens with full path
+
+**Purpose**: Clear token origin in components (`semantic.radius.md` instead of ambiguous `radius.md`)
+
+### Interactive States
+**REQUIRED**: All interactive color tokens MUST define ALL states:
+- `default` - default state
+- `hover` - hover state
+- `active` - active/pressed state
+- `focus` - focus state
+- `disabled` - disabled state
+
+❌ **NO partial state definitions** - every interactive token group must have all 5 states.
+
 ## Token Files Structure
 
 ```
@@ -45,22 +72,26 @@ tokens/
 ### Example Structure
 ```json
 {
-  "color": {
-    "blue": {
-      "700": {
-        "value": "#4d88ff",
-        "type": "color"
+  "core": {
+    "color": {
+      "blue": {
+        "700": {
+          "value": "#4d88ff",
+          "type": "color"
+        }
       }
-    }
-  },
-  "size": {
-    "4": {
-      "value": "1rem",
-      "type": "sizing"
+    },
+    "size": {
+      "4": {
+        "value": "1rem",
+        "type": "sizing"
+      }
     }
   }
 }
 ```
+
+**Note**: All core tokens MUST be nested under `"core"` root field.
 
 ## Layer 2: Semantic Contract (`2-semantic/contract.json`)
 
@@ -82,28 +113,56 @@ This layer defines the vocabulary that:
 ### Example Structure
 ```json
 {
-  "background": {
-    "primary": {
-      "value": "{DO-NOT-USE}",
-      "type": "color"
+  "semantic": {
+    "background": {
+      "primary": {
+        "value": "{DO-NOT-USE}",
+        "type": "color"
+      },
+      "secondary": {
+        "value": "{DO-NOT-USE}",
+        "type": "color"
+      }
     },
-    "secondary": {
-      "value": "{DO-NOT-USE}",
-      "type": "color"
-    }
-  },
-  "interactive": {
-    "primary": {
-      "default": {
-        "background": {
-          "value": "{DO-NOT-USE}",
-          "type": "color"
+    "interactive": {
+      "primary": {
+        "default": {
+          "background": {
+            "value": "{DO-NOT-USE}",
+            "type": "color"
+          }
+        },
+        "hover": {
+          "background": {
+            "value": "{DO-NOT-USE}",
+            "type": "color"
+          }
+        },
+        "active": {
+          "background": {
+            "value": "{DO-NOT-USE}",
+            "type": "color"
+          }
+        },
+        "focus": {
+          "background": {
+            "value": "{DO-NOT-USE}",
+            "type": "color"
+          }
+        },
+        "disabled": {
+          "background": {
+            "value": "{DO-NOT-USE}",
+            "type": "color"
+          }
         }
       }
     }
   }
 }
 ```
+
+**Note**: All semantic tokens MUST be nested under `"semantic"` root field. Interactive tokens MUST have all 5 states (default/hover/active/focus/disabled).
 
 ## Layer 3: Theme Tokens (`3-themes/`)
 
@@ -133,15 +192,17 @@ This layer defines the vocabulary that:
 **base.json**:
 ```json
 {
-  "typography": {
-    "heading-l": {
-      "value": {
-        "fontFamily": "{typography.font-family.ui}",
-        "fontWeight": "{font-weight.semibold}",
-        "fontSize": "{font-size.600}",
-        "lineHeight": "{line-height.tight}"
-      },
-      "type": "typography"
+  "semantic": {
+    "typography": {
+      "heading-l": {
+        "value": {
+          "font-family": "{core.font-family.sans}",
+          "font-weight": "{core.font-weight.400}",
+          "font-size": "{core.font-size.600}",
+          "line-height": "{core.line-height.100}"
+        },
+        "type": "typography"
+      }
     }
   }
 }
@@ -150,18 +211,56 @@ This layer defines the vocabulary that:
 **light/theme.json**:
 ```json
 {
-  "background": {
-    "primary": {
-      "value": "{color.neutral.900}",
-      "type": "color"
+  "semantic": {
+    "background": {
+      "default": {
+        "value": "{core.color.white}",
+        "type": "color"
+      },
+      "surface": {
+        "value": "{core.color.neutral.50}",
+        "type": "color"
+      }
     },
-    "secondary": {
-      "value": "rgba({color.neutral.901}, {opacity.50})",
-      "type": "color"
+    "interactive": {
+      "primary": {
+        "default": {
+          "background": {
+            "value": "{core.color.blue.600}",
+            "type": "color"
+          }
+        },
+        "hover": {
+          "background": {
+            "value": "{core.color.blue.700}",
+            "type": "color"
+          }
+        },
+        "active": {
+          "background": {
+            "value": "{core.color.blue.800}",
+            "type": "color"
+          }
+        },
+        "focus": {
+          "background": {
+            "value": "{core.color.blue.600}",
+            "type": "color"
+          }
+        },
+        "disabled": {
+          "background": {
+            "value": "{core.color.neutral.100}",
+            "type": "color"
+          }
+        }
+      }
     }
   }
 }
 ```
+
+**Note**: Themes MUST wrap all tokens in `"semantic"` root field and reference core tokens with `{core.*}` syntax. ALL interactive states must be defined.
 
 ## Layer 4: Component Tokens (`4-components/`)
 
@@ -182,32 +281,42 @@ This layer defines the vocabulary that:
     "primary": {
       "background-color": {
         "default": {
-          "value": "{interactive.primary.default.background}",
+          "value": "{semantic.interactive.primary.default.background}",
           "type": "color"
         },
         "hover": {
-          "value": "{interactive.primary.hover.background}",
+          "value": "{semantic.interactive.primary.hover.background}",
+          "type": "color"
+        },
+        "active": {
+          "value": "{semantic.interactive.primary.active.background}",
+          "type": "color"
+        },
+        "focus": {
+          "value": "{semantic.interactive.primary.focus.background}",
           "type": "color"
         },
         "disabled": {
-          "value": "{background.disabled}",
+          "value": "{semantic.interactive.primary.disabled.background}",
           "type": "color"
         }
       }
     },
     "global": {
       "border-radius": {
-        "value": "{borderRadius.2}",
+        "value": "{semantic.border-radius.md}",
         "type": "borderRadius"
       },
       "padding-inline": {
-        "value": "{sizing.md}",
+        "value": "{semantic.sizing.md}",
         "type": "spacing"
       }
     }
   }
 }
 ```
+
+**Note**: Components MUST reference semantic tokens with full path `{semantic.*}`. ALL interactive states must be referenced.
 
 ## Token Studio Configuration (`$themes.json`)
 
