@@ -62,7 +62,7 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "preview": "vite preview",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "storybook dev -p 6006 --no-open",
     "build-storybook": "storybook build",
     "tokens:build": "node build-tokens.js"
   },
