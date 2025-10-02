@@ -18,7 +18,8 @@ export default tseslint.config(
       'storybook-static',
       'node_modules',
       '.tsbuildinfo',
-      '*.tsbuildinfo'
+      '*.tsbuildinfo',
+      'src/tokens/generated/**/*'
     ],
   },
   {

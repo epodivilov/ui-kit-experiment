@@ -53,6 +53,10 @@ const vanillaExtractContract = ({ dictionary }) => {
           const nested = buildContract(value, depth + 1);
           return `${indent}'${key}': {\n${nested}\n${indent}}`;
         }
+        // Check if this is a typography token - generate object contract instead of null
+        if (value && value.type === 'typography') {
+          return `${indent}'${key}': {\n${indent}  'font-family': null,\n${indent}  'font-weight': null,\n${indent}  'font-size': null,\n${indent}  'line-height': null\n${indent}}`;
+        }
         return `${indent}'${key}': null`;
       })
       .join(',\n');
@@ -106,13 +110,36 @@ const vanillaExtractTheme = ({ dictionary, options }) => {
 
         if (value && value.value !== undefined) {
           const val = value.value;
+
+          // Handle composite tokens (like typography objects)
+          if (typeof val === 'object' && value.type === 'typography') {
+            // Convert camelCase to kebab-case for CSS properties
+            const toCSSProperty = (key) => key.replace(/([A-Z])/g, '-$1').toLowerCase();
+
+            const cssProps = Object.entries(val)
+              .map(([k, v]) => {
+                const cssProp = toCSSProperty(k);
+                // Escape single quotes in values
+                const escapedV = typeof v === 'string' ? v.replace(/'/g, "\\'") : v;
+                return `'${cssProp}': '${escapedV}'`;
+              })
+              .join(',\n' + indent + '  ');
+
+            return `${indent}'${key}': {\n${indent}  ${cssProps}\n${indent}}`;
+          }
+
+          // Handle other composite tokens (non-typography)
           if (typeof val === 'object') {
             const props = Object.entries(val)
               .map(([k, v]) => `${k}: "${v.replace(/"/g, '\\"')}"`)
               .join(', ');
             return `${indent}'${key}': \`{ ${props} }\``;
           }
-          return `${indent}'${key}': '${val}'`;
+
+          // Handle simple string values
+          // Escape single quotes in values (e.g., font-family strings)
+          const escapedVal = val.replace(/'/g, "\\'");
+          return `${indent}'${key}': '${escapedVal}'`;
         }
         return null;
       })
@@ -179,6 +206,10 @@ const vanillaExtractTypes = ({ dictionary }) => {
           const nested = buildTypes(value, depth + 1);
           return `${indent}${quotedKey}: {\n${nested}\n${indent}}`;
         }
+        // Check if this is a typography token - generate object type
+        if (value && value.type === 'typography') {
+          return `${indent}${quotedKey}: {\n${indent}  'font-family': string;\n${indent}  'font-weight': string;\n${indent}  'font-size': string;\n${indent}  'line-height': string;\n${indent}}`;
+        }
         return `${indent}${quotedKey}: string`;
       })
       .join(';\n');
@@ -213,9 +244,16 @@ const getSourcesForTheme = theme => {
     }
   }
 
-  // Add theme files (Layer 3) that implement the contract
+  // Add base theme tokens first (shared across all themes)
   for (const [setName, status] of Object.entries(sets)) {
-    if (setName.startsWith('3-themes/') && status === 'enabled') {
+    if (setName === '3-themes/base' && status === 'enabled') {
+      sources.push(`tokens/${setName}.json`);
+    }
+  }
+
+  // Add theme-specific files (Layer 3) that implement the contract
+  for (const [setName, status] of Object.entries(sets)) {
+    if (setName.startsWith('3-themes/') && setName !== '3-themes/base' && status === 'enabled') {
       sources.push(`tokens/${setName}.json`);
     }
   }
