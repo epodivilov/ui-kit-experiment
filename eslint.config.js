@@ -115,6 +115,13 @@ export default tseslint.config(
       ],
       'import/newline-after-import': 'error',
       'import/no-default-export': 'warn', // Prefer named exports in libraries
+      "import/no-unused-modules": [
+        "warn",
+        {
+          "unusedExports": true,
+          "missingExports": true
+        }
+      ],
 
       // General JavaScript/TypeScript rules
       'prefer-const': 'error',
