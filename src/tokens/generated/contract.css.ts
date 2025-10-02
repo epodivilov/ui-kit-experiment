@@ -164,13 +164,75 @@ export const tokens = createThemeContract({
     'thick': null
   },
   'typography': {
-    'heading-xl': null,
-    'heading-l': null,
-    'heading-m': null,
-    'heading-s': null,
-    'body-l': null,
-    'body-m': null,
-    'body-s': null,
-    'caption': null
+    'heading-xl': {
+      'font-family': null,
+      'font-weight': null,
+      'font-size': null,
+      'line-height': null
+    },
+    'heading-l': {
+      'font-family': null,
+      'font-weight': null,
+      'font-size': null,
+      'line-height': null
+    },
+    'heading-m': {
+      'font-family': null,
+      'font-weight': null,
+      'font-size': null,
+      'line-height': null
+    },
+    'heading-s': {
+      'font-family': null,
+      'font-weight': null,
+      'font-size': null,
+      'line-height': null
+    },
+    'body-l': {
+      'font-family': null,
+      'font-weight': null,
+      'font-size': null,
+      'line-height': null
+    },
+    'body-m': {
+      'font-family': null,
+      'font-weight': null,
+      'font-size': null,
+      'line-height': null
+    },
+    'body-s': {
+      'font-family': null,
+      'font-weight': null,
+      'font-size': null,
+      'line-height': null
+    },
+    'caption': {
+      'font-family': null,
+      'font-weight': null,
+      'font-size': null,
+      'line-height': null
+    }
+  },
+  'font-family': {
+    'body': null,
+    'heading': null,
+    'mono': null
+  },
+  'font-size': {
+    'xs': null,
+    'sm': null,
+    'md': null,
+    'lg': null
+  },
+  'font-weight': {
+    'normal': null,
+    'medium': null,
+    'semibold': null,
+    'bold': null
+  },
+  'line-height': {
+    'tight': null,
+    'normal': null,
+    'relaxed': null
   }
 });

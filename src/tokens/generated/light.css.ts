@@ -3,19 +3,58 @@
  * Auto-generated from design tokens - DO NOT EDIT
  */
 import { createTheme } from '@vanilla-extract/css';
-
 import { tokens } from './contract.css';
 
 export const lightTheme = createTheme(tokens, {
   'typography': {
-    'heading-xl': `{ fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", fontWeight: "700", fontSize: "3rem", lineHeight: "120%" }`,
-    'heading-l': `{ fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", fontWeight: "700", fontSize: "2.25rem", lineHeight: "120%" }`,
-    'heading-m': `{ fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", fontWeight: "600", fontSize: "1.5rem", lineHeight: "120%" }`,
-    'heading-s': `{ fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", fontWeight: "600", fontSize: "1.25rem", lineHeight: "150%" }`,
-    'body-l': `{ fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", fontWeight: "400", fontSize: "1.125rem", lineHeight: "150%" }`,
-    'body-m': `{ fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", fontWeight: "400", fontSize: "1rem", lineHeight: "150%" }`,
-    'body-s': `{ fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", fontWeight: "400", fontSize: "0.875rem", lineHeight: "150%" }`,
-    'caption': `{ fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", fontWeight: "500", fontSize: "0.75rem", lineHeight: "150%" }`
+    'heading-xl': {
+      'font-family': 'Inter, -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, sans-serif',
+      'font-weight': '700',
+      'font-size': '3rem',
+      'line-height': '120%'
+    },
+    'heading-l': {
+      'font-family': 'Inter, -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, sans-serif',
+      'font-weight': '700',
+      'font-size': '2.25rem',
+      'line-height': '120%'
+    },
+    'heading-m': {
+      'font-family': 'Inter, -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, sans-serif',
+      'font-weight': '600',
+      'font-size': '1.5rem',
+      'line-height': '120%'
+    },
+    'heading-s': {
+      'font-family': 'Inter, -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, sans-serif',
+      'font-weight': '600',
+      'font-size': '1.25rem',
+      'line-height': '150%'
+    },
+    'body-l': {
+      'font-family': 'Inter, -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, sans-serif',
+      'font-weight': '400',
+      'font-size': '1.125rem',
+      'line-height': '150%'
+    },
+    'body-m': {
+      'font-family': 'Inter, -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, sans-serif',
+      'font-weight': '400',
+      'font-size': '1rem',
+      'line-height': '150%'
+    },
+    'body-s': {
+      'font-family': 'Inter, -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, sans-serif',
+      'font-weight': '400',
+      'font-size': '0.875rem',
+      'line-height': '150%'
+    },
+    'caption': {
+      'font-family': 'Inter, -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, sans-serif',
+      'font-weight': '500',
+      'font-size': '0.75rem',
+      'line-height': '150%'
+    }
   },
   'sizing': {
     'xs': '0.5rem',
@@ -41,6 +80,28 @@ export const lightTheme = createTheme(tokens, {
     'thin': '1px',
     'default': '2px',
     'thick': '3px'
+  },
+  'font-family': {
+    'body': 'Inter, -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, sans-serif',
+    'heading': 'Inter, -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, sans-serif',
+    'mono': '\'JetBrains Mono\', \'Fira Code\', \'Courier New\', monospace'
+  },
+  'font-size': {
+    'xs': '0.875rem',
+    'sm': '1rem',
+    'md': '1.125rem',
+    'lg': '1.25rem'
+  },
+  'font-weight': {
+    'normal': '400',
+    'medium': '500',
+    'semibold': '600',
+    'bold': '700'
+  },
+  'line-height': {
+    'tight': '120%',
+    'normal': '150%',
+    'relaxed': '175%'
   },
   'background': {
     'default': '#ffffff',

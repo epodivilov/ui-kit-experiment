@@ -163,13 +163,75 @@ export interface ThemeTokens {
     thick: string
   };
   typography: {
-    'heading-xl': string;
-    'heading-l': string;
-    'heading-m': string;
-    'heading-s': string;
-    'body-l': string;
-    'body-m': string;
-    'body-s': string;
-    caption: string
+    'heading-xl': {
+      'font-family': string;
+      'font-weight': string;
+      'font-size': string;
+      'line-height': string;
+    };
+    'heading-l': {
+      'font-family': string;
+      'font-weight': string;
+      'font-size': string;
+      'line-height': string;
+    };
+    'heading-m': {
+      'font-family': string;
+      'font-weight': string;
+      'font-size': string;
+      'line-height': string;
+    };
+    'heading-s': {
+      'font-family': string;
+      'font-weight': string;
+      'font-size': string;
+      'line-height': string;
+    };
+    'body-l': {
+      'font-family': string;
+      'font-weight': string;
+      'font-size': string;
+      'line-height': string;
+    };
+    'body-m': {
+      'font-family': string;
+      'font-weight': string;
+      'font-size': string;
+      'line-height': string;
+    };
+    'body-s': {
+      'font-family': string;
+      'font-weight': string;
+      'font-size': string;
+      'line-height': string;
+    };
+    caption: {
+      'font-family': string;
+      'font-weight': string;
+      'font-size': string;
+      'line-height': string;
+    }
+  };
+  'font-family': {
+    body: string;
+    heading: string;
+    mono: string
+  };
+  'font-size': {
+    xs: string;
+    sm: string;
+    md: string;
+    lg: string
+  };
+  'font-weight': {
+    normal: string;
+    medium: string;
+    semibold: string;
+    bold: string
+  };
+  'line-height': {
+    tight: string;
+    normal: string;
+    relaxed: string
   };
 }
