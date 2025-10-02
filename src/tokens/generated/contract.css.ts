@@ -107,13 +107,13 @@ export const tokens = createThemeContract({
     'lg': null,
     'xl': null
   },
-  'borderRadius': {
+  'border-radius': {
     'sm': null,
     'md': null,
     'lg': null,
     'full': null
   },
-  'borderWidth': {
+  'border-width': {
     'thin': null,
     'default': null,
     'thick': null

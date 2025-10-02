@@ -1,46 +1,46 @@
 {
   "checkbox": {
     "global": {
-      "border-radius": { "value": "{radius.sm}", "type": "borderRadius" },
-      "border-width": { "value": "{stroke.default}", "type": "borderWidth" },
-      "size": { "value": "{sizing.md}", "type": "sizing" }
+      "border-radius": { "value": "{semantic.border-radius.sm}", "type": "borderRadius" },
+      "border-width": { "value": "{semantic.border-width.default}", "type": "borderWidth" },
+      "size": { "value": "{semantic.sizing.md}", "type": "sizing" }
     },
     "default": {
       "background-color": {
-        "default": { "value": "{background.surface}", "type": "color" },
-        "hover": { "value": "{background.surface}", "type": "color" },
-        "checked": { "value": "{interactive.primary.default.background}", "type": "color" },
-        "checked-hover": { "value": "{interactive.primary.hover.background}", "type": "color" },
-        "disabled": { "value": "{background.disabled}", "type": "color" }
+        "default": { "value": "{semantic.background.surface}", "type": "color" },
+        "hover": { "value": "{semantic.background.surface}", "type": "color" },
+        "checked": { "value": "{semantic.interactive.primary.default.background}", "type": "color" },
+        "checked-hover": { "value": "{semantic.interactive.primary.hover.background}", "type": "color" },
+        "disabled": { "value": "{semantic.background.disabled}", "type": "color" }
       },
       "border-color": {
-        "default": { "value": "{border.default}", "type": "color" },
-        "hover": { "value": "{border.hover}", "type": "color" },
-        "focus": { "value": "{border.focus}", "type": "color" },
-        "checked": { "value": "{interactive.primary.default.background}", "type": "color" },
-        "checked-hover": { "value": "{interactive.primary.hover.background}", "type": "color" },
-        "disabled": { "value": "{border.disabled}", "type": "color" }
+        "default": { "value": "{semantic.border.default}", "type": "color" },
+        "hover": { "value": "{semantic.border.hover}", "type": "color" },
+        "focus": { "value": "{semantic.border.focus}", "type": "color" },
+        "checked": { "value": "{semantic.interactive.primary.default.background}", "type": "color" },
+        "checked-hover": { "value": "{semantic.interactive.primary.hover.background}", "type": "color" },
+        "disabled": { "value": "{semantic.border.disabled}", "type": "color" }
       },
       "indicator-color": {
-        "default": { "value": "{foreground.on-interactive}", "type": "color" },
-        "disabled": { "value": "{foreground.disabled}", "type": "color" }
+        "default": { "value": "{semantic.foreground.on-interactive}", "type": "color" },
+        "disabled": { "value": "{semantic.foreground.disabled}", "type": "color" }
       }
     },
     "error": {
       "background-color": {
-        "default": { "value": "{background.surface}", "type": "color" },
-        "checked": { "value": "{interactive.danger.default.background}", "type": "color" },
-        "checked-hover": { "value": "{interactive.danger.hover.background}", "type": "color" }
+        "default": { "value": "{semantic.background.surface}", "type": "color" },
+        "checked": { "value": "{semantic.interactive.danger.default.background}", "type": "color" },
+        "checked-hover": { "value": "{semantic.interactive.danger.hover.background}", "type": "color" }
       },
       "border-color": {
-        "default": { "value": "{interactive.danger.default.background}", "type": "color" },
-        "hover": { "value": "{interactive.danger.hover.background}", "type": "color" },
-        "focus": { "value": "{interactive.danger.default.background}", "type": "color" },
-        "checked": { "value": "{interactive.danger.default.background}", "type": "color" },
-        "checked-hover": { "value": "{interactive.danger.hover.background}", "type": "color" }
+        "default": { "value": "{semantic.interactive.danger.default.background}", "type": "color" },
+        "hover": { "value": "{semantic.interactive.danger.hover.background}", "type": "color" },
+        "focus": { "value": "{semantic.interactive.danger.default.background}", "type": "color" },
+        "checked": { "value": "{semantic.interactive.danger.default.background}", "type": "color" },
+        "checked-hover": { "value": "{semantic.interactive.danger.hover.background}", "type": "color" }
       },
       "indicator-color": {
-        "default": { "value": "{foreground.on-danger}", "type": "color" }
+        "default": { "value": "{semantic.foreground.on-danger}", "type": "color" }
       }
     }
   }

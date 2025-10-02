@@ -6,9 +6,6 @@ import { createTheme } from '@vanilla-extract/css';
 import { tokens } from './contract.css';
 
 export const lightTheme = createTheme(tokens, {
-  'borderRadius': {
-    'full': '9999px'
-  },
   'typography': {
     'heading-xl': '{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif', fontWeight: '700', fontSize: '3rem', lineHeight: '120%' }',
     'heading-l': '{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif', fontWeight: '700', fontSize: '2.25rem', lineHeight: '120%' }',
@@ -32,6 +29,17 @@ export const lightTheme = createTheme(tokens, {
     'md': '1rem',
     'lg': '1.5rem',
     'xl': '2rem'
+  },
+  'border-radius': {
+    'sm': '0.25rem',
+    'md': '0.5rem',
+    'lg': '0.75rem',
+    'full': '9999px'
+  },
+  'border-width': {
+    'thin': '1px',
+    'default': '2px',
+    'thick': '3px'
   },
   'background': {
     'default': '#ffffff',

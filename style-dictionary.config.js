@@ -14,9 +14,11 @@ const __dirname = dirname(__filename);
 const themesConfig = JSON.parse(readFileSync(join(__dirname, 'tokens/$themes.json'), 'utf8'));
 
 // Read semantic contract to know which tokens to include in themes
-const semanticContract = JSON.parse(
+const semanticContractRaw = JSON.parse(
   readFileSync(join(__dirname, 'tokens/2-semantic/contract.json'), 'utf8')
 );
+// Extract semantic layer (skip root 'semantic' wrapper)
+const semanticContract = semanticContractRaw.semantic || semanticContractRaw;
 
 /**
  * Get all token paths from contract (to filter themes)
@@ -56,7 +58,9 @@ const vanillaExtractContract = ({ dictionary }) => {
       .join(',\n');
   };
 
-  const contractBody = buildContract(dictionary.tokens);
+  // Extract semantic tokens (skip root "semantic" wrapper if present)
+  const tokensToProcess = dictionary.tokens.semantic || dictionary.tokens;
+  const contractBody = buildContract(tokensToProcess);
 
   return `/**
  * Vanilla-Extract Theme Contract
@@ -117,7 +121,9 @@ const vanillaExtractTheme = ({ dictionary, options }) => {
     return filteredEntries.join(',\n');
   };
 
-  const themeBody = buildThemeObject(dictionary.tokens);
+  // Extract semantic tokens (skip root "semantic" wrapper if present)
+  const tokensToProcess = dictionary.tokens.semantic || dictionary.tokens;
+  const themeBody = buildThemeObject(tokensToProcess);
 
   return `/**
  * Vanilla-Extract Theme: ${themeName}
@@ -178,7 +184,9 @@ const vanillaExtractTypes = ({ dictionary }) => {
       .join(';\n');
   };
 
-  const typesBody = buildTypes(dictionary.tokens);
+  // Extract semantic tokens (skip root "semantic" wrapper if present)
+  const tokensToProcess = dictionary.tokens.semantic || dictionary.tokens;
+  const typesBody = buildTypes(tokensToProcess);
 
   return `/**
  * Vanilla-Extract Theme Types

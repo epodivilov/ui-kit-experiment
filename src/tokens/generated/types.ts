@@ -106,13 +106,13 @@ export interface ThemeTokens {
     lg: string;
     xl: string
   };
-  borderRadius: {
+  'border-radius': {
     sm: string;
     md: string;
     lg: string;
     full: string
   };
-  borderWidth: {
+  'border-width': {
     thin: string;
     default: string;
     thick: string
