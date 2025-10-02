@@ -20,6 +20,10 @@ export const button = recipe({
     userSelect: 'none',
     boxSizing: 'border-box',
 
+    ':disabled': {
+      cursor: 'default',
+    },
+
     ':focus-visible': {
       outline: `2px solid ${tokens.border.focus}`,
       outlineOffset: '2px',
