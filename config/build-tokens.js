@@ -4,8 +4,16 @@
  * Reads configuration from style-dictionary.config.js and builds all themes
  */
 
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
 import StyleDictionary from 'style-dictionary';
-import config from './style-dictionary.config.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const rootDir = join(__dirname, '..');
+
+// Dynamically import config from same directory
+const { default: config } = await import('./style-dictionary.config.js');
 
 console.log('🎨 Building design tokens for Vanilla-Extract...\n');
 

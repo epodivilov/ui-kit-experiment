@@ -30,8 +30,8 @@ export default tseslint.config(
       globals: globals.browser,
       parser: tseslint.parser,
       parserOptions: {
-        project: ['./tsconfig.json', './tsconfig.dev.json'],
-        tsconfigRootDir: import.meta.dirname,
+        project: ['./tsconfig.json'],
+        tsconfigRootDir: new URL('..', import.meta.url).pathname,
       },
     },
     plugins: {

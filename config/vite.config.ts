@@ -7,7 +7,7 @@ import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
-const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
+const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -23,13 +23,10 @@ export default defineConfig({
   build: {
     lib: {
       entry: {
-        index: path.resolve(__dirname, 'src/index.ts'),
-        styles: path.resolve(__dirname, 'src/styles/index.ts'),
-        'components/index': path.resolve(__dirname, 'src/components/index.ts'),
-        'themes/index': path.resolve(__dirname, 'src/themes/index.ts'),
-        'utils/index': path.resolve(__dirname, 'src/utils/index.ts'),
-        'hooks/index': path.resolve(__dirname, 'src/hooks/index.ts'),
-        'constants/index': path.resolve(__dirname, 'src/constants/index.ts'),
+        index: path.resolve(rootDir, 'src/index.ts'),
+        'components/index': path.resolve(rootDir, 'src/components/index.ts'),
+        'themes/index': path.resolve(rootDir, 'src/themes/index.ts'),
+        'utils/index': path.resolve(rootDir, 'src/utils/index.ts'),
       },
       name: 'UIKit',
       formats: ['es', 'cjs'],
@@ -75,11 +72,7 @@ export default defineConfig({
   // Resolve configuration
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-      '@/components': path.resolve(__dirname, './src/components'),
-      '@/styles': path.resolve(__dirname, './src/styles'),
-      '@/tokens': path.resolve(__dirname, './src/tokens'),
-      '@/utils': path.resolve(__dirname, './src/utils'),
+      '@': path.resolve(rootDir, './src'),
     },
   },
 
@@ -104,7 +97,7 @@ export default defineConfig({
       plugins: [
         // The plugin will run tests for the stories defined in your Storybook config
         storybookTest({
-          configDir: path.join(dirname, '.storybook')
+          configDir: path.join(rootDir, '.storybook')
         })
       ],
       test: {

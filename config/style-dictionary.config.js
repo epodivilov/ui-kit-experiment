@@ -9,13 +9,14 @@ import { dirname, join } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const rootDir = join(__dirname, '..');
 
 // Read theme configuration from $themes.json
-const themesConfig = JSON.parse(readFileSync(join(__dirname, 'tokens/$themes.json'), 'utf8'));
+const themesConfig = JSON.parse(readFileSync(join(rootDir, 'tokens/$themes.json'), 'utf8'));
 
 // Read semantic contract to know which tokens to include in themes
 const semanticContractRaw = JSON.parse(
-  readFileSync(join(__dirname, 'tokens/2-semantic/contract.json'), 'utf8')
+  readFileSync(join(rootDir, 'tokens/2-semantic/contract.json'), 'utf8')
 );
 // Extract semantic layer (skip root 'semantic' wrapper)
 const semanticContract = semanticContractRaw.semantic || semanticContractRaw;

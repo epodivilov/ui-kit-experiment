@@ -12,9 +12,10 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const rootDir = join(__dirname, '..');
 
-const COMPONENTS_TOKENS_DIR = join(__dirname, 'tokens/4-components');
-const OUTPUT_DIR = join(__dirname, 'src/tokens/generated/components');
+const COMPONENTS_TOKENS_DIR = join(rootDir, 'tokens/4-components');
+const OUTPUT_DIR = join(rootDir, 'src/tokens/generated/components');
 
 // Ensure output directory exists
 mkdirSync(OUTPUT_DIR, { recursive: true });
