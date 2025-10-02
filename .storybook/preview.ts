@@ -1,6 +1,32 @@
-import type { Preview } from "@storybook/react-vite";
+import type { Preview, Decorator } from '@storybook/react-vite';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import { lightClass, darkClass } from '../src/tokens/generated';
+import { useEffect } from 'react';
+
+// Sync background with theme changes for both Stories and Docs
+const withThemeBackground: Decorator = (Story, context) => {
+  const themeName = context.globals.theme || 'light';
+  const backgroundColor = themeName === 'dark' ? '#171717' : '#ffffff';
+
+  useEffect(() => {
+    // Update document background
+    document.body.style.backgroundColor = backgroundColor;
+
+    // Update all Storybook containers
+    const selectors = ['#storybook-root', '.sb-show-main', '#storybook-docs', '.docs-story'];
+
+    selectors.forEach(selector => {
+      const elements = document.querySelectorAll(selector);
+      if (elements.length === 0) return;
+
+      for (const element of elements) {
+        (element as HTMLElement).style.backgroundColor = backgroundColor;
+      }
+    });
+  }, [themeName, backgroundColor]);
+
+  return Story();
+};
 
 const preview: Preview = {
   parameters: {
@@ -15,7 +41,7 @@ const preview: Preview = {
       // 'todo' - show a11y violations in the test UI only
       // 'error' - fail CI on a11y violations
       // 'off' - skip a11y checks entirely
-      test: "todo",
+      test: 'todo',
     },
 
     // Viewport addon configuration
@@ -40,14 +66,18 @@ const preview: Preview = {
       },
     },
 
-    // Background colors that work with both themes
     backgrounds: {
       default: 'light',
       values: [
         { name: 'light', value: '#ffffff' },
-        { name: 'dark', value: '#0f0f23' },
-        { name: 'gray', value: '#f6f9fc' },
+        { name: 'dark', value: '#171717' },
       ],
+    },
+
+    docs: {
+      story: {
+        inline: true,
+      },
     },
   },
 
@@ -59,6 +89,7 @@ const preview: Preview = {
       },
       defaultTheme: 'light',
     }),
+    withThemeBackground,
   ],
 };
 

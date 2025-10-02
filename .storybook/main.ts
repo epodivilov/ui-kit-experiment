@@ -9,7 +9,6 @@ const config: StorybookConfig = {
     "@chromatic-com/storybook",
     "@storybook/addon-essentials",
     "@storybook/addon-docs",
-    "@storybook/addon-onboarding",
     "@storybook/addon-a11y",
     "@storybook/addon-themes",
     "@storybook/addon-vitest"
@@ -17,6 +16,10 @@ const config: StorybookConfig = {
   "framework": {
     "name": "@storybook/react-vite",
     "options": {}
+  },
+  "core": {
+    "disableWhatsNewNotifications": true,
+    "disableTelemetry": true
   }
 };
 export default config;
