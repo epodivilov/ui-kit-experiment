@@ -12,9 +12,6 @@ export const button = recipe({
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontFamily: 'inherit',
-    fontWeight: 500,
-    lineHeight: 1,
     cursor: 'pointer',
     borderRadius: tokens['border-radius'].md,
     userSelect: 'none',
@@ -98,20 +95,20 @@ export const button = recipe({
 
     size: {
       small: {
+        ...tokens.typography['body-s'],
         padding: `${tokens.spacing.xs} ${tokens.spacing.sm}`,
-        fontSize: tokens.typography['body-s'],
         minHeight: tokens.sizing.sm,
       },
 
       medium: {
+        ...tokens.typography['body-m'],
         padding: `${tokens.spacing.sm} ${tokens.spacing.md}`,
-        fontSize: tokens.typography['body-m'],
         minHeight: tokens.sizing.md,
       },
 
       large: {
+        ...tokens.typography['body-l'],
         padding: `${tokens.spacing.md} ${tokens.spacing.lg}`,
-        fontSize: tokens.typography['body-l'],
         minHeight: tokens.sizing.lg,
       },
     },
