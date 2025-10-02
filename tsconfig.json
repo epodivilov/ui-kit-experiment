@@ -1,17 +1,13 @@
 {
   "compilerOptions": {
-    // Base compilation settings
+    // Target and module
     "target": "ES2020",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "allowImportingTsExtensions": false,
-    "moduleDetection": "auto",
+    "moduleResolution": "Bundler",
     "jsx": "react-jsx",
 
-    // Strict type checking options
+    // Strict type checking
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -21,65 +17,42 @@
     "exactOptionalPropertyTypes": true,
     "noImplicitOverride": true,
     "useUnknownInCatchVariables": true,
-
-    // Library-specific options
-    "declaration": true,
-    "declarationMap": true,
-    "composite": true,
-    "incremental": true,
-    "tsBuildInfoFile": "./.tsbuildinfo",
+    "noPropertyAccessFromIndexSignature": true,
 
     // Module resolution
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "verbatimModuleSyntax": true,
-    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "verbatimModuleSyntax": true,
 
-    // Emit settings
+    // Emit
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
     "outDir": "./dist",
     "rootDir": "./src",
     "removeComments": false,
-    "preserveConstEnums": true,
-    "sourceMap": true,
 
-    // Path mapping for development
+    // Path mapping
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@/components/*": ["./src/components/*"],
-      "@/styles/*": ["./src/styles/*"],
-      "@/tokens/*": ["./src/tokens/*"],
-      "@/utils/*": ["./src/utils/*"],
-      "@/types/*": ["./src/types/*"]
-    },
-
-    // React and JSX
-    "jsxImportSource": "react",
-
-    // Type imports optimization
-    "importsNotUsedAsValues": "remove",
-    "preserveValueImports": false,
-
-    // Additional checks
-    "noErrorTruncation": true,
-    "pretty": true
+      "@/*": ["./src/*"]
+    }
   },
 
-  "include": [
-    "src/**/*"
-  ],
-
+  "include": ["src/**/*"],
   "exclude": [
     "node_modules",
     "dist",
     "build",
     "coverage",
     ".storybook",
+    "config",
     "src/**/*.stories.*",
     "src/**/*.test.*",
-    "src/**/*.spec.*",
-    "**/*.d.ts"
-  ],
-
+    "src/**/*.spec.*"
+  ]
 }
