@@ -481,10 +481,73 @@ All theme implementations MUST provide the same token paths to maintain consiste
 
 ### When Adding New Components
 1. Create new file `4-components/[component-name].json`
-2. Reference only Layer 2 semantic tokens or Layer 3 theme tokens
-3. Organize by component variants
-4. Include `global` section for shared properties
-5. Add to `selectedTokenSets` in `$themes.json`
+2. Reference only Layer 2 semantic tokens
+3. Use structure: `base`, `variants` (with groups like `variant`, `size`), `defaultVariants`
+4. Add to `selectedTokenSets` in `$themes.json`
+5. Run `pnpm components:generate` to generate Vanilla Extract styles
+
+#### Component Token Structure
+```json
+{
+  "component-name": {
+    "base": {
+      "border-radius": { "value": "{semantic.border-radius.md}", "type": "borderRadius" }
+    },
+    "variants": {
+      "variant": {
+        "primary": {
+          "background-color": {
+            "default": { "value": "{semantic.interactive.primary.default.background}", "type": "color" },
+            "hover": { "value": "{semantic.interactive.primary.hover.background}", "type": "color" },
+            "disabled": { "value": "{semantic.interactive.primary.disabled.background}", "type": "color" }
+          }
+        }
+      },
+      "size": {
+        "small": {
+          "padding-block": { "value": "{semantic.spacing.xs}", "type": "spacing" },
+          "typography": { "value": "{semantic.typography.body-s}", "type": "typography" }
+        }
+      }
+    },
+    "defaultVariants": {
+      "variant": "primary",
+      "size": "medium"
+    }
+  }
+}
+```
+
+#### Component Variants
+- **`base`**: Styles applied to all instances (only design tokens, no CSS specifics)
+- **`variants`**: Groups of options
+  - `variant`: Visual styles (primary, secondary, danger)
+  - `size`: Sizing variations (small, medium, large)
+  - Boolean variants: Separate groups with `"true"` key (e.g., `full-width`)
+- **Interactive states**: Use `default`, `hover`, `active`, `focus`, `disabled` within properties
+- **NO CSS implementation details**: No `display`, `cursor`, `box-sizing` in tokens
+
+#### Code Generation
+Component tokens automatically generate Vanilla Extract styles:
+```bash
+pnpm components:generate
+```
+
+Output: `src/tokens/generated/components/{component}.generated.css.ts`
+
+Usage in component:
+```typescript
+import { buttonBaseStyles, buttonVariants } from '../../tokens/generated/components/button.generated.css';
+
+export const button = recipe({
+  base: {
+    all: 'unset',              // CSS implementation
+    display: 'inline-flex',    // CSS implementation
+    ...buttonBaseStyles,       // From tokens
+  },
+  variants: buttonVariants,    // From tokens
+});
+```
 
 ## Common Mistakes to Avoid
 
