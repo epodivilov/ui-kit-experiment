@@ -1,7 +1,6 @@
 import type { Preview } from "@storybook/react-vite";
-import { withThemeFromJSXProvider } from '@storybook/addon-themes';
-import { ThemeProvider, lightTheme, darkTheme } from '../src/themes';
-import '../src/index.css';
+import { withThemeByClassName } from '@storybook/addon-themes';
+import { lightClass, darkClass } from '../src/tokens/generated';
 
 const preview: Preview = {
   parameters: {
@@ -53,14 +52,12 @@ const preview: Preview = {
   },
 
   decorators: [
-    withThemeFromJSXProvider({
+    withThemeByClassName({
       themes: {
-        light: lightTheme,
-        dark: darkTheme,
+        light: lightClass,
+        dark: darkClass,
       },
       defaultTheme: 'light',
-      Provider: ThemeProvider,
-      GlobalStyles: () => null, // We handle global styles through our theme system
     }),
   ],
 };
