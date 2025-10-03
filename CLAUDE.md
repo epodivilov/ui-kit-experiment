@@ -99,43 +99,99 @@ pnpm typecheck
 
 ## Project Management Workflow
 
-When you are asked to manage the project, you act as a central hub between all agents. Here's the updated workflow based on backlog.md capabilities:
+This section defines the strict sequential pipeline for task execution. Each step MUST be completed before moving to the next.
 
 **Available Task Statuses:** ["To Do", "In Progress", "Done"] (Draft status is separate)
 
 ### Available Agents
-- **project-manager**: Coordinates tasks and manages workflow
-- **developer**: Creates and modifies UI kit components following best practices
-- **reviewer**: Reviews code for quality, architecture, and best practices
-- **git-committer**: Handles git commits with conventional commit standards
+- **@agent-project-manager**: Manages tasks lifecycle (create, update status, archive)
+- **@agent-developer**: Implements features and fixes following best practices
+- **@agent-reviewer**: Reviews code quality, architecture, and adherence to standards
+- **@agent-git-committer**: Creates conventional commits following git standards
 
-### Task Management Process
+---
 
-1. **Development Phase**:
-   - Pick a task from "To Do" status
-   - Set status to "In Progress" and assign to developer: `backlog task edit <id> -s "In Progress" -a @developer`
-   - Developer adds implementation plan: `backlog task edit <id> --plan "implementation details"`
-   - After completion, developer adds implementation notes: `backlog task edit <id> --notes "completion details"`
+## Task Execution Pipeline
 
-2. **Review Phase**:
-   - When development is complete, delegate to reviewer agent
-   - Reviewer evaluates and either approves or requests changes
-   - If changes needed: communicate issues to developer (status stays "In Progress")
-   - If approved: set to "Done" status: `backlog task edit <id> -s "Done"`
+### When User Says: "Поставить задачи" (Create Tasks)
 
-3. **Task Completion**:
-   - Archive completed tasks: `backlog task archive <id>`
-   - **IMPORTANT**: Before picking next task, ASK USER for confirmation
-   - Show next available task and wait for user approval to proceed
+**Action:** Use **@agent-project-manager** ONLY
+1. Create tasks with clear acceptance criteria
+2. Set status to "To Do"
+3. Add necessary details (description, requirements, acceptance criteria)
 
-4. **Shutdown Routine** (when no tasks in "To Do"):
-   - Commit any pending changes
-   - Run tests to validate everything works: `pnpm test && pnpm typecheck`
-   - If tests fail: create new task to fix issues and return to step 1
-   - If tests pass: generate completion report
+**Command:** `backlog task create "Task Title" --status "To Do" --description "details"`
 
-### Key Rules
-- Only one developer agent works in parallel
+---
+
+### When User Says: "Выполнить" (Execute Task)
+
+**STRICT SEQUENTIAL PIPELINE - Follow this order exactly:**
+
+#### Step 1: Development Phase (@agent-developer)
+1. **@agent-project-manager** picks task from "To Do" and sets to "In Progress"
+   - Command: `backlog task edit <id> -s "In Progress" -a @developer`
+2. **@agent-developer** receives task and:
+   - Analyzes requirements
+   - Adds implementation plan: `backlog task edit <id> --plan "implementation details"`
+   - Implements the solution
+   - Adds implementation notes: `backlog task edit <id> --notes "what was done"`
+3. **@agent-developer** signals completion
+
+#### Step 2: Code Review Phase (@agent-reviewer)
+1. **@agent-reviewer** receives completed work
+2. Reviews code for:
+   - Code quality and best practices
+   - Architecture patterns
+   - TypeScript types and safety
+   - Performance considerations
+   - Accessibility compliance
+3. **@agent-reviewer** makes decision:
+   - **If changes needed:** Document issues and return to Step 1 (task stays "In Progress")
+   - **If approved:** Signal approval and proceed to Step 3
+
+#### Step 3: Task Closure (@agent-project-manager)
+1. **@agent-project-manager** updates task status to "Done"
+   - Command: `backlog task edit <id> -s "Done"`
+2. **@agent-project-manager** archives task
+   - Command: `backlog task archive <id>`
+
+#### Step 4: Save Changes (@agent-git-committer)
+1. **@agent-git-committer** creates conventional commit(s)
+2. Follows git commit standards and best practices
+
+#### Step 5: Next Task Decision
+1. **IMPORTANT:** Do NOT automatically pick next task
+2. Check if there are more "To Do" tasks
+3. **ASK USER:** "Задача выполнена. Перейти к следующей задаче [task name]?"
+4. Wait for user confirmation before starting Step 1 with new task
+
+---
+
+## Critical Rules
+
+### Pipeline Rules
+1. **NEVER skip steps** - Each step must complete before next
+2. **NEVER run steps in parallel** - Strictly sequential execution
+3. **NEVER auto-proceed to next task** - Always ask user first
+4. **If review fails** - Return to Step 1 (developer), do NOT proceed to Step 3
+5. **One task at a time** - No parallel task execution
+
+### Agent Responsibilities
+- **@agent-project-manager**: Task lifecycle ONLY (create, status update, archive)
+- **@agent-developer**: Implementation ONLY
+- **@agent-reviewer**: Quality assessment ONLY
+- **@agent-git-committer**: Git operations ONLY
+
+### Technical Rules
 - Always use `pnpm` commands, never `npm`
-- Always ask user confirmation before starting new tasks
 - Use backlog CLI for all task operations - never edit markdown files directly
+- Run tests after all tasks completed: `pnpm test && pnpm typecheck`
+
+### Shutdown Routine (No "To Do" Tasks Remaining)
+1. **@agent-git-committer**: Commit any pending changes
+2. Run validation: `pnpm test && pnpm typecheck`
+3. **If tests fail**:
+   - **@agent-project-manager** creates new task to fix issues
+   - Return to Step 1 of pipeline
+4. **If tests pass**: Generate completion report
