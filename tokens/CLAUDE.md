@@ -269,48 +269,67 @@ This layer defines the vocabulary that:
 ### Rules
 - ✅ Reference Layer 2 semantic tokens using `{semantic.token.path}` syntax
 - ✅ Can reference Layer 3 theme tokens when needed
-- ✅ Organize by component variant (e.g., `button.primary`, `button.danger`)
-- ✅ Include a `global` section for shared component properties
+- ✅ **MUST use** `base` and `variants` structure for compatibility with code generation
+- ✅ Organize variants by groups (e.g., `variant`, `size`) with options inside
 - ❌ NEVER reference Layer 1 core tokens directly (always go through semantic layer)
 - ❌ NEVER use absolute values
+- ❌ NEVER use `global` - always use `base` instead
+
+### Required Structure
+All component token files MUST follow this structure:
+```json
+{
+  "component-name": {
+    "base": {
+      "property-name": { "value": "{semantic.token}", "type": "tokenType" }
+    },
+    "variants": {
+      "variant-group-name": {
+        "option-name": {
+          "property-name": {
+            "state": { "value": "{semantic.token}", "type": "tokenType" }
+          }
+        }
+      }
+    },
+    "defaultVariants": {
+      "variant-group-name": "default-option"
+    }
+  }
+}
+```
 
 ### Example Structure
 ```json
 {
   "button": {
-    "primary": {
-      "background-color": {
-        "default": {
-          "value": "{semantic.interactive.primary.default.background}",
-          "type": "color"
-        },
-        "hover": {
-          "value": "{semantic.interactive.primary.hover.background}",
-          "type": "color"
-        },
-        "active": {
-          "value": "{semantic.interactive.primary.active.background}",
-          "type": "color"
-        },
-        "focus": {
-          "value": "{semantic.interactive.primary.focus.background}",
-          "type": "color"
-        },
-        "disabled": {
-          "value": "{semantic.interactive.primary.disabled.background}",
-          "type": "color"
-        }
-      }
-    },
-    "global": {
+    "base": {
       "border-radius": {
         "value": "{semantic.border-radius.md}",
         "type": "borderRadius"
-      },
-      "padding-inline": {
-        "value": "{semantic.sizing.md}",
-        "type": "spacing"
       }
+    },
+    "variants": {
+      "variant": {
+        "primary": {
+          "background-color": {
+            "default": { "value": "{semantic.interactive.primary.default.background}", "type": "color" },
+            "hover": { "value": "{semantic.interactive.primary.hover.background}", "type": "color" },
+            "active": { "value": "{semantic.interactive.primary.active.background}", "type": "color" },
+            "focus": { "value": "{semantic.interactive.primary.focus.background}", "type": "color" },
+            "disabled": { "value": "{semantic.interactive.primary.disabled.background}", "type": "color" }
+          }
+        }
+      },
+      "size": {
+        "small": {
+          "padding-inline": { "value": "{semantic.spacing.sm}", "type": "spacing" }
+        }
+      }
+    },
+    "defaultVariants": {
+      "variant": "primary",
+      "size": "medium"
     }
   }
 }
@@ -481,10 +500,10 @@ All theme implementations MUST provide the same token paths to maintain consiste
 
 ### When Adding New Components
 1. Create new file `4-components/[component-name].json`
-2. Reference only Layer 2 semantic tokens
-3. Use structure: `base`, `variants` (with groups like `variant`, `size`), `defaultVariants`
-4. Add to `selectedTokenSets` in `$themes.json`
-5. Run `pnpm components:generate` to generate Vanilla Extract styles
+2. Reference only Layer 2 semantic tokens with `{semantic.*}` syntax
+3. **REQUIRED**: Use structure `base`, `variants` (with groups like `variant`, `size`), `defaultVariants`
+4. Add to `selectedTokenSets` in `$themes.json` (if needed)
+5. Run `pnpm build:components` to generate Vanilla Extract styles from tokens
 
 #### Component Token Structure
 ```json
@@ -530,7 +549,7 @@ All theme implementations MUST provide the same token paths to maintain consiste
 #### Code Generation
 Component tokens automatically generate Vanilla Extract styles:
 ```bash
-pnpm components:generate
+pnpm build:components
 ```
 
 Output: `src/tokens/generated/components/{component}.generated.css.ts`

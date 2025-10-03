@@ -1,47 +1,52 @@
 {
   "toast": {
-    "global": {
+    "base": {
       "border-radius": { "value": "{semantic.border-radius.lg}", "type": "borderRadius" },
       "padding-inline": { "value": "{semantic.spacing.md}", "type": "spacing" },
       "padding-block": { "value": "{semantic.spacing.sm}", "type": "spacing" },
-      "typography": { "value": "{semantic.typography.body-s}", "type": "typography" },
-      "min-width": { "value": "{core.size.80}", "type": "sizing" },
-      "max-width": { "value": "{core.size.120}", "type": "sizing" }
+      "typography": { "value": "{semantic.typography.body-s}", "type": "typography" }
     },
-    "default": {
-      "background-color": {
-        "default": { "value": "{semantic.background.elevated}", "type": "color" }
-      },
-      "foreground-color": {
-        "default": { "value": "{semantic.foreground.default}", "type": "color" }
-      },
-      "border-color": {
-        "default": { "value": "{semantic.border.default}", "type": "color" }
+    "variants": {
+      "variant": {
+        "default": {
+          "background-color": {
+            "default": { "value": "{semantic.background.elevated}", "type": "color" }
+          },
+          "foreground-color": {
+            "default": { "value": "{semantic.foreground.default}", "type": "color" }
+          },
+          "border-color": {
+            "default": { "value": "{semantic.border.default}", "type": "color" }
+          }
+        },
+        "success": {
+          "background-color": {
+            "default": { "value": "{semantic.interactive.success.default.background}", "type": "color" }
+          },
+          "foreground-color": {
+            "default": { "value": "{semantic.foreground.on-success}", "type": "color" }
+          }
+        },
+        "error": {
+          "background-color": {
+            "default": { "value": "{semantic.interactive.danger.default.background}", "type": "color" }
+          },
+          "foreground-color": {
+            "default": { "value": "{semantic.foreground.on-danger}", "type": "color" }
+          }
+        },
+        "warning": {
+          "background-color": {
+            "default": { "value": "{semantic.interactive.warning.default.background}", "type": "color" }
+          },
+          "foreground-color": {
+            "default": { "value": "{semantic.foreground.on-warning}", "type": "color" }
+          }
+        }
       }
     },
-    "success": {
-      "background-color": {
-        "default": { "value": "{semantic.interactive.success.default.background}", "type": "color" }
-      },
-      "foreground-color": {
-        "default": { "value": "{semantic.foreground.on-success}", "type": "color" }
-      }
-    },
-    "error": {
-      "background-color": {
-        "default": { "value": "{semantic.interactive.danger.default.background}", "type": "color" }
-      },
-      "foreground-color": {
-        "default": { "value": "{semantic.foreground.on-danger}", "type": "color" }
-      }
-    },
-    "warning": {
-      "background-color": {
-        "default": { "value": "{semantic.interactive.warning.default.background}", "type": "color" }
-      },
-      "foreground-color": {
-        "default": { "value": "{semantic.foreground.on-warning}", "type": "color" }
-      }
+    "defaultVariants": {
+      "variant": "default"
     }
   }
 }
