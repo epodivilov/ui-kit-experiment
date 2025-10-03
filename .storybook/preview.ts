@@ -1,4 +1,4 @@
-import type { Preview, Decorator } from '@storybook/react-vite';
+import type { Preview, Decorator } from '@storybook/react';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import { lightClass, darkClass } from '../src/tokens/generated';
 import { useEffect } from 'react';
