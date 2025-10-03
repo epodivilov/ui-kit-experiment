@@ -281,8 +281,6 @@ function main() {
   // Find all component token files
   const files = readdirSync(COMPONENTS_TOKENS_DIR)
     .filter(file => file.endsWith('.json'))
-    .filter(file => !file.startsWith('ARCHITECTURE') && !file.startsWith('PROPOSAL'))
-    .filter(file => file !== 'button.json') // Skip old button.json for now
     .map(file => join(COMPONENTS_TOKENS_DIR, file));
 
   if (files.length === 0) {
