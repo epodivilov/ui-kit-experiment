@@ -93,23 +93,32 @@ Component tokens must reference with full path: `{semantic.token.path}`
 ```json
 {
   "button": {
-    "primary": {
-      "background-color": {
-        "default": {
-          "value": "{semantic.interactive.primary.default.background}",
-          "type": "color"
-        }
-      }
-    },
-    "global": {
+    "base": {
       "border-radius": {
         "value": "{semantic.border-radius.md}",
         "type": "borderRadius"
       }
+    },
+    "variants": {
+      "variant": {
+        "primary": {
+          "background-color": {
+            "default": {
+              "value": "{semantic.interactive.primary.default.background}",
+              "type": "color"
+            }
+          }
+        }
+      }
+    },
+    "defaultVariants": {
+      "variant": "primary"
     }
   }
 }
 ```
+
+**Note**: All component tokens already migrated to `base/variants/defaultVariants` structure.
 
 ## Acceptance Criteria
 

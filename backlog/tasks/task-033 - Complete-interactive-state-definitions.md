@@ -131,24 +131,36 @@ All theme files must implement all 5 states:
 
 ### Layer 4: Component Tokens
 
-Component tokens must reference all 5 states:
+Component tokens must reference all 5 states within `base/variants` structure:
 
 **`tokens/4-components/button.json`:**
 ```json
 {
   "button": {
-    "primary": {
-      "background-color": {
-        "default": { "value": "{semantic.interactive.primary.default.background}", "type": "color" },
-        "hover": { "value": "{semantic.interactive.primary.hover.background}", "type": "color" },
-        "active": { "value": "{semantic.interactive.primary.active.background}", "type": "color" },
-        "focus": { "value": "{semantic.interactive.primary.focus.background}", "type": "color" },
-        "disabled": { "value": "{semantic.interactive.primary.disabled.background}", "type": "color" }
+    "base": {
+      "border-radius": { "value": "{semantic.border-radius.md}", "type": "borderRadius" }
+    },
+    "variants": {
+      "variant": {
+        "primary": {
+          "background-color": {
+            "default": { "value": "{semantic.interactive.primary.default.background}", "type": "color" },
+            "hover": { "value": "{semantic.interactive.primary.hover.background}", "type": "color" },
+            "active": { "value": "{semantic.interactive.primary.active.background}", "type": "color" },
+            "focus": { "value": "{semantic.interactive.primary.focus.background}", "type": "color" },
+            "disabled": { "value": "{semantic.interactive.primary.disabled.background}", "type": "color" }
+          }
+        }
       }
+    },
+    "defaultVariants": {
+      "variant": "primary"
     }
   }
 }
 ```
+
+**Note**: All component tokens already migrated to `base/variants/defaultVariants` structure.
 
 ## Acceptance Criteria
 

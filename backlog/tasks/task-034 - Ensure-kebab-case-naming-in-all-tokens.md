@@ -163,14 +163,25 @@ Inconsistent naming convention across token files:
 ```json
 {
   "button": {
-    "global": {
+    "base": {
       "border-radius": { "value": "{semantic.border-radius.md}", "type": "borderRadius" },
       "padding-inline": { "value": "{semantic.spacing.md}", "type": "spacing" },
       "padding-block": { "value": "{semantic.spacing.sm}", "type": "spacing" }
+    },
+    "variants": {
+      "variant": {
+        "primary": {
+          "background-color": {
+            "default": { "value": "{semantic.interactive.primary.default.background}", "type": "color" }
+          }
+        }
+      }
     }
   }
 }
 ```
+
+**Note**: All component tokens already use `base/variants/defaultVariants` structure.
 
 ## Testing
 
