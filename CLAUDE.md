@@ -113,6 +113,18 @@ This section defines the strict sequential pipeline for task execution. Each ste
 
 ## Task Execution Pipeline
 
+**CRITICAL FOR MAIN ASSISTANT:** When user requests task execution ("Выполнить", "сделай задачу", etc.), you MUST orchestrate the FULL pipeline automatically:
+
+1. Invoke @agent-project-manager → set status "In Progress"
+2. Invoke @agent-developer → implement solution
+3. Invoke @agent-reviewer → review code
+4. If approved: invoke @agent-project-manager → close task
+5. Invoke @agent-git-committer → commit changes
+6. **Automatically proceed to next "To Do" task** (repeat steps 1-5)
+7. Continue until no "To Do" tasks remain OR user explicitly limits scope
+
+**Do NOT stop after Step 1**. Execute the complete pipeline for each task.
+
 ### When User Says: "Поставить задачи" (Create Tasks)
 
 **Action:** Use **@agent-project-manager** ONLY
@@ -124,7 +136,7 @@ This section defines the strict sequential pipeline for task execution. Each ste
 
 ---
 
-### When User Says: "Выполнить" (Execute Task)
+### When User Says: "Выполнить" (Execute Task/Tasks)
 
 **STRICT SEQUENTIAL PIPELINE - Follow this order exactly:**
 
@@ -160,11 +172,11 @@ This section defines the strict sequential pipeline for task execution. Each ste
 1. **@agent-git-committer** creates conventional commit(s)
 2. Follows git commit standards and best practices
 
-#### Step 5: Next Task Decision
-1. **IMPORTANT:** Do NOT automatically pick next task
-2. Check if there are more "To Do" tasks
-3. **ASK USER:** "Задача выполнена. Перейти к следующей задаче [task name]?"
-4. Wait for user confirmation before starting Step 1 with new task
+#### Step 5: Next Task
+1. Check if there are more "To Do" tasks
+2. **If tasks remain AND user didn't limit scope:** Automatically proceed to Step 1 with next task
+3. **If no tasks remain:** Report completion and run final validation: `pnpm test && pnpm typecheck`
+4. **If user explicitly said "выполни одну задачу" or similar:** Ask user for confirmation before next task
 
 ---
 
@@ -173,9 +185,9 @@ This section defines the strict sequential pipeline for task execution. Each ste
 ### Pipeline Rules
 1. **NEVER skip steps** - Each step must complete before next
 2. **NEVER run steps in parallel** - Strictly sequential execution
-3. **NEVER auto-proceed to next task** - Always ask user first
+3. **Auto-proceed to next task** - UNLESS user explicitly limited scope to one task
 4. **If review fails** - Return to Step 1 (developer), do NOT proceed to Step 3
-5. **One task at a time** - No parallel task execution
+5. **One task at a time** - No parallel task execution (but auto-proceed when current completes)
 
 ### Agent Responsibilities
 - **@agent-project-manager**: Task lifecycle ONLY (create, status update, archive)
