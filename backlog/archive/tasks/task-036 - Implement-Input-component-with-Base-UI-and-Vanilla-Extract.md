@@ -1,29 +1,34 @@
 ---
 id: task-036
 title: Implement Input component with Base UI and Vanilla-Extract
-status: To Do
+status: Done
 assignee:
   - '@developer'
 created_date: '2025-10-03 09:43'
+updated_date: '2025-10-03 14:44'
 labels: []
 dependencies: []
 ---
 
 ## Description
+
 Implement Input component with Base UI and Vanilla-Extract styling. Component tokens have already been generated and are ready to use.
 
 ## Acceptance Criteria
-- [ ] Verify component tokens are generated correctly (`src/tokens/generated/components/input.generated.css.ts`)
-- [ ] Create Input component using @base-ui-components/react Input/TextField
-- [ ] Implement styles using Vanilla-Extract recipes, importing generated tokens
-- [ ] Use `inputBaseStyles` and `inputVariants` from generated tokens
-- [ ] Merge generated tokens with component-specific CSS implementation (display, cursor, etc.)
-- [ ] Support all states: default, hover, focus, disabled
-- [ ] Handle placeholder and disabled text colors
-- [ ] Create Storybook stories with all variants and states
-- [ ] Ensure accessibility (ARIA, labels, error messages)
-- [ ] Export component from components/index.ts
-- [ ] Add TypeScript types for props
+<!-- AC:BEGIN -->
+- [ ] #1 Verify component tokens are generated correctly (`src/tokens/generated/components/input.generated.css.ts`)
+- [ ] #2 Create Input component using @base-ui-components/react Input/TextField
+- [ ] #3 Implement styles using Vanilla-Extract recipes, importing generated tokens
+- [ ] #4 Use `inputBaseStyles` and `inputVariants` from generated tokens
+- [ ] #5 Merge generated tokens with component-specific CSS implementation (display, cursor, etc.)
+- [ ] #6 Support all states: default, hover, focus, disabled
+- [ ] #7 Handle placeholder and disabled text colors
+- [ ] #8 Create Storybook stories with all variants and states
+- [ ] #9 Ensure accessibility (ARIA, labels, error messages)
+- [ ] #10 Export component from components/index.ts
+- [ ] #11 Add TypeScript types for props
+<!-- AC:END -->
+
 
 ## Technical Details
 - **Component tokens**: `tokens/4-components/input.json` (already using base/variants structure)
