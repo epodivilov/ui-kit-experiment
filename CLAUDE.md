@@ -97,6 +97,17 @@ pnpm typecheck
 - **MCP Context7**: Use for up-to-date documentation and examples for any library or framework
 - **Usage**: Call mcp__context7__resolve-library-id first to get library ID, then mcp__context7__get-library-docs for detailed documentation
 
+### Documentation Navigation
+
+**For specific contexts, read:**
+- **Design tokens system**: `/tokens/CLAUDE.md` - 4-tier token architecture, naming conventions, layer rules
+- **Component development**: `/src/components/CLAUDE.md` - Component rules, no custom styling, Base UI patterns
+- **Project manager duties**: `/.claude/agents/project-manager.md` - Task lifecycle, backlog management
+- **Design token management**: `/.claude/agents/designer.md` - Token creation/modification across all layers
+- **Developer workflow**: `/.claude/agents/developer.md` - Component implementation, Vanilla-Extract patterns
+- **Code review checklist**: `/.claude/agents/reviewer.md` - Design system compliance, quality standards
+- **Git commit standards**: `/.claude/agents/git-committer.md` - Conventional commits with emoji
+
 ## Project Management Workflow
 
 This section defines the strict sequential pipeline for task execution. Each step MUST be completed before moving to the next.
@@ -105,7 +116,8 @@ This section defines the strict sequential pipeline for task execution. Each ste
 
 ### Available Agents
 - **@agent-project-manager**: Manages tasks lifecycle (create, update status, archive)
-- **@agent-developer**: Implements features and fixes following best practices
+- **@agent-designer**: Manages design tokens (create, modify, delete across 4-tier architecture)
+- **@agent-developer**: Implements UI components following design system rules
 - **@agent-reviewer**: Reviews code quality, architecture, and adherence to standards
 - **@agent-git-committer**: Creates conventional commits following git standards
 
@@ -116,8 +128,10 @@ This section defines the strict sequential pipeline for task execution. Each ste
 **CRITICAL FOR MAIN ASSISTANT:** When user requests task execution ("Выполнить", "сделай задачу", etc.), you MUST orchestrate the FULL pipeline automatically:
 
 1. Invoke @agent-project-manager → set status "In Progress"
-2. Invoke @agent-developer → implement solution
-3. Invoke @agent-reviewer → review code
+2. **Determine task type:**
+   - **Token-related tasks** (design tokens, semantic colors, component tokens): Invoke @agent-designer
+   - **Component implementation tasks**: Invoke @agent-developer
+3. Invoke @agent-reviewer → review code/tokens
 4. If approved: invoke @agent-project-manager → close task
 5. Invoke @agent-git-committer → commit changes
 6. **Automatically proceed to next "To Do" task** (repeat steps 1-5)
@@ -140,15 +154,19 @@ This section defines the strict sequential pipeline for task execution. Each ste
 
 **STRICT SEQUENTIAL PIPELINE - Follow this order exactly:**
 
-#### Step 1: Development Phase (@agent-developer)
+#### Step 1: Implementation Phase
 1. **@agent-project-manager** picks task from "To Do" and sets to "In Progress"
-   - Command: `backlog task edit <id> -s "In Progress" -a @developer`
-2. **@agent-developer** receives task and:
+   - Assigns to appropriate agent based on task type
+2. **Task routing:**
+   - **Design tokens tasks** → @agent-designer
+     - Examples: "Add tertiary color variant", "Create Badge component tokens", "Update semantic spacing scale"
+   - **Component implementation tasks** → @agent-developer
+     - Examples: "Implement Button component", "Add Input validation", "Create Toast component"
+3. **Assigned agent** receives task and:
    - Analyzes requirements
-   - Adds implementation plan: `backlog task edit <id> --plan "implementation details"`
    - Implements the solution
-   - Adds implementation notes: `backlog task edit <id> --notes "what was done"`
-3. **@agent-developer** signals completion
+   - Signals completion with summary
+4. **Agent** signals completion
 
 #### Step 2: Code Review Phase (@agent-reviewer)
 1. **@agent-reviewer** receives completed work
@@ -191,9 +209,10 @@ This section defines the strict sequential pipeline for task execution. Each ste
 
 ### Agent Responsibilities
 - **@agent-project-manager**: Task lifecycle ONLY (create, status update, archive)
-- **@agent-developer**: Implementation ONLY
-- **@agent-reviewer**: Quality assessment ONLY
-- **@agent-git-committer**: Git operations ONLY
+- **@agent-designer**: Design tokens ONLY (create, modify, delete tokens across 4-tier architecture)
+- **@agent-developer**: UI component implementation ONLY (not design tokens)
+- **@agent-reviewer**: Quality assessment ONLY (code review, token validation)
+- **@agent-git-committer**: Git operations ONLY (conventional commits)
 
 ### Technical Rules
 - Always use `pnpm` commands, never `npm`
