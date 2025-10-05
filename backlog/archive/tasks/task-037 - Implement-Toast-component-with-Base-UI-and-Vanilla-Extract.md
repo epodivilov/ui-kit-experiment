@@ -1,30 +1,35 @@
 ---
 id: task-037
 title: Implement Toast component with Base UI and Vanilla-Extract
-status: To Do
+status: Done
 assignee:
   - '@developer'
 created_date: '2025-10-03 09:43'
+updated_date: '2025-10-03 16:29'
 labels: []
 dependencies: []
 ---
 
 ## Description
+
 Implement Toast component with Base UI and Vanilla-Extract styling. Component tokens have already been generated and are ready to use.
 
 ## Acceptance Criteria
-- [ ] Verify component tokens are generated correctly (`src/tokens/generated/components/toast.generated.css.ts`)
-- [ ] Create Toast component using @base-ui-components/react Toast
-- [ ] Implement styles using Vanilla-Extract recipes, importing generated tokens
-- [ ] Use `toastBaseStyles` and `toastVariants` from generated tokens
-- [ ] Merge generated tokens with component-specific CSS implementation (display, position, etc.)
-- [ ] Map toast tokens to component styles (default, success, error, warning variants)
-- [ ] Support positioning (top/bottom, left/right/center)
-- [ ] Support auto-dismiss with configurable duration
-- [ ] Create Storybook stories with all variants
-- [ ] Ensure accessibility (ARIA live regions, announcements)
-- [ ] Export component from components/index.ts
-- [ ] Add TypeScript types for props
+<!-- AC:BEGIN -->
+- [ ] #1 Verify component tokens are generated correctly (`src/tokens/generated/components/toast.generated.css.ts`)
+- [ ] #2 Create Toast component using @base-ui-components/react Toast
+- [ ] #3 Implement styles using Vanilla-Extract recipes, importing generated tokens
+- [ ] #4 Use `toastBaseStyles` and `toastVariants` from generated tokens
+- [ ] #5 Merge generated tokens with component-specific CSS implementation (display, position, etc.)
+- [ ] #6 Map toast tokens to component styles (default, success, error, warning variants)
+- [ ] #7 Support positioning (top/bottom, left/right/center)
+- [ ] #8 Support auto-dismiss with configurable duration
+- [ ] #9 Create Storybook stories with all variants
+- [ ] #10 Ensure accessibility (ARIA live regions, announcements)
+- [ ] #11 Export component from components/index.ts
+- [ ] #12 Add TypeScript types for props
+<!-- AC:END -->
+
 
 ## Technical Details
 - **Component tokens**: `tokens/4-components/toast.json` (already using base/variants structure)
