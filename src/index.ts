@@ -26,6 +26,5 @@ export type { ToastProps, ToastProviderProps } from './components/Toast';
 export { ThemeProvider, useTheme } from './components/ThemeProvider';
 export type { ThemeProviderProps, Theme, ThemeContextValue } from './components/ThemeProvider';
 
-// Design Tokens
-export { tokens, lightTheme, darkTheme, lightClass, darkClass } from './tokens/generated';
-export type { ThemeTokens } from './tokens/generated';
+// Note: Design tokens are available as CSS variables when you import the theme CSS files
+// Vanilla-Extract token objects are not exported to avoid runtime dependencies on .css.ts files
