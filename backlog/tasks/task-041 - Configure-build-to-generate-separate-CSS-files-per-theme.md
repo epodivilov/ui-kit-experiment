@@ -1,9 +1,11 @@
 ---
 id: task-041
 title: Configure build to generate separate CSS files per theme
-status: To Do
-assignee: []
+status: In Progress
+assignee:
+  - '@agent-developer'
 created_date: '2025-10-06 09:59'
+updated_date: '2025-10-06 10:19'
 labels:
   - build
   - configuration
