@@ -34,8 +34,14 @@
     "./styles": {
       "default": "./dist/index.css"
     },
-    "./themes/styles": {
+    "./themes": {
       "default": "./dist/themes/index.css"
+    },
+    "./themes/light": {
+      "default": "./dist/themes/light.css"
+    },
+    "./themes/dark": {
+      "default": "./dist/themes/dark.css"
     },
     "./dist/*": "./dist/*"
   },

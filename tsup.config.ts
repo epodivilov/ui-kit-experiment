@@ -5,12 +5,12 @@ export default defineConfig({
   entry: [
     'src/index.ts',
     'src/components/*/index.ts', // Каждый компонент отдельно
-    'src/themes/index.ts',
+    'src/themes/*.ts',
   ],
   format: ['esm', 'cjs'],
   dts: true,
   clean: true,
-  sourcemap: true,
+  sourcemap: false,
   splitting: true, // Включаем code splitting
   treeshake: true,
   minify: false,
