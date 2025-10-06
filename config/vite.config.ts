@@ -26,7 +26,6 @@ export default defineConfig({
         index: path.resolve(rootDir, 'src/index.ts'),
         'components/index': path.resolve(rootDir, 'src/components/index.ts'),
         'themes/index': path.resolve(rootDir, 'src/themes/index.ts'),
-        'utils/index': path.resolve(rootDir, 'src/utils/index.ts'),
       },
       name: 'UIKit',
       formats: ['es', 'cjs'],
@@ -42,7 +41,7 @@ export default defineConfig({
       output: {
         // Global variables for UMD build (if needed later)
         globals: {
-          'react': 'React',
+          react: 'React',
           'react-dom': 'ReactDOM',
           'react/jsx-runtime': 'jsxRuntime',
         },
@@ -92,27 +91,31 @@ export default defineConfig({
 
   // Test configuration (Vitest integration)
   test: {
-    projects: [{
-      extends: true,
-      plugins: [
-        // The plugin will run tests for the stories defined in your Storybook config
-        storybookTest({
-          configDir: path.join(rootDir, '.storybook')
-        })
-      ],
-      test: {
-        name: 'storybook',
-        browser: {
-          enabled: true,
-          headless: true,
-          provider: 'playwright',
-          instances: [{
-            browser: 'chromium'
-          }]
+    projects: [
+      {
+        extends: true,
+        plugins: [
+          // The plugin will run tests for the stories defined in your Storybook config
+          storybookTest({
+            configDir: path.join(rootDir, '.storybook'),
+          }),
+        ],
+        test: {
+          name: 'storybook',
+          browser: {
+            enabled: true,
+            headless: true,
+            provider: 'playwright',
+            instances: [
+              {
+                browser: 'chromium',
+              },
+            ],
+          },
+          setupFiles: ['.storybook/vitest.setup.ts'],
         },
-        setupFiles: ['.storybook/vitest.setup.ts']
-      }
-    }],
+      },
+    ],
     environment: 'jsdom',
     globals: true,
     setupFiles: ['./src/test/setup.ts'],

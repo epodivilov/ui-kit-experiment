@@ -18,10 +18,6 @@
     "./themes/*": {
       "types": "./dist/themes/*.d.ts",
       "default": "./dist/themes/*.js"
-    },
-    "./utils/*": {
-      "types": "./dist/utils/*.d.ts",
-      "default": "./dist/utils/*.js"
     }
   },
   "files": [
