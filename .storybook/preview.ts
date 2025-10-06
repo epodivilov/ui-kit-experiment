@@ -1,7 +1,10 @@
 import type { Preview, Decorator } from '@storybook/react';
-import { withThemeByClassName } from '@storybook/addon-themes';
-import { lightClass, darkClass } from '../src/tokens/generated';
+import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import { useEffect } from 'react';
+
+// Import theme styles
+import '../src/tokens/generated/light.css';
+import '../src/tokens/generated/dark.css';
 
 // Sync background with theme changes for both Stories and Docs
 const withThemeBackground: Decorator = (Story, context) => {
@@ -82,12 +85,13 @@ const preview: Preview = {
   },
 
   decorators: [
-    withThemeByClassName({
+    withThemeByDataAttribute({
       themes: {
-        light: lightClass,
-        dark: darkClass,
+        light: 'light',
+        dark: 'dark',
       },
       defaultTheme: 'light',
+      attributeName: 'data-theme',
     }),
     withThemeBackground,
   ],

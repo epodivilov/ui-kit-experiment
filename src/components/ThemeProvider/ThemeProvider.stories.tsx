@@ -3,20 +3,20 @@ import { ThemeProvider, useTheme } from './ThemeProvider';
 import { Button } from '../Button';
 
 /**
- * ThemeProvider manages theme state and applies theme-specific CSS classes.
+ * ThemeProvider manages theme state and applies `data-theme` attribute to document root.
  *
  * ## Features
  * - Light and dark theme support
  * - React Context API for theme state
- * - Optional localStorage persistence
- * - Automatic CSS class application
+ * - Automatic data-theme attribute application
  * - SSR-safe implementation
+ * - Works with Storybook theme switcher
  *
  * ## Usage
  * Wrap your application with ThemeProvider at the root level:
  *
  * ```tsx
- * <ThemeProvider defaultTheme="light" storageKey="app-theme">
+ * <ThemeProvider defaultTheme="light">
  *   <App />
  * </ThemeProvider>
  * ```
@@ -40,7 +40,7 @@ export default meta;
 type Story = StoryObj<typeof ThemeProvider>;
 
 /**
- * Demo component that uses the theme context
+ * Demo component that displays current theme
  */
 const ThemeDemo = () => {
   const { theme, setTheme } = useTheme();
@@ -56,23 +56,15 @@ const ThemeDemo = () => {
       }}
     >
       <h2 style={{ marginTop: 0 }}>Theme Demo</h2>
-      <p>Current theme: <strong>{theme}</strong></p>
+      <p>
+        Current theme: <strong>{theme}</strong>
+      </p>
 
       <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
-        <Button
-          variant="primary"
-          size="md"
-          onClick={() => setTheme('light')}
-          disabled={theme === 'light'}
-        >
+        <Button variant="primary" onClick={() => setTheme('light')} disabled={theme === 'light'}>
           Light Theme
         </Button>
-        <Button
-          variant="primary"
-          size="md"
-          onClick={() => setTheme('dark')}
-          disabled={theme === 'dark'}
-        >
+        <Button variant="primary" onClick={() => setTheme('dark')} disabled={theme === 'dark'}>
           Dark Theme
         </Button>
       </div>
@@ -80,11 +72,9 @@ const ThemeDemo = () => {
       <div style={{ marginTop: '2rem' }}>
         <h3>Component Examples</h3>
         <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '1rem' }}>
-          <Button variant="primary" size="sm">Primary</Button>
-          <Button variant="secondary" size="sm">Secondary</Button>
-          <Button variant="danger" size="sm">Danger</Button>
-          <Button variant="success" size="sm">Success</Button>
-          <Button variant="warning" size="sm">Warning</Button>
+          <Button variant="primary">Primary</Button>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="danger">Danger</Button>
         </div>
       </div>
     </div>
@@ -92,13 +82,14 @@ const ThemeDemo = () => {
 };
 
 /**
- * Default story with light theme
+ * Default story with light theme.
+ * Use the toolbar theme switcher to toggle between light and dark themes.
  */
 export const Default: Story = {
   args: {
     defaultTheme: 'light',
   },
-  render: (args) => (
+  render: args => (
     <ThemeProvider {...args}>
       <ThemeDemo />
     </ThemeProvider>
@@ -106,13 +97,14 @@ export const Default: Story = {
 };
 
 /**
- * Theme provider with dark theme as default
+ * Theme provider with dark theme as default.
+ * Use the toolbar theme switcher to toggle between light and dark themes.
  */
 export const DarkTheme: Story = {
   args: {
     defaultTheme: 'dark',
   },
-  render: (args) => (
+  render: args => (
     <ThemeProvider {...args}>
       <ThemeDemo />
     </ThemeProvider>
@@ -120,33 +112,19 @@ export const DarkTheme: Story = {
 };
 
 /**
- * Theme provider with localStorage persistence
- */
-export const WithPersistence: Story = {
-  args: {
-    defaultTheme: 'light',
-    storageKey: 'storybook-theme',
-  },
-  render: (args) => (
-    <ThemeProvider {...args}>
-      <ThemeDemo />
-    </ThemeProvider>
-  ),
-};
-
-/**
- * Multiple theme switches demonstration
+ * Multiple theme switches demonstration.
+ * Use both the toolbar switcher and the buttons to change themes.
  */
 export const ThemeSwitching: Story = {
   args: {
     defaultTheme: 'light',
   },
-  render: (args) => (
+  render: args => (
     <ThemeProvider {...args}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         <ThemeDemo />
         <div style={{ textAlign: 'center', fontSize: '0.875rem', color: '#737373' }}>
-          Try switching themes to see all components update automatically
+          Try switching themes using the toolbar switcher or the buttons above
         </div>
       </div>
     </ThemeProvider>
