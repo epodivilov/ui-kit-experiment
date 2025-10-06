@@ -15,3 +15,6 @@ export {
   useToastManager,
 } from './Toast';
 export type { ToastProps, ToastProviderProps } from './Toast';
+
+export { ThemeProvider, useTheme } from './ThemeProvider';
+export type { ThemeProviderProps, Theme, ThemeContextValue } from './ThemeProvider';
