@@ -1,9 +1,10 @@
 ---
 id: task-040
 title: Create ThemeProvider component
-status: To Do
+status: Done
 assignee: []
 created_date: '2025-10-06 09:59'
+updated_date: '2025-10-06 10:17'
 labels:
   - component
   - theme
