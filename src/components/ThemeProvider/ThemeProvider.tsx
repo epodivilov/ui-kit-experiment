@@ -6,7 +6,6 @@ import {
   useMemo,
   type ReactNode,
 } from 'react';
-import { lightTheme, darkTheme } from '../../tokens/generated';
 
 /**
  * Available theme values
@@ -40,11 +39,6 @@ export interface ThemeProviderProps {
    * @default 'light'
    */
   defaultTheme?: Theme;
-  /**
-   * Storage key for persisting theme preference in localStorage
-   * If not provided, theme will not be persisted
-   */
-  storageKey?: string;
 }
 
 /**
@@ -55,12 +49,12 @@ const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 /**
  * ThemeProvider Component
  *
- * Manages theme state and applies theme-specific CSS classes.
+ * Manages theme state and applies `data-theme` attribute to document root.
  * Provides theme context to all child components.
  *
  * @example
  * ```tsx
- * <ThemeProvider defaultTheme="light" storageKey="app-theme">
+ * <ThemeProvider defaultTheme="light">
  *   <App />
  * </ThemeProvider>
  * ```
@@ -78,73 +72,31 @@ const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 export const ThemeProvider = ({
   children,
   defaultTheme = 'light',
-  storageKey,
 }: ThemeProviderProps) => {
-  // Initialize theme from localStorage or use default
-  const [theme, setThemeState] = useState<Theme>(() => {
-    if (typeof window === 'undefined') {
-      return defaultTheme;
-    }
+  const [theme, setTheme] = useState<Theme>(defaultTheme);
 
-    if (storageKey) {
-      try {
-        const stored = localStorage.getItem(storageKey);
-        if (stored === 'light' || stored === 'dark') {
-          return stored;
-        }
-      } catch (error) {
-        console.warn('Failed to read theme from localStorage:', error);
-      }
-    }
-
-    return defaultTheme;
-  });
-
-  // Persist theme to localStorage when it changes
-  useEffect(() => {
-    if (typeof window === 'undefined' || !storageKey) {
-      return;
-    }
-
-    try {
-      localStorage.setItem(storageKey, theme);
-    } catch (error) {
-      console.warn('Failed to save theme to localStorage:', error);
-    }
-  }, [theme, storageKey]);
-
-  // Apply theme class to document root
+  // Apply theme attribute to document root
   useEffect(() => {
     if (typeof window === 'undefined') {
       return;
     }
 
-    const root = document.documentElement;
-    const themeClass = theme === 'light' ? lightTheme : darkTheme;
-
-    // Remove previous theme classes
-    root.classList.remove(lightTheme, darkTheme);
-    // Add current theme class
-    root.classList.add(themeClass);
+    document.documentElement.setAttribute('data-theme', theme);
 
     return () => {
-      root.classList.remove(themeClass);
+      document.documentElement.removeAttribute('data-theme');
     };
   }, [theme]);
 
   const value = useMemo(
     () => ({
       theme,
-      setTheme: setThemeState,
+      setTheme,
     }),
     [theme]
   );
 
-  return (
-    <ThemeContext.Provider value={value}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 };
 
 ThemeProvider.displayName = 'ThemeProvider';
