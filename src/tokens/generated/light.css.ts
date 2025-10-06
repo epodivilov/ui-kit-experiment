@@ -2,10 +2,12 @@
  * Vanilla-Extract Theme: light
  * Auto-generated from design tokens - DO NOT EDIT
  */
-import { createTheme } from '@vanilla-extract/css';
+import { globalStyle, assignVars } from '@vanilla-extract/css';
 import { tokens } from './contract.css';
 
-export const lightTheme = createTheme(tokens, {
+// Apply theme via data-theme attribute
+globalStyle('[data-theme="light"]', {
+  vars: assignVars(tokens, {
   'typography': {
     'heading-xl': {
       'font-family': 'Inter, -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, sans-serif',
@@ -236,6 +238,5 @@ export const lightTheme = createTheme(tokens, {
     'focus': '#2563eb',
     'disabled': '#e5e5e5'
   }
+  })
 });
-
-export const lightClass = lightTheme;

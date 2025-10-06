@@ -157,14 +157,15 @@ const vanillaExtractTheme = ({ dictionary, options }) => {
  * Vanilla-Extract Theme: ${themeName}
  * Auto-generated from design tokens - DO NOT EDIT
  */
-import { createTheme } from '@vanilla-extract/css';
+import { globalStyle, assignVars } from '@vanilla-extract/css';
 import { tokens } from './contract.css';
 
-export const ${themeName}Theme = createTheme(tokens, {
+// Apply theme via data-theme attribute
+globalStyle('[data-theme="${themeName}"]', {
+  vars: assignVars(tokens, {
 ${themeBody}
+  })
 });
-
-export const ${themeName}Class = ${themeName}Theme;
 `;
 };
 
@@ -172,21 +173,16 @@ export const ${themeName}Class = ${themeName}Theme;
  * Custom formatter: Index file for re-exports
  */
 const vanillaExtractIndex = () => {
-  const themeNames = themesConfig.$themes.map(t => t.id);
-
-  const themeExports = themeNames
-    .map(name => `export { ${name}Theme, ${name}Class } from './${name}.css';`)
-    .join('\n');
-
   return `/**
- * Design Tokens - Vanilla-Extract Themes
+ * Design Tokens - Vanilla-Extract Contract
  * Auto-generated from design tokens - DO NOT EDIT
+ *
+ * Note: Themes are applied via [data-theme] attribute in generated CSS files.
+ * Import theme CSS files to use themes in your application.
  */
 
 export { tokens } from './contract.css';
 export type { ThemeTokens } from './types';
-
-${themeExports}
 `;
 };
 

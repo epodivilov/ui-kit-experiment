@@ -2,10 +2,12 @@
  * Vanilla-Extract Theme: dark
  * Auto-generated from design tokens - DO NOT EDIT
  */
-import { createTheme } from '@vanilla-extract/css';
+import { globalStyle, assignVars } from '@vanilla-extract/css';
 import { tokens } from './contract.css';
 
-export const darkTheme = createTheme(tokens, {
+// Apply theme via data-theme attribute
+globalStyle('[data-theme="dark"]', {
+  vars: assignVars(tokens, {
   'typography': {
     'heading-xl': {
       'font-family': 'Inter, -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, sans-serif',
@@ -236,6 +238,5 @@ export const darkTheme = createTheme(tokens, {
     'focus': '#60a5fa',
     'disabled': '#262626'
   }
+  })
 });
-
-export const darkClass = darkTheme;
