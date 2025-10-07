@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -203,18 +204,33 @@
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <header class="header">
       <h1>UI Kit Storybook</h1>
       <p>Browse Storybook builds for all deployed branches</p>
-      <span class="branch-count">1 branch available</span>
+      <span class="branch-count">2 branch available</span>
     </header>
 
     <main>
-      
-        <ul class="branch-list" role="list">
-          
+
+      <ul class="branch-list" role="list">
+        <li class="branch-item">
+          <a href="main/" class="branch-link">
+            <div class="branch-info">
+              <h2 class="branch-name">main</h2>
+              <p class="branch-meta">
+                <span class="branch-label">Last updated:</span>
+                <time datetime="2025-10-07T09:49:29.935Z">
+                  Oct 7, 2025, 09:49 AM
+                </time>
+              </p>
+            </div>
+            <span class="branch-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+
         <li class="branch-item">
           <a href="test/" class="branch-link">
             <div class="branch-info">
@@ -229,9 +245,9 @@
             <span class="branch-arrow" aria-hidden="true">→</span>
           </a>
         </li>
-      
-        </ul>
-      
+
+      </ul>
+
     </main>
 
     <footer class="footer">
@@ -239,4 +255,5 @@
     </footer>
   </div>
 </body>
+
 </html>
