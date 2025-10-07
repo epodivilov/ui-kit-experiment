@@ -16,10 +16,7 @@
 
 import { readdir, stat, writeFile, mkdir } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { existsSync } from 'node:fs';
-
-const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 /**
  * Directories to exclude from the branch list
