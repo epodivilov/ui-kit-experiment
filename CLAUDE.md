@@ -214,9 +214,20 @@ This section defines the strict sequential pipeline for task execution. Each ste
 - **@agent-reviewer**: Quality assessment ONLY (code review, token validation)
 - **@agent-git-committer**: Git operations ONLY (conventional commits)
 
+### Critical: Backlog CLI Usage
+**NEVER use backlog CLI directly!** ALL task operations MUST go through @agent-project-manager:
+- ❌ WRONG: `backlog task list`, `backlog task create`, `backlog task edit`
+- ✅ CORRECT: Invoke @agent-project-manager with request to list/create/edit tasks
+
+**Main assistant responsibilities:**
+- Orchestrate pipeline (invoke agents in sequence)
+- Route tasks to correct agent based on type
+- Monitor pipeline progress
+- NEVER touch backlog CLI directly
+
 ### Technical Rules
 - Always use `pnpm` commands, never `npm`
-- Use backlog CLI for all task operations - never edit markdown files directly
+- ALL backlog operations through @agent-project-manager ONLY
 - Run tests after all tasks completed: `pnpm test && pnpm typecheck`
 
 ### Shutdown Routine (No "To Do" Tasks Remaining)
