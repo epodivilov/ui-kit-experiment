@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="UI Kit Storybook - Browse deployed branches">
+  <title>UI Kit Storybook - Branch Index</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --color-background: #ffffff;
+      --color-surface: #f5f5f5;
+      --color-text-primary: #1a1a1a;
+      --color-text-secondary: #666666;
+      --color-border: #e0e0e0;
+      --color-primary: #0066cc;
+      --color-primary-hover: #0052a3;
+      --color-shadow: rgba(0, 0, 0, 0.1);
+      --spacing-xs: 0.5rem;
+      --spacing-sm: 0.75rem;
+      --spacing-md: 1rem;
+      --spacing-lg: 1.5rem;
+      --spacing-xl: 2rem;
+      --spacing-2xl: 3rem;
+      --border-radius: 8px;
+      --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-background: #1a1a1a;
+        --color-surface: #2a2a2a;
+        --color-text-primary: #f5f5f5;
+        --color-text-secondary: #b0b0b0;
+        --color-border: #404040;
+        --color-primary: #4da3ff;
+        --color-primary-hover: #66b3ff;
+        --color-shadow: rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--color-background);
+      color: var(--color-text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: var(--spacing-xl);
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: var(--spacing-2xl);
+      padding-bottom: var(--spacing-xl);
+      border-bottom: 2px solid var(--color-border);
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: var(--spacing-sm);
+      color: var(--color-text-primary);
+    }
+
+    .header p {
+      font-size: 1.125rem;
+      color: var(--color-text-secondary);
+    }
+
+    .branch-count {
+      display: inline-block;
+      margin-top: var(--spacing-md);
+      padding: var(--spacing-xs) var(--spacing-md);
+      background-color: var(--color-surface);
+      border-radius: calc(var(--border-radius) / 2);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+    }
+
+    .branch-list {
+      list-style: none;
+    }
+
+    .branch-item {
+      margin-bottom: var(--spacing-md);
+    }
+
+    .branch-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--spacing-lg);
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .branch-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--color-shadow);
+      border-color: var(--color-primary);
+    }
+
+    .branch-link:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+
+    .branch-link:active {
+      transform: translateY(0);
+    }
+
+    .branch-info {
+      flex: 1;
+    }
+
+    .branch-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: var(--spacing-xs);
+      color: var(--color-primary);
+    }
+
+    .branch-meta {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+    }
+
+    .branch-label {
+      font-weight: 500;
+    }
+
+    .branch-arrow {
+      font-size: 1.5rem;
+      color: var(--color-text-secondary);
+      transition: transform 0.2s ease;
+      margin-left: var(--spacing-md);
+    }
+
+    .branch-link:hover .branch-arrow {
+      transform: translateX(4px);
+      color: var(--color-primary);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: var(--spacing-2xl);
+      color: var(--color-text-secondary);
+    }
+
+    .empty-state p {
+      font-size: 1.125rem;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .footer {
+      margin-top: var(--spacing-2xl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+      color: var(--color-text-secondary);
+      font-size: 0.875rem;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: var(--spacing-md);
+      }
+
+      .header h1 {
+        font-size: 2rem;
+      }
+
+      .header p {
+        font-size: 1rem;
+      }
+
+      .branch-link {
+        padding: var(--spacing-md);
+      }
+
+      .branch-name {
+        font-size: 1.125rem;
+      }
+
+      .branch-arrow {
+        font-size: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>UI Kit Storybook</h1>
+      <p>Browse Storybook builds for all deployed branches</p>
+      <span class="branch-count">1 branch available</span>
+    </header>
+
+    <main>
+      
+        <ul class="branch-list" role="list">
+          
+        <li class="branch-item">
+          <a href="test/" class="branch-link">
+            <div class="branch-info">
+              <h2 class="branch-name">test</h2>
+              <p class="branch-meta">
+                <span class="branch-label">Last updated:</span>
+                <time datetime="2025-10-07T09:49:29.935Z">
+                  Oct 7, 2025, 09:49 AM
+                </time>
+              </p>
+            </div>
+            <span class="branch-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      
+        </ul>
+      
+    </main>
+
+    <footer class="footer">
+      <p>Last generated: Oct 7, 2025, 09:49 AM</p>
+    </footer>
+  </div>
+</body>
+</html>
