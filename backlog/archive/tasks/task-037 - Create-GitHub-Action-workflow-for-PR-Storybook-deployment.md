@@ -1,10 +1,11 @@
 ---
 id: task-037
 title: Create GitHub Action workflow for PR Storybook deployment
-status: To Do
-assignee: []
+status: Done
+assignee:
+  - '@agent-developer'
 created_date: '2025-10-06 08:48'
-updated_date: '2025-10-06 08:48'
+updated_date: '2025-10-07 08:52'
 labels:
   - deployment
   - github-actions
@@ -14,7 +15,9 @@ dependencies: []
 
 ## Description
 
+<!-- SECTION:DESCRIPTION:BEGIN -->
 Implement workflow that builds and deploys Storybook on PR events. This automates the deployment process, ensuring every PR gets its own Storybook preview for testing and review.
+<!-- SECTION:DESCRIPTION:END -->
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
