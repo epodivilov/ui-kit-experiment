@@ -1,0 +1,132 @@
+# GitHub Pages Configuration Template
+# This file serves as a reference for the settings required in GitHub repository
+
+# Repository Settings > Pages
+pages:
+  source: "Deploy from a branch"
+  branch: "gh-pages"
+  folder: "/ (root)"
+
+# Repository Settings > Actions > General > Workflow permissions
+actions:
+  workflow_permissions: "Read and write permissions"
+  allow_github_actions_to_create_approve_pull_requests: true
+
+# Expected GitHub Pages URL structure
+urls:
+  base: "https://<username>.github.io/<repository>/"
+  structure:
+    root: "/"                    # Branch index page
+    main_branch: "/main/"        # Main branch Storybook
+    feature_branch: "/<branch>/" # Feature branch Storybook (sanitized branch name)
+
+# Workflow file requirements
+workflow:
+  file: ".github/workflows/deploy-storybook.yml"
+  permissions:
+    contents: "write"        # Required to push to gh-pages branch
+    pull_requests: "write"   # Required to post PR comments
+
+  triggers:
+    - "pull_request"
+    - "push"
+
+  steps:
+    - name: "Checkout code"
+    - name: "Setup Node.js"
+    - name: "Install dependencies"
+      command: "pnpm install"
+    - name: "Build library"
+      command: "pnpm build"
+    - name: "Type check"
+      command: "pnpm typecheck"
+    - name: "Lint"
+      command: "pnpm lint"
+    - name: "Build Storybook"
+      command: "pnpm storybook:build"
+    - name: "Deploy to gh-pages"
+      branch: "gh-pages"
+      folder: "storybook-static"
+    - name: "Post PR comment"
+      condition: "if pull request"
+
+# gh-pages branch structure
+gh_pages_structure:
+  root:
+    - "index.html"           # Branch index page
+    - ".nojekyll"           # Prevent Jekyll processing
+  branches:
+    main:
+      - "index.html"         # Storybook entry point
+      - "assets/"            # Storybook assets
+      - "iframe.html"        # Storybook iframe
+    feature_branch:
+      - "index.html"
+      - "assets/"
+      - "iframe.html"
+
+# Branch protection rules (optional)
+branch_protection:
+  gh_pages:
+    enabled: false  # Do NOT enable protection, or add exception for github-actions[bot]
+    allowed_to_push:
+      - "github-actions[bot]"
+
+# Storage limits
+storage:
+  recommended_limit: "1GB"  # GitHub Pages soft limit
+  cleanup_strategy: "Remove stale branch folders after PR merge/close"
+
+# Required files
+required_files:
+  - path: ".github/workflows/deploy-storybook.yml"
+    description: "Main deployment workflow"
+  - path: ".github/workflows/cleanup-storybook.yml"
+    description: "Cleanup workflow for stale branches"
+  - path: "scripts/generate-branch-index.js"
+    description: "Script to generate branch index page"
+  - path: "docs/GITHUB_PAGES_SETUP.md"
+    description: "Setup documentation"
+  - path: "docs/GITHUB_PAGES_CHECKLIST.md"
+    description: "Configuration checklist"
+
+# Environment variables (used in workflows)
+environment_variables:
+  STORYBOOK_BASE_URL:
+    description: "Base URL for Storybook assets"
+    example: "/repository-name/branch-name/"
+  GITHUB_TOKEN:
+    description: "Automatic token for GitHub Actions"
+    provided_by: "GitHub Actions"
+    permissions: ["contents:write", "pull-requests:write"]
+
+# Troubleshooting commands
+troubleshooting:
+  check_gh_pages_branch:
+    command: "git fetch origin && git branch -r | grep gh-pages"
+    expected: "origin/gh-pages"
+
+  check_deployment_history:
+    location: "Settings → Pages → Deployments history"
+
+  check_workflow_status:
+    location: "Actions tab → Latest workflow run"
+
+  manual_workflow_run:
+    location: "Actions → Deploy Storybook → Run workflow"
+
+# Security considerations
+security:
+  - "Use GITHUB_TOKEN (automatic), not personal access tokens"
+  - "Grant minimal required permissions (contents:write, pull-requests:write)"
+  - "Do not commit secrets or tokens to repository"
+  - "Review workflow logs for sensitive information leaks"
+  - "Enable branch protection on main branch (but NOT gh-pages)"
+
+# Notes
+notes:
+  - "The gh-pages branch is created automatically on first deployment"
+  - "Branch names are sanitized for URL safety (replace special chars with hyphens)"
+  - "Add .nojekyll file to gh-pages root to prevent Jekyll processing"
+  - "Storybook base URL must match the deployment path structure"
+  - "Consider implementing branch cleanup to manage storage usage"
