@@ -1,10 +1,11 @@
 ---
 id: task-035
 title: Configure GitHub Pages settings
-status: To Do
-assignee: []
+status: Done
+assignee:
+  - '@agent-developer'
 created_date: '2025-10-06 08:48'
-updated_date: '2025-10-06 08:48'
+updated_date: '2025-10-07 07:08'
 labels:
   - deployment
   - github-pages
@@ -13,7 +14,9 @@ dependencies: []
 
 ## Description
 
+<!-- SECTION:DESCRIPTION:BEGIN -->
 Set up GitHub Pages to use gh-pages branch as source. This will enable automatic deployment of Storybook builds for different branches, allowing developers and reviewers to preview UI changes before merging.
+<!-- SECTION:DESCRIPTION:END -->
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
