@@ -1,10 +1,11 @@
 ---
 id: task-036
 title: Create script to generate branch index page
-status: To Do
-assignee: []
+status: Done
+assignee:
+  - '@agent-developer'
 created_date: '2025-10-06 08:48'
-updated_date: '2025-10-06 08:48'
+updated_date: '2025-10-07 08:40'
 labels:
   - deployment
   - scripting
@@ -13,7 +14,9 @@ dependencies: []
 
 ## Description
 
+<!-- SECTION:DESCRIPTION:BEGIN -->
 Write Node.js script that generates index.html with list of all deployed branches. This provides a landing page where users can discover and navigate to Storybook builds for all active branches.
+<!-- SECTION:DESCRIPTION:END -->
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
