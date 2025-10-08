@@ -1,9 +1,15 @@
-# UI Kit Project
+# UI Kit Project - Agent Orchestration Guide
+
+> **⚠️ CRITICAL**: This file defines the execution flow for ALL work in this project. Read the entire document before starting any task.
 
 ## Overview
+
 This project is a UI Kit built with modern technologies, focusing on performance, type safety, and developer experience. The kit provides reusable components, themes, and utilities for building consistent user interfaces.
 
+**🎯 Core Principle**: All work follows a strict sequential pipeline with designated agents for each step. NO steps can be skipped or parallelized.
+
 ## Tech Stack
+
 - **Headless Components**: Base UI for unstyled, accessible components
 - **Styling**: Vanilla-Extract for type-safe CSS-in-JS
 - **Build Tool**: Vite for fast development and optimized builds
@@ -14,11 +20,13 @@ This project is a UI Kit built with modern technologies, focusing on performance
 - **Props Mapping**: @vanilla-extract/recipes for mapping props to styles and classes
 
 ## Architecture
+
 - **Tree-shakable**: Components can be imported individually to reduce bundle size
 - **Exports**: Components, themes, and theme provider
 - **Design Tokens**: Centralized design system tokens managed by style-dictionary
 
 ## Development Commands
+
 ```bash
 # Install dependencies
 pnpm install
@@ -42,9 +50,224 @@ pnpm lint
 pnpm typecheck
 ```
 
+## Agent System & Workflow
+
+> **🚨 MANDATORY ORCHESTRATION**: The main assistant acts as orchestrator and delegates ALL work to specialized agents. The main assistant NEVER performs implementation, review, or task management directly.
+
+### Available Agents
+
+#### @agent-project-manager
+
+**Triggers**: Task operations (create, view, search, status updates, archive)
+
+**🔒 EXCLUSIVE AUTHORITY**:
+- **ONLY** agent that can interact with backlog CLI
+- **ONLY** agent that can change task status
+- **ONLY** agent that can archive tasks
+
+**Responsibilities**:
+- Task lifecycle management (create, update status, archive)
+- Backlog operations (ALL backlog CLI usage goes through this agent)
+- Task assignment to appropriate agents
+- Project status reporting
+
+**⚠️ CRITICAL**: Main assistant MUST delegate ALL task operations to this agent - NO EXCEPTIONS
+
+#### @agent-designer
+
+**Triggers**: Design token operations (create, modify, delete tokens)
+
+**🔒 EXCLUSIVE AUTHORITY**:
+- **ONLY** agent that can modify design tokens
+- **ONLY** agent that can create/delete token files
+
+**Responsibilities**:
+- Design token management across 4-tier architecture
+- Token validation and consistency
+- Design system compliance
+
+#### @agent-developer
+
+**Triggers**: Component implementation, coding tasks
+
+**🔒 EXCLUSIVE AUTHORITY**:
+- **ONLY** agent that can implement components
+- **ONLY** agent that can write production code
+
+**Responsibilities**:
+- UI component implementation
+- Code development following design system rules
+- Integration with Base UI components
+- Vanilla-Extract styling implementation
+
+#### @agent-reviewer
+
+**Triggers**: Code review, quality assurance
+
+**🔒 EXCLUSIVE AUTHORITY**:
+- **ONLY** agent that can approve/reject implementations
+- **ONLY** agent that determines if work meets quality standards
+
+**Responsibilities**:
+- Code quality assessment
+- Design system compliance verification
+- Test validation (if tests exist)
+- TypeScript type checking
+- Linting validation
+- Return tasks to appropriate agent if issues found
+
+**⚠️ MANDATORY GATE**: ALL implementations MUST pass through this agent before closure
+
+#### @agent-git-committer
+
+**Triggers**: Save changes, commit operations
+
+**🔒 EXCLUSIVE AUTHORITY**:
+- **ONLY** agent that can commit changes
+- **ONLY** agent that can interact with git
+
+**Responsibilities**:
+- Git operations using conventional commits
+- Change documentation
+- Repository maintenance
+
+### Critical Agent Interaction Rules
+
+> **🚨 VIOLATION OF THESE RULES BREAKS THE ENTIRE WORKFLOW**
+
+1. **Inter-Agent Communication**: All agents MUST respond to requests from other agents, not just users
+2. **Task Delegation**: When an agent assigns work, the receiving agent MUST execute it
+3. **No Direct Actions**: Main assistant NEVER uses backlog CLI, writes code, reviews code, or commits - ONLY delegates
+4. **Automatic Routing**:
+   - Task management → @agent-project-manager
+   - Design tokens → @agent-designer
+   - Code implementation → @agent-developer
+   - Quality assurance → @agent-reviewer
+   - Git operations → @agent-git-committer
+
+## Task Execution Pipeline
+
+> **🚨 THIS IS THE MOST CRITICAL SECTION - MUST BE FOLLOWED EXACTLY**
+
+### Task Creation Flow
+
+**User Request**: "Create tasks" / "Set up tasks" / "Add tasks"
+
+**✅ CORRECT ACTION**:
+1. Main assistant invokes **@agent-project-manager ONLY**
+2. @agent-project-manager creates tasks with clear acceptance criteria
+3. @agent-project-manager sets status to "To Do"
+4. @agent-project-manager adds necessary details (description, requirements, acceptance criteria)
+
+**❌ WRONG**: Main assistant uses backlog CLI directly or creates tasks manually
+
+---
+
+### Task Execution Flow
+
+**User Request**: "Execute" / "Do the task" / "Implement" / "Start working"
+
+**🔄 STRICT SEQUENTIAL PIPELINE** (Main assistant orchestrates, NEVER skips steps):
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  STEP 1: TASK ASSIGNMENT                                    │
+│  ✓ @agent-project-manager picks "To Do" task               │
+│  ✓ @agent-project-manager sets to "In Progress"            │
+│  ✓ Route to: @agent-designer OR @agent-developer           │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│  STEP 2: IMPLEMENTATION                                     │
+│  ✓ @agent-designer OR @agent-developer implements solution │
+│  ✓ Agent signals completion with summary                   │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│  STEP 3: QUALITY REVIEW (MANDATORY GATE)                    │
+│  ✓ @agent-reviewer reviews ALL completed work              │
+│  ✓ Decision:                                                │
+│    • Issues found → LOOP BACK to Step 2 ⤴                   │
+│    • Approved → Proceed to Step 4 ↓                         │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│  STEP 4: TASK CLOSURE                                       │
+│  ✓ @agent-project-manager updates status to "Done"         │
+│  ✓ @agent-project-manager archives task                    │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│  STEP 5: SAVE CHANGES                                       │
+│  ✓ @agent-git-committer creates conventional commit(s)     │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│  STEP 6: NEXT TASK                                          │
+│  ✓ More "To Do" tasks? → LOOP to Step 1 ⤴                  │
+│  ✓ No tasks? → Run validation (pnpm test && typecheck)     │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### ⚠️ CRITICAL FLOW VIOLATIONS TO AVOID
+
+| ❌ VIOLATION | ✅ CORRECT BEHAVIOR |
+|-------------|-------------------|
+| Main assistant changes task status | @agent-project-manager changes status |
+| Main assistant writes code | @agent-developer writes code |
+| Main assistant commits changes | @agent-git-committer commits |
+| Skipping review step | ALL work MUST pass through @agent-reviewer |
+| Closing task before review | Review → THEN closure |
+| Closing task before commit | Closure → THEN commit |
+| Working on multiple tasks in parallel | ONE task at a time, complete before next |
+| Using npm instead of pnpm | ALWAYS use pnpm |
+
+---
+
+### Pipeline Rules
+
+#### Execution Rules
+
+> **🚨 THESE ARE ABSOLUTE REQUIREMENTS, NOT SUGGESTIONS**
+
+- **Sequential only**: NEVER skip steps or run in parallel
+- **Auto-proceed**: Continue to next task unless user explicitly limits scope
+- **One task at a time**: Complete current task COMPLETELY before starting next
+- **Review gate**: Failed review LOOPS BACK to implementation (Step 2), task stays "In Progress"
+- **No shortcuts**: Even small changes follow the full pipeline
+- **Always delegate**: Main assistant orchestrates, specialized agents execute
+
+#### Agent Boundaries
+
+> **🔒 EXCLUSIVE RESPONSIBILITIES - NO CROSSOVER ALLOWED**
+
+| Agent | Can Do | Cannot Do |
+|-------|--------|-----------|
+| **@agent-project-manager** | Task lifecycle, status updates, archive | Code, review, commits |
+| **@agent-designer** | Design tokens only | Components, task management, commits |
+| **@agent-developer** | Component implementation only | Design tokens, task status, commits |
+| **@agent-reviewer** | Quality assessment, approve/reject | Implementation, task status, commits |
+| **@agent-git-committer** | Git operations only | Code, review, task management |
+| **Main assistant** | Orchestration, delegation | EVERYTHING ELSE (delegate to agents) |
+
+#### Critical Restrictions
+
+> **🚨 BREAKING THESE RULES CORRUPTS THE WORKFLOW**
+
+1. **Main assistant NEVER uses backlog CLI directly** - MUST delegate to @agent-project-manager
+2. **All backlog operations through @agent-project-manager** - NO EXCEPTIONS
+3. **Always use pnpm, never npm** - Check package manager before any install/run command
+4. **Agents must respond to other agents' requests** - Inter-agent communication is mandatory
+5. **No task closure without review approval** - @agent-reviewer MUST approve first
+6. **No commits before task closure** - Close task → THEN commit
+7. **One task in "In Progress" at a time** - Complete current before starting next
+
 ## Code Quality & Best Practices
 
 ### Code Standards
+
 - **TypeScript**: Strict mode enabled, all code must be properly typed
 - **ESLint**: Follow configured linting rules
 - **Prettier**: Consistent code formatting
@@ -55,51 +278,38 @@ pnpm typecheck
   - Constants: UPPER_SNAKE_CASE
 
 ### Component Guidelines
-- Use Base UI as the foundation for all interactive components
+
+- Use Base UI as foundation for interactive components
 - Implement proper accessibility patterns (ARIA, keyboard navigation)
 - Follow composition pattern over inheritance
 - Export components with clear, documented props interface
 - Use Vanilla-Extract recipes for prop-to-style mapping
 
 ### Styling Guidelines
+
 - Use Vanilla-Extract for all styling
 - Leverage design tokens from style-dictionary
 - Create reusable theme contracts
 - Implement consistent spacing, typography, and color systems
 - Support theme switching through theme provider
 
-### Performance
-- Ensure tree-shaking compatibility
-- Minimize bundle size impact
-- Use dynamic imports where appropriate
-- Optimize for runtime performance
-
-### Testing
-- Test components in Storybook
-- Include accessibility tests
-- Test theme switching functionality
-- Verify tree-shaking works correctly
-
-### Documentation
-- Document all public APIs
-- Provide usage examples in Storybook
-- Include migration guides for breaking changes
-- Maintain changelog for releases
-
 ## Resources & References
 
 ### Base UI Information
+
 - **Documentation Source**: https://base-ui.com/llms.txt - Complete information about Base UI components, props, and usage patterns
 - **Component Categories**: Form components (Checkbox, Radio, Select, Input, Number Field, Switch, Toggle), Interactive components (Accordion, Collapsible, Dialog, Menu, Popover, Tabs, Tooltip), Navigation components, Feedback components (Alert Dialog, Progress, Toast), Data Display components (Avatar, Meter, Preview Card)
 - **Key Features**: Unstyled components for maximum customization, accessibility-first design, flexible composition patterns, RTL support
 
 ### Library Research
+
 - **MCP Context7**: Use for up-to-date documentation and examples for any library or framework
-- **Usage**: Call mcp__context7__resolve-library-id first to get library ID, then mcp__context7__get-library-docs for detailed documentation
+- **Usage**: Call mcp**context7**resolve-library-id first to get library ID, then mcp**context7**get-library-docs for detailed documentation
 
 ### Documentation Navigation
 
 **For specific contexts, read:**
+
 - **Design tokens system**: `/tokens/CLAUDE.md` - 4-tier token architecture, naming conventions, layer rules
 - **Component development**: `/src/components/CLAUDE.md` - Component rules, no custom styling, Base UI patterns
 - **Project manager duties**: `/.claude/agents/project-manager.md` - Task lifecycle, backlog management
@@ -108,132 +318,53 @@ pnpm typecheck
 - **Code review checklist**: `/.claude/agents/reviewer.md` - Design system compliance, quality standards
 - **Git commit standards**: `/.claude/agents/git-committer.md` - Conventional commits with emoji
 
-## Project Management Workflow
+## Shutdown Routine
 
-This section defines the strict sequential pipeline for task execution. Each step MUST be completed before moving to the next.
+> **🏁 FINAL VALIDATION - ENSURES QUALITY BEFORE COMPLETION**
 
-**Available Task Statuses:** ["To Do", "In Progress", "Done"] (Draft status is separate)
+When no "To Do" tasks remain:
 
-### Available Agents
-- **@agent-project-manager**: Manages tasks lifecycle (create, update status, archive)
-- **@agent-designer**: Manages design tokens (create, modify, delete across 4-tier architecture)
-- **@agent-developer**: Implements UI components following design system rules
-- **@agent-reviewer**: Reviews code quality, architecture, and adherence to standards
-- **@agent-git-committer**: Creates conventional commits following git standards
+```
+┌─────────────────────────────────────────────────────────────┐
+│  STEP 1: COMMIT PENDING CHANGES                             │
+│  ✓ @agent-git-committer commits any uncommitted work       │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│  STEP 2: RUN VALIDATION                                     │
+│  ✓ Main assistant runs: pnpm test && pnpm typecheck        │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│  STEP 3: HANDLE RESULTS                                     │
+│  • Tests FAIL → @agent-project-manager creates fix task     │
+│               → LOOP back to Task Execution Pipeline ⤴      │
+│  • Tests PASS → Generate completion report ✅               │
+└─────────────────────────────────────────────────────────────┘
+```
 
----
-
-## Task Execution Pipeline
-
-**CRITICAL FOR MAIN ASSISTANT:** When user requests task execution ("Выполнить", "сделай задачу", etc.), you MUST orchestrate the FULL pipeline automatically:
-
-1. Invoke @agent-project-manager → set status "In Progress"
-2. **Determine task type:**
-   - **Token-related tasks** (design tokens, semantic colors, component tokens): Invoke @agent-designer
-   - **Component implementation tasks**: Invoke @agent-developer
-3. Invoke @agent-reviewer → review code/tokens
-4. If approved: invoke @agent-project-manager → close task
-5. Invoke @agent-git-committer → commit changes
-6. **Automatically proceed to next "To Do" task** (repeat steps 1-5)
-7. Continue until no "To Do" tasks remain OR user explicitly limits scope
-
-**Do NOT stop after Step 1**. Execute the complete pipeline for each task.
-
-### When User Says: "Поставить задачи" (Create Tasks)
-
-**Action:** Use **@agent-project-manager** ONLY
-1. Create tasks with clear acceptance criteria
-2. Set status to "To Do"
-3. Add necessary details (description, requirements, acceptance criteria)
-
-**Command:** `backlog task create "Task Title" --status "To Do" --description "details"`
+**⚠️ IMPORTANT**: If validation fails, workflow is NOT complete. New tasks must go through the full pipeline again.
 
 ---
 
-### When User Says: "Выполнить" (Execute Task/Tasks)
+## Quick Reference: Common Scenarios
 
-**STRICT SEQUENTIAL PIPELINE - Follow this order exactly:**
+### Scenario 1: User says "Create tasks for X feature"
+**✅ DO**: Invoke @agent-project-manager to create tasks
+**❌ DON'T**: Use backlog CLI directly
 
-#### Step 1: Implementation Phase
-1. **@agent-project-manager** picks task from "To Do" and sets to "In Progress"
-   - Assigns to appropriate agent based on task type
-2. **Task routing:**
-   - **Design tokens tasks** → @agent-designer
-     - Examples: "Add tertiary color variant", "Create Badge component tokens", "Update semantic spacing scale"
-   - **Component implementation tasks** → @agent-developer
-     - Examples: "Implement Button component", "Add Input validation", "Create Toast component"
-3. **Assigned agent** receives task and:
-   - Analyzes requirements
-   - Implements the solution
-   - Signals completion with summary
-4. **Agent** signals completion
+### Scenario 2: User says "Implement the next task"
+**✅ DO**: Follow 6-step pipeline (Assignment → Implementation → Review → Closure → Commit → Next)
+**❌ DON'T**: Skip review, close task before review, or work on multiple tasks
 
-#### Step 2: Code Review Phase (@agent-reviewer)
-1. **@agent-reviewer** receives completed work
-2. Reviews code for:
-   - Code quality and best practices
-   - Architecture patterns
-   - TypeScript types and safety
-   - Performance considerations
-   - Accessibility compliance
-3. **@agent-reviewer** makes decision:
-   - **If changes needed:** Document issues and return to Step 1 (task stays "In Progress")
-   - **If approved:** Signal approval and proceed to Step 3
+### Scenario 3: User says "Add a button component"
+**✅ DO**: @agent-project-manager creates task → @agent-developer implements → @agent-reviewer reviews → @agent-project-manager closes → @agent-git-committer commits
+**❌ DON'T**: Have main assistant write component directly
 
-#### Step 3: Task Closure (@agent-project-manager)
-1. **@agent-project-manager** updates task status to "Done"
-   - Command: `backlog task edit <id> -s "Done"`
-2. **@agent-project-manager** archives task
-   - Command: `backlog task archive <id>`
+### Scenario 4: Code review finds issues
+**✅ DO**: @agent-reviewer reports issues → LOOP back to @agent-developer (task stays "In Progress")
+**❌ DON'T**: Close task with known issues, or skip re-review after fixes
 
-#### Step 4: Save Changes (@agent-git-committer)
-1. **@agent-git-committer** creates conventional commit(s)
-2. Follows git commit standards and best practices
-
-#### Step 5: Next Task
-1. Check if there are more "To Do" tasks
-2. **If tasks remain AND user didn't limit scope:** Automatically proceed to Step 1 with next task
-3. **If no tasks remain:** Report completion and run final validation: `pnpm test && pnpm typecheck`
-4. **If user explicitly said "выполни одну задачу" or similar:** Ask user for confirmation before next task
-
----
-
-## Critical Rules
-
-### Pipeline Rules
-1. **NEVER skip steps** - Each step must complete before next
-2. **NEVER run steps in parallel** - Strictly sequential execution
-3. **Auto-proceed to next task** - UNLESS user explicitly limited scope to one task
-4. **If review fails** - Return to Step 1 (developer), do NOT proceed to Step 3
-5. **One task at a time** - No parallel task execution (but auto-proceed when current completes)
-
-### Agent Responsibilities
-- **@agent-project-manager**: Task lifecycle ONLY (create, status update, archive)
-- **@agent-designer**: Design tokens ONLY (create, modify, delete tokens across 4-tier architecture)
-- **@agent-developer**: UI component implementation ONLY (not design tokens)
-- **@agent-reviewer**: Quality assessment ONLY (code review, token validation)
-- **@agent-git-committer**: Git operations ONLY (conventional commits)
-
-### Critical: Backlog CLI Usage
-**NEVER use backlog CLI directly!** ALL task operations MUST go through @agent-project-manager:
-- ❌ WRONG: `backlog task list`, `backlog task create`, `backlog task edit`
-- ✅ CORRECT: Invoke @agent-project-manager with request to list/create/edit tasks
-
-**Main assistant responsibilities:**
-- Orchestrate pipeline (invoke agents in sequence)
-- Route tasks to correct agent based on type
-- Monitor pipeline progress
-- NEVER touch backlog CLI directly
-
-### Technical Rules
-- Always use `pnpm` commands, never `npm`
-- ALL backlog operations through @agent-project-manager ONLY
-- Run tests after all tasks completed: `pnpm test && pnpm typecheck`
-
-### Shutdown Routine (No "To Do" Tasks Remaining)
-1. **@agent-git-committer**: Commit any pending changes
-2. Run validation: `pnpm test && pnpm typecheck`
-3. **If tests fail**:
-   - **@agent-project-manager** creates new task to fix issues
-   - Return to Step 1 of pipeline
-4. **If tests pass**: Generate completion report
+### Scenario 5: All tasks complete
+**✅ DO**: @agent-git-committer commits → Run validation → Handle results
+**❌ DON'T**: Skip validation or ignore test failures
