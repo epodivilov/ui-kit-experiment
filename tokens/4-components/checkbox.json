@@ -1,48 +1,108 @@
 {
   "checkbox": {
     "base": {
-      "border-radius": { "value": "{semantic.border-radius.sm}", "type": "borderRadius" },
-      "border-width": { "value": "{semantic.border-width.default}", "type": "borderWidth" },
-      "size": { "value": "{semantic.sizing.md}", "type": "sizing" }
+      "size": {
+        "$type": "sizing",
+        "$value": "{semantic.sizing.md}"
+      },
+      "border-width": {
+        "$type": "borderWidth",
+        "$value": "{semantic.border-width.default}"
+      },
+      "border-radius": {
+        "$type": "borderRadius",
+        "$value": "{semantic.border-radius.sm}"
+      }
     },
     "variants": {
       "variant": {
-        "default": {
-          "background-color": {
-            "default": { "value": "{semantic.background.surface}", "type": "color" },
-            "hover": { "value": "{semantic.background.surface}", "type": "color" },
-            "disabled": { "value": "{semantic.background.disabled}", "type": "color" }
-          },
+        "error": {
           "border-color": {
-            "default": { "value": "{semantic.border.default}", "type": "color" },
-            "hover": { "value": "{semantic.border.hover}", "type": "color" },
-            "focus": { "value": "{semantic.border.focus}", "type": "color" },
-            "disabled": { "value": "{semantic.border.disabled}", "type": "color" }
+            "focus": {
+              "$type": "color",
+              "$value": "{semantic.interactive.danger.default.background}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{semantic.interactive.danger.hover.background}"
+            },
+            "default": {
+              "$type": "color",
+              "$value": "{semantic.interactive.danger.default.background}"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{semantic.border.disabled}"
+            }
           },
           "indicator-color": {
-            "default": { "value": "{semantic.foreground.on-interactive}", "type": "color" },
-            "disabled": { "value": "{semantic.foreground.disabled}", "type": "color" }
+            "default": {
+              "$type": "color",
+              "$value": "{semantic.foreground.on-danger}"
+            }
+          },
+          "background-color": {
+            "default": {
+              "$type": "color",
+              "$value": "{semantic.background.surface}"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{semantic.background.disabled}"
+            }
           }
         },
-        "error": {
-          "background-color": {
-            "default": { "value": "{semantic.background.surface}", "type": "color" },
-            "disabled": { "value": "{semantic.background.disabled}", "type": "color" }
-          },
+        "default": {
           "border-color": {
-            "default": { "value": "{semantic.interactive.danger.default.background}", "type": "color" },
-            "hover": { "value": "{semantic.interactive.danger.hover.background}", "type": "color" },
-            "focus": { "value": "{semantic.interactive.danger.default.background}", "type": "color" },
-            "disabled": { "value": "{semantic.border.disabled}", "type": "color" }
+            "focus": {
+              "$type": "color",
+              "$value": "{semantic.border.focus}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{semantic.border.hover}"
+            },
+            "default": {
+              "$type": "color",
+              "$value": "{semantic.border.default}"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{semantic.border.disabled}"
+            }
           },
           "indicator-color": {
-            "default": { "value": "{semantic.foreground.on-danger}", "type": "color" }
+            "default": {
+              "$type": "color",
+              "$value": "{semantic.foreground.on-interactive}"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{semantic.foreground.disabled}"
+            }
+          },
+          "background-color": {
+            "hover": {
+              "$type": "color",
+              "$value": "{semantic.background.surface}"
+            },
+            "default": {
+              "$type": "color",
+              "$value": "{semantic.background.surface}"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{semantic.background.disabled}"
+            }
           }
         }
       }
     },
     "defaultVariants": {
-      "variant": "default"
+      "variant": {
+        "$type": "other",
+        "$value": "default"
+      }
     }
   }
 }

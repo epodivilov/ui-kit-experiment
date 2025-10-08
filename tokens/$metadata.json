@@ -1,0 +1,16 @@
+{
+  "tokenSetOrder": [
+    "1-core/opacity",
+    "1-core/typography",
+    "1-core/dimensions",
+    "1-core/colors",
+    "2-semantic/contract",
+    "3-themes/base",
+    "3-themes/light/theme",
+    "3-themes/dark/theme",
+    "4-components/toast",
+    "4-components/input",
+    "4-components/checkbox",
+    "4-components/button"
+  ]
+}
