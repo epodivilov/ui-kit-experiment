@@ -144,5 +144,10 @@
     "overrides": {
       "vite": "npm:rolldown-vite@7.1.12"
     }
+  },
+  "packageManager": "pnpm@10.18.1",
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=10.0.0"
   }
 }
