@@ -1,0 +1,137 @@
+name: Cleanup PR Storybook
+
+# Trigger workflow when a PR is closed or a branch is deleted
+on:
+  pull_request:
+    types: [closed]
+  delete:
+    branches:
+      - '**'
+
+# Set permissions for GitHub Actions
+# These are required for:
+# - contents: write - Push to gh-pages branch for cleanup
+permissions:
+  contents: write
+
+jobs:
+  cleanup-storybook:
+    name: Remove Storybook Deployment
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for proper git operations
+
+      # Setup Node.js environment for the index generation script
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'  # Use latest LTS version
+
+      # Determine branch name based on event type
+      - name: Determine branch name
+        id: branch
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            # For PR events, use the head ref (source branch)
+            BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
+            echo "Branch from PR: $BRANCH_NAME"
+          else
+            # For delete events, use the ref
+            BRANCH_NAME="${{ github.event.ref }}"
+            echo "Branch from delete: $BRANCH_NAME"
+          fi
+
+          # Sanitize branch name for use as directory name
+          # Replace / with - and remove special characters
+          SANITIZED_BRANCH=$(echo "$BRANCH_NAME" | sed 's/\//-/g' | sed 's/[^a-zA-Z0-9-]/-/g')
+          echo "branch=$SANITIZED_BRANCH" >> $GITHUB_OUTPUT
+          echo "Sanitized branch name: $SANITIZED_BRANCH"
+
+      # Checkout gh-pages branch
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages-branch
+          fetch-depth: 0
+
+      # Remove branch directory from gh-pages
+      - name: Remove Storybook deployment
+        run: |
+          BRANCH_DIR="gh-pages-branch/${{ steps.branch.outputs.branch }}"
+
+          # Check if the directory exists
+          if [ ! -d "$BRANCH_DIR" ]; then
+            echo "No deployment found for branch: ${{ steps.branch.outputs.branch }}"
+            echo "Directory does not exist: $BRANCH_DIR"
+            echo "has_changes=false" >> $GITHUB_ENV
+            exit 0
+          fi
+
+          # Remove the branch directory
+          echo "Removing Storybook deployment: $BRANCH_DIR"
+          rm -rf "$BRANCH_DIR"
+
+          # Configure git
+          cd gh-pages-branch
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Stage the deletion
+          git add .
+
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit (directory may have been already removed)"
+            echo "has_changes=false" >> $GITHUB_ENV
+          else
+            # Commit the deletion
+            if [ "${{ github.event_name }}" = "pull_request" ]; then
+              git commit -m "Remove Storybook deployment for PR #${{ github.event.pull_request.number }} (${{ steps.branch.outputs.branch }})"
+            else
+              git commit -m "Remove Storybook deployment for deleted branch (${{ steps.branch.outputs.branch }})"
+            fi
+            git push origin gh-pages
+            echo "Successfully removed Storybook deployment"
+            echo "has_changes=true" >> $GITHUB_ENV
+          fi
+
+      # Regenerate branch index to remove the deleted branch from the list
+      - name: Update branch index
+        if: env.has_changes == 'true'
+        run: |
+          cd gh-pages-branch
+
+          # Generate updated index.html
+          node ../scripts/generate-branch-index.js .
+
+          # Configure git (in case it's a new session)
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Commit and push index.html if it changed
+          git add index.html
+          if git diff --staged --quiet; then
+            echo "No changes to branch index"
+          else
+            if [ "${{ github.event_name }}" = "pull_request" ]; then
+              git commit -m "Update branch index after removing PR #${{ github.event.pull_request.number }}"
+            else
+              git commit -m "Update branch index after removing branch (${{ steps.branch.outputs.branch }})"
+            fi
+            git push origin gh-pages
+            echo "Successfully updated branch index"
+          fi
+
+      # Handle cleanup failures
+      - name: Report cleanup failure
+        if: failure()
+        run: |
+          echo "::error::Failed to cleanup Storybook deployment for branch ${{ steps.branch.outputs.branch }}"
+          echo "::error::Check the workflow logs for more details: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          exit 1
