@@ -1,10 +1,10 @@
 ---
 id: task-038
 title: Create GitHub Action workflow for branch cleanup
-status: To Do
+status: Done
 assignee: []
 created_date: '2025-10-06 08:48'
-updated_date: '2025-10-06 08:48'
+updated_date: '2025-10-08 12:15'
 labels:
   - deployment
   - github-actions
@@ -14,7 +14,9 @@ dependencies: []
 
 ## Description
 
+<!-- SECTION:DESCRIPTION:BEGIN -->
 Implement workflow that removes branch folder when PR is closed or branch deleted. This prevents the gh-pages branch from accumulating stale deployments and keeps the index page clean.
+<!-- SECTION:DESCRIPTION:END -->
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
