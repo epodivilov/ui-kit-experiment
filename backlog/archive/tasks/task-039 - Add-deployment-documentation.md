@@ -1,10 +1,10 @@
 ---
 id: task-039
 title: Add deployment documentation
-status: To Do
+status: Done
 assignee: []
 created_date: '2025-10-06 08:48'
-updated_date: '2025-10-06 08:48'
+updated_date: '2025-10-08 12:20'
 labels:
   - documentation
   - deployment
@@ -13,7 +13,9 @@ dependencies: []
 
 ## Description
 
+<!-- SECTION:DESCRIPTION:BEGIN -->
 Document the Storybook deployment system. Comprehensive documentation ensures team members understand how to use the deployment system and troubleshoot common issues.
+<!-- SECTION:DESCRIPTION:END -->
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
