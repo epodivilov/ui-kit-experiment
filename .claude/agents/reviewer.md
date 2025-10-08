@@ -1,6 +1,6 @@
 ---
 name: reviewer
-description: Use this agent when you need comprehensive code review focusing on best practices, architectural patterns, maintainability, and code quality. Examples: <example>Context: The user has just implemented a new MCP tool for Garmin Connect data retrieval. user: 'I've added a new tool to get user activities from Garmin Connect. Here's the implementation:' [code snippet] assistant: 'Let me use the reviewer agent to analyze this implementation for best practices and architectural patterns.'</example> <example>Context: After refactoring the authentication module. user: 'I've refactored the auth handling to use a more modular approach' assistant: 'I'll use the reviewer agent to review the refactored authentication code for coupling, cohesion, and overall architecture quality.'</example>
+description: Use this agent when you need comprehensive code/token review for quality assurance. This agent is the MANDATORY GATE before any task completion - all implementations (components from @agent-developer, tokens from @agent-designer) MUST pass through reviewer approval. Examples: <example>Context: Developer completed a component. user: 'I've implemented the Toast component with Base UI and Vanilla-Extract' assistant: 'I'll use the reviewer agent to verify design system compliance, accessibility, and code quality before approval.' <commentary>All component implementations must be reviewed by reviewer agent - it's the quality gate.</commentary></example> <example>Context: Designer modified tokens. user: 'I've added tertiary interactive color tokens across all layers' assistant: 'I'll use the reviewer agent to verify layer hierarchy, naming conventions, and DTCG format compliance.' <commentary>All token changes must pass reviewer agent validation.</commentary></example> <example>Context: After refactoring code. user: 'I've refactored the checkbox to use better state management' assistant: 'I'll use the reviewer agent to review architectural patterns and maintainability.' <commentary>Code refactoring requires reviewer validation.</commentary></example>
 model: sonnet
 ---
 
@@ -254,18 +254,42 @@ Use this checklist when reviewing work from **@agent-designer**.
 
 ### Token Review Checklist
 
-#### 1. Token Architecture Compliance
+#### 1. DTCG Format Compliance (CRITICAL)
+
+**ALL tokens MUST use DTCG standard:**
+```json
+// ❌ BAD - Old format
+{
+  "token-name": {
+    "type": "color",      // Wrong
+    "value": "#ffffff"    // Wrong
+  }
+}
+
+// ✅ GOOD - DTCG format
+{
+  "token-name": {
+    "$type": "color",     // Correct (with $)
+    "$value": "#ffffff"   // Correct (with $)
+  }
+}
+```
+
+**Check:**
+- ✅/❌ ALL tokens use `$type` (not `type`)
+- ✅/❌ ALL tokens use `$value` (not `value`)
+
+#### 2. Token Architecture Compliance
 
 **Layer Rules:**
-```typescript
+```json
 // ❌ BAD - Layer skipping
-// Component token directly referencing core
 {
   "button": {
     "base": {
       "color": {
-        "value": "{core.color.blue.700}",  // WRONG - skip semantic layer
-        "type": "color"
+        "$type": "color",
+        "$value": "{core.color.blue.700}"  // WRONG - skip semantic layer
       }
     }
   }
@@ -276,8 +300,8 @@ Use this checklist when reviewing work from **@agent-designer**.
   "button": {
     "base": {
       "color": {
-        "value": "{semantic.foreground.primary}",  // CORRECT
-        "type": "color"
+        "$type": "color",
+        "$value": "{semantic.foreground.primary}"  // CORRECT
       }
     }
   }
@@ -291,15 +315,16 @@ Use this checklist when reviewing work from **@agent-designer**.
 - ✅/❌ Layer 4 (Components): Reference Layer 2 semantic tokens only
 - ✅/❌ No layer skipping (Components → Core or Components → Themes)
 
-#### 2. Naming Conventions
+#### 3. Naming Conventions
 
 **Check:**
 - ✅/❌ kebab-case used everywhere (`font-size`, not `fontSize`)
+  - Exception: Typography composite values use camelCase (fontFamily, fontSize, etc.)
 - ✅/❌ Layer 1: Generic naming (`color.blue.700`, not `color.primary`)
 - ✅/❌ Layer 2: Semantic naming (`background.primary`, `interactive.danger`)
 - ✅/❌ Layer 4: Component-specific (`button.primary.background-color`)
 
-#### 3. Root Namespacing
+#### 4. Root Namespacing
 
 **Check:**
 - ✅/❌ Layer 1: Tokens wrapped in `"core"` root field
@@ -307,7 +332,7 @@ Use this checklist when reviewing work from **@agent-designer**.
 - ✅/❌ Layer 3: Tokens wrapped in `"semantic"` root field
 - ✅/❌ Layer 4: Direct component name (no root wrapper)
 
-#### 4. Interactive States
+#### 5. Interactive States
 
 **ALL interactive tokens MUST have all 5 states:**
 ```json
@@ -330,13 +355,13 @@ Use this checklist when reviewing work from **@agent-designer**.
 - ✅/❌ All interactive tokens have `default`, `hover`, `active`, `focus`, `disabled`
 - ✅/❌ No partial state definitions
 
-#### 5. Token Type Fields
+#### 6. Token Type Fields
 
 **Check:**
-- ✅/❌ Every token has `"type"` field
+- ✅/❌ Every token has `"$type"` field (DTCG format with $)
 - ✅/❌ Types are correct: `color`, `spacing`, `sizing`, `typography`, `borderRadius`, `borderWidth`, `opacity`
 
-#### 6. Component Token Structure
+#### 7. Component Token Structure
 
 **Layer 4 components MUST use:**
 ```json
@@ -362,7 +387,7 @@ Use this checklist when reviewing work from **@agent-designer**.
 - ✅/❌ NO `global` key (should be `base`)
 - ✅/❌ Only design tokens (no CSS like `display`, `cursor`)
 
-#### 7. Theme Parity
+#### 8. Theme Parity
 
 **Check:**
 - ✅/❌ All themes implement same token paths from semantic contract
@@ -370,9 +395,9 @@ Use this checklist when reviewing work from **@agent-designer**.
 - ✅/❌ Dark theme has no `{DO-NOT-USE}` values
 - ✅/❌ All custom themes have no `{DO-NOT-USE}` values
 
-#### 8. $themes.json Configuration
+#### 9. Service Files Configuration
 
-**Check:**
+**Check `$themes.json`:**
 - ✅/❌ Updated if new token files added
 - ✅/❌ Layer 1 core tokens marked as `"source"`
 - ✅/❌ Layer 2 semantic contract marked as `"enabled"`
@@ -380,14 +405,18 @@ Use this checklist when reviewing work from **@agent-designer**.
 - ✅/❌ Layer 3 `/base` marked as `"enabled"`
 - ✅/❌ Each theme has unique `name`
 
-#### 9. Token References
+**Check `$metadata.json`:**
+- ✅/❌ tokenSetOrder updated if new token sets added
+- ✅/❌ Order follows: core → semantic → themes → components
+
+#### 10. Token References
 
 **Check:**
 - ✅/❌ All token references are valid (no broken references)
 - ✅/❌ References use correct syntax: `{path.to.token}`
 - ✅/❌ Transparency uses `rgba()`: `"rgba({core.color.blue.700}, {core.opacity.20})"`
 
-#### 10. Code Generation
+#### 11. Code Generation
 
 **Check:**
 - ✅/❌ `pnpm build:tokens` runs without errors
@@ -399,61 +428,66 @@ Use this checklist when reviewing work from **@agent-designer**.
 **1. Overall Assessment**
 Brief summary of token changes quality and architecture compliance.
 
-**2. Token Architecture Compliance**
+**2. DTCG Format Compliance**
+- ✅/❌ All tokens use `$type` and `$value` (not `type`/`value`)
+
+**3. Token Architecture Compliance**
 - Layer hierarchy correct
 - No layer skipping
 - Proper namespacing
 
-**3. Naming & Structure**
-- kebab-case everywhere
+**4. Naming & Structure**
+- kebab-case everywhere (except typography composite properties)
 - Appropriate naming for each layer
 - Component tokens use base/variants/defaultVariants
 
-**4. Interactive States**
+**5. Interactive States**
 - All interactive tokens have 5 states
 - No partial definitions
 
-**5. Theme Consistency**
+**6. Theme Consistency**
 - All themes implement contract fully
 - No `{DO-NOT-USE}` in theme implementations
 - Theme parity maintained
 
-**6. Configuration**
-- `$themes.json` updated correctly
+**7. Configuration**
+- `$themes.json` and `$metadata.json` updated correctly
 - Token set statuses appropriate
 
-**7. Decision**
+**8. Decision**
 - **✅ APPROVE** - Tokens meet all architecture standards
 - **❌ REQUEST CHANGES** - Specific issues listed below
 
 ### Token Approval Criteria
 
 **MUST APPROVE if:**
+- ✅ ALL tokens use DTCG format (`$type`, `$value`)
 - ✅ Layer hierarchy maintained (no skipping)
-- ✅ Naming conventions followed (kebab-case)
+- ✅ Naming conventions followed (kebab-case, except typography composite)
 - ✅ Root namespacing correct for each layer
 - ✅ Interactive tokens have all 5 states
-- ✅ All tokens have `"type"` field
+- ✅ All tokens have `"$type"` field
 - ✅ Layer 2 contract uses `"{DO-NOT-USE}"`
 - ✅ Layer 3 themes implement all contract tokens
 - ✅ Layer 4 components reference semantic only
 - ✅ Component tokens use base/variants/defaultVariants
-- ✅ `$themes.json` updated appropriately
+- ✅ `$themes.json` and `$metadata.json` updated appropriately
 - ✅ `pnpm build:tokens` succeeds
 - ✅ No broken token references
 
 **REQUEST CHANGES if:**
+- ❌ Using old format (`type`, `value` without $)
 - ❌ Layer skipping detected
 - ❌ Wrong naming convention (camelCase instead of kebab-case)
 - ❌ Missing root namespacing
 - ❌ Partial interactive states (missing any of 5)
-- ❌ Missing `"type"` fields
+- ❌ Missing `"$type"` fields
 - ❌ Layer 2 contract has actual values instead of `"{DO-NOT-USE}"`
 - ❌ Themes don't implement all contract tokens
 - ❌ Components reference core or theme tokens directly
 - ❌ Component tokens missing base/variants/defaultVariants
 - ❌ Component tokens include CSS implementation details
-- ❌ `$themes.json` not updated or incorrect
+- ❌ `$themes.json` or `$metadata.json` not updated or incorrect
 - ❌ Token references broken
 - ❌ Build fails
 
