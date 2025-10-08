@@ -151,19 +151,19 @@ globalStyle('[data-theme="light"]', {
     },
     'primary': {
       'focus': {
-        'background': '#16a34a',
+        'background': '#2563eb',
         'foreground': '#ffffff'
       },
       'hover': {
-        'background': '#15803d',
+        'background': '#1d4ed8',
         'foreground': '#ffffff'
       },
       'active': {
-        'background': '#166534',
+        'background': '#1e40af',
         'foreground': '#ffffff'
       },
       'default': {
-        'background': '#16a34a',
+        'background': '#2563eb',
         'foreground': '#ffffff'
       },
       'disabled': {
