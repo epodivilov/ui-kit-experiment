@@ -5,8 +5,6 @@ on:
   pull_request:
     types: [closed]
   delete:
-    branches:
-      - '**'
 
 # Set permissions for GitHub Actions
 # These are required for:
@@ -16,6 +14,7 @@ permissions:
 
 jobs:
   cleanup-storybook:
+    if: github.event.ref_type == 'branch'
     name: Remove Storybook Deployment
     runs-on: ubuntu-latest
 
@@ -24,13 +23,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Fetch all history for proper git operations
+          fetch-depth: 0 # Fetch all history for proper git operations
 
       # Setup Node.js environment for the index generation script
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 'lts/*'  # Use latest LTS version
+          node-version: 'lts/*' # Use latest LTS version
 
       # Determine branch name based on event type
       - name: Determine branch name
