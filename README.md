@@ -57,7 +57,61 @@ The process is managed by mentioning agents in an IDE or in task comments.
 
 **Note**: The mechanism for invoking agents and passing them instructions is detailed in the `CLAUDE.md` file.
 
-## Getting Started
+## Using the UI Kit
+
+This repository contains both the UI Kit source code and development tools. If you want to **use the UI Kit in your application**, see the **[Usage Guide](./USAGE_WITHOUT_VANILLA_EXTRACT.md)** which explains how to integrate the UI Kit without requiring Vanilla-Extract tooling.
+
+### Quick Integration Example
+
+```bash
+# Install the UI Kit
+pnpm install ui-kit
+```
+
+```tsx
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+
+import "ui-kit/styles";
+import "ui-kit/themes";
+import { ThemeProvider, Button, useTheme } from "ui-kit";
+
+function App() {
+  const { theme, setTheme } = useTheme();
+
+  return (
+    <div>
+      <h1>UI Kit</h1>
+
+      <div>
+        <Button
+          variant="primary"
+          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+        >
+          Theme: {theme}
+        </Button>
+      </div>
+
+      <Button variant="secondary">Secondary button</Button>
+      <Button variant="danger">Danger button</Button>
+    </div>
+  );
+}
+
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <ThemeProvider defaultTheme="light">
+      <App />
+    </ThemeProvider>
+  </StrictMode>
+);
+```
+
+---
+
+## Getting Started (Development)
+
+The following sections are for developers working **on** the UI Kit itself (contributing, building, or modifying components).
 
 ### Prerequisites
 
