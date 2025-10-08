@@ -5,189 +5,48 @@
 import { createThemeContract } from '@vanilla-extract/css';
 
 export const tokens = createThemeContract({
-  'background': {
-    'default': null,
-    'surface': null,
-    'elevated': null,
-    'disabled': null
-  },
-  'foreground': {
-    'default': null,
-    'subtle': null,
-    'disabled': null,
-    'on-interactive': null,
-    'on-danger': null,
-    'on-success': null,
-    'on-warning': null
-  },
-  'interactive': {
-    'primary': {
-      'default': {
-        'background': null,
-        'foreground': null
-      },
-      'hover': {
-        'background': null,
-        'foreground': null
-      },
-      'active': {
-        'background': null,
-        'foreground': null
-      },
-      'focus': {
-        'background': null,
-        'foreground': null
-      },
-      'disabled': {
-        'background': null,
-        'foreground': null
-      }
-    },
-    'secondary': {
-      'default': {
-        'background': null,
-        'foreground': null
-      },
-      'hover': {
-        'background': null,
-        'foreground': null
-      },
-      'active': {
-        'background': null,
-        'foreground': null
-      },
-      'focus': {
-        'background': null,
-        'foreground': null
-      },
-      'disabled': {
-        'background': null,
-        'foreground': null
-      }
-    },
-    'danger': {
-      'default': {
-        'background': null,
-        'foreground': null
-      },
-      'hover': {
-        'background': null,
-        'foreground': null
-      },
-      'active': {
-        'background': null,
-        'foreground': null
-      },
-      'focus': {
-        'background': null,
-        'foreground': null
-      },
-      'disabled': {
-        'background': null,
-        'foreground': null
-      }
-    },
-    'success': {
-      'default': {
-        'background': null,
-        'foreground': null
-      },
-      'hover': {
-        'background': null,
-        'foreground': null
-      },
-      'active': {
-        'background': null,
-        'foreground': null
-      },
-      'focus': {
-        'background': null,
-        'foreground': null
-      },
-      'disabled': {
-        'background': null,
-        'foreground': null
-      }
-    },
-    'warning': {
-      'default': {
-        'background': null,
-        'foreground': null
-      },
-      'hover': {
-        'background': null,
-        'foreground': null
-      },
-      'active': {
-        'background': null,
-        'foreground': null
-      },
-      'focus': {
-        'background': null,
-        'foreground': null
-      },
-      'disabled': {
-        'background': null,
-        'foreground': null
-      }
-    }
-  },
   'border': {
-    'default': null,
-    'hover': null,
     'focus': null,
+    'hover': null,
+    'default': null,
     'disabled': null
   },
   'sizing': {
-    'xs': null,
-    'sm': null,
-    'md': null,
     'lg': null,
-    'xl': null
+    'md': null,
+    'sm': null,
+    'xl': null,
+    'xs': null
   },
   'spacing': {
-    'xs': null,
-    'sm': null,
-    'md': null,
     'lg': null,
-    'xl': null
-  },
-  'border-radius': {
-    'sm': null,
     'md': null,
-    'lg': null,
-    'full': null
+    'sm': null,
+    'xl': null,
+    'xs': null
   },
-  'border-width': {
-    'thin': null,
+  'font-size': {
+    'lg': null,
+    'md': null,
+    'sm': null,
+    'xs': null
+  },
+  'background': {
     'default': null,
-    'thick': null
+    'surface': null,
+    'disabled': null,
+    'elevated': null
+  },
+  'foreground': {
+    'subtle': null,
+    'default': null,
+    'disabled': null,
+    'on-danger': null,
+    'on-success': null,
+    'on-warning': null,
+    'on-interactive': null
   },
   'typography': {
-    'heading-xl': {
-      'font-family': null,
-      'font-weight': null,
-      'font-size': null,
-      'line-height': null
-    },
-    'heading-l': {
-      'font-family': null,
-      'font-weight': null,
-      'font-size': null,
-      'line-height': null
-    },
-    'heading-m': {
-      'font-family': null,
-      'font-weight': null,
-      'font-size': null,
-      'line-height': null
-    },
-    'heading-s': {
-      'font-family': null,
-      'font-weight': null,
-      'font-size': null,
-      'line-height': null
-    },
     'body-l': {
       'font-family': null,
       'font-weight': null,
@@ -211,28 +70,169 @@ export const tokens = createThemeContract({
       'font-weight': null,
       'font-size': null,
       'line-height': null
+    },
+    'heading-l': {
+      'font-family': null,
+      'font-weight': null,
+      'font-size': null,
+      'line-height': null
+    },
+    'heading-m': {
+      'font-family': null,
+      'font-weight': null,
+      'font-size': null,
+      'line-height': null
+    },
+    'heading-s': {
+      'font-family': null,
+      'font-weight': null,
+      'font-size': null,
+      'line-height': null
+    },
+    'heading-xl': {
+      'font-family': null,
+      'font-weight': null,
+      'font-size': null,
+      'line-height': null
     }
   },
   'font-family': {
     'body': null,
-    'heading': null,
-    'mono': null
-  },
-  'font-size': {
-    'xs': null,
-    'sm': null,
-    'md': null,
-    'lg': null
+    'mono': null,
+    'heading': null
   },
   'font-weight': {
-    'normal': null,
+    'bold': null,
     'medium': null,
-    'semibold': null,
-    'bold': null
+    'normal': null,
+    'semibold': null
+  },
+  'interactive': {
+    'danger': {
+      'focus': {
+        'background': null,
+        'foreground': null
+      },
+      'hover': {
+        'background': null,
+        'foreground': null
+      },
+      'active': {
+        'background': null,
+        'foreground': null
+      },
+      'default': {
+        'background': null,
+        'foreground': null
+      },
+      'disabled': {
+        'background': null,
+        'foreground': null
+      }
+    },
+    'primary': {
+      'focus': {
+        'background': null,
+        'foreground': null
+      },
+      'hover': {
+        'background': null,
+        'foreground': null
+      },
+      'active': {
+        'background': null,
+        'foreground': null
+      },
+      'default': {
+        'background': null,
+        'foreground': null
+      },
+      'disabled': {
+        'background': null,
+        'foreground': null
+      }
+    },
+    'success': {
+      'focus': {
+        'background': null,
+        'foreground': null
+      },
+      'hover': {
+        'background': null,
+        'foreground': null
+      },
+      'active': {
+        'background': null,
+        'foreground': null
+      },
+      'default': {
+        'background': null,
+        'foreground': null
+      },
+      'disabled': {
+        'background': null,
+        'foreground': null
+      }
+    },
+    'warning': {
+      'focus': {
+        'background': null,
+        'foreground': null
+      },
+      'hover': {
+        'background': null,
+        'foreground': null
+      },
+      'active': {
+        'background': null,
+        'foreground': null
+      },
+      'default': {
+        'background': null,
+        'foreground': null
+      },
+      'disabled': {
+        'background': null,
+        'foreground': null
+      }
+    },
+    'secondary': {
+      'focus': {
+        'background': null,
+        'foreground': null
+      },
+      'hover': {
+        'background': null,
+        'foreground': null
+      },
+      'active': {
+        'background': null,
+        'foreground': null
+      },
+      'default': {
+        'background': null,
+        'foreground': null
+      },
+      'disabled': {
+        'background': null,
+        'foreground': null
+      }
+    }
   },
   'line-height': {
     'tight': null,
     'normal': null,
     'relaxed': null
+  },
+  'border-width': {
+    'thin': null,
+    'thick': null,
+    'default': null
+  },
+  'border-radius': {
+    'lg': null,
+    'md': null,
+    'sm': null,
+    'full': null
   }
 });

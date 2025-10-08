@@ -28,7 +28,7 @@ const getContractPaths = (obj, prefix = '') => {
   const paths = [];
   for (const [key, value] of Object.entries(obj)) {
     const currentPath = prefix ? `${prefix}.${key}` : key;
-    if (value && typeof value === 'object' && value.value !== undefined) {
+    if (value && typeof value === 'object' && value.$value !== undefined) {
       paths.push(currentPath);
     } else if (value && typeof value === 'object') {
       paths.push(...getContractPaths(value, currentPath));
@@ -50,12 +50,12 @@ const vanillaExtractContract = ({ dictionary }) => {
 
     return entries
       .map(([key, value]) => {
-        if (value && typeof value === 'object' && !value.value) {
+        if (value && typeof value === 'object' && !value.$value) {
           const nested = buildContract(value, depth + 1);
           return `${indent}'${key}': {\n${nested}\n${indent}}`;
         }
         // Check if this is a typography token - generate object contract instead of null
-        if (value && value.type === 'typography') {
+        if (value && value.$type === 'typography') {
           return `${indent}'${key}': {\n${indent}  'font-family': null,\n${indent}  'font-weight': null,\n${indent}  'font-size': null,\n${indent}  'line-height': null\n${indent}}`;
         }
         return `${indent}'${key}': null`;
@@ -95,7 +95,7 @@ const vanillaExtractTheme = ({ dictionary, options }) => {
       .map(([key, value]) => {
         const currentPath = pathPrefix ? `${pathPrefix}.${key}` : key;
 
-        if (value && typeof value === 'object' && !value.value) {
+        if (value && typeof value === 'object' && !value.$value) {
           const nested = buildThemeObject(value, depth + 1, currentPath);
           // Only include if nested has content
           if (nested.trim()) {
@@ -109,11 +109,11 @@ const vanillaExtractTheme = ({ dictionary, options }) => {
           return null;
         }
 
-        if (value && value.value !== undefined) {
-          const val = value.value;
+        if (value && value.$value !== undefined) {
+          const val = value.$value;
 
           // Handle composite tokens (like typography objects)
-          if (typeof val === 'object' && value.type === 'typography') {
+          if (typeof val === 'object' && value.$type === 'typography') {
             // Convert camelCase to kebab-case for CSS properties
             const toCSSProperty = (key) => key.replace(/([A-Z])/g, '-$1').toLowerCase();
 
@@ -199,12 +199,12 @@ const vanillaExtractTypes = ({ dictionary }) => {
         // Quote keys if they contain special characters (kebab-case)
         const quotedKey = key.includes('-') ? `'${key}'` : key;
 
-        if (value && typeof value === 'object' && !value.value) {
+        if (value && typeof value === 'object' && !value.$value) {
           const nested = buildTypes(value, depth + 1);
           return `${indent}${quotedKey}: {\n${nested}\n${indent}}`;
         }
         // Check if this is a typography token - generate object type
-        if (value && value.type === 'typography') {
+        if (value && value.$type === 'typography') {
           return `${indent}${quotedKey}: {\n${indent}  'font-family': string;\n${indent}  'font-weight': string;\n${indent}  'font-size': string;\n${indent}  'line-height': string;\n${indent}}`;
         }
         return `${indent}${quotedKey}: string`;
@@ -297,7 +297,7 @@ const generateConfigs = () => {
   });
 
   // 2. Theme configurations (one for each theme in $themes.json)
-  for (const theme of themesConfig.$themes) {
+  for (const theme of themesConfig) {
     configs.push({
       source: getSourcesForTheme(theme),
       platforms: {
@@ -306,10 +306,10 @@ const generateConfigs = () => {
           transforms: ['attribute/cti', 'name/kebab'],
           files: [
             {
-              destination: `${theme.id}.css.ts`,
+              destination: `${theme.name.toLowerCase()}.css.ts`,
               format: 'vanilla-extract/theme',
               options: {
-                themeName: theme.id,
+                themeName: theme.name.toLowerCase(),
               },
             },
           ],

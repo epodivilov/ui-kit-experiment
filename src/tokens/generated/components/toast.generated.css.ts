@@ -5,30 +5,30 @@
 import { tokens } from '../index';
 
 export const toastBaseStyles = {
+  ...tokens.typography['body-s'],
   borderRadius: tokens['border-radius'].lg,
-  paddingInline: tokens.spacing.md,
   paddingBlock: tokens.spacing.sm,
-  ...tokens.typography['body-s']
+  paddingInline: tokens.spacing.md,
 };
 
 export const toastVariants = {
-  'variant': {
-    'default':   {
-    backgroundColor: tokens.background.elevated,
-    color: tokens.foreground.default,
-    borderColor: tokens.border.default
+  variant: {
+    error: {
+      backgroundColor: tokens.interactive.danger.default.background,
+      color: tokens.foreground['on-danger'],
+    },
+    default: {
+      borderColor: tokens.border.default,
+      backgroundColor: tokens.background.elevated,
+      color: tokens.foreground.default,
+    },
+    success: {
+      backgroundColor: tokens.interactive.success.default.background,
+      color: tokens.foreground['on-success'],
+    },
+    warning: {
+      backgroundColor: tokens.interactive.warning.default.background,
+      color: tokens.foreground['on-warning'],
+    },
   },
-    'success':   {
-    backgroundColor: tokens.interactive.success.default.background,
-    color: tokens.foreground['on-success']
-  },
-    'error':   {
-    backgroundColor: tokens.interactive.danger.default.background,
-    color: tokens.foreground['on-danger']
-  },
-    'warning':   {
-    backgroundColor: tokens.interactive.warning.default.background,
-    color: tokens.foreground['on-warning']
-  }
-  }
 };

@@ -4,189 +4,48 @@
  */
 
 export interface ThemeTokens {
-  background: {
-    default: string;
-    surface: string;
-    elevated: string;
-    disabled: string
-  };
-  foreground: {
-    default: string;
-    subtle: string;
-    disabled: string;
-    'on-interactive': string;
-    'on-danger': string;
-    'on-success': string;
-    'on-warning': string
-  };
-  interactive: {
-    primary: {
-      default: {
-        background: string;
-        foreground: string
-      };
-      hover: {
-        background: string;
-        foreground: string
-      };
-      active: {
-        background: string;
-        foreground: string
-      };
-      focus: {
-        background: string;
-        foreground: string
-      };
-      disabled: {
-        background: string;
-        foreground: string
-      }
-    };
-    secondary: {
-      default: {
-        background: string;
-        foreground: string
-      };
-      hover: {
-        background: string;
-        foreground: string
-      };
-      active: {
-        background: string;
-        foreground: string
-      };
-      focus: {
-        background: string;
-        foreground: string
-      };
-      disabled: {
-        background: string;
-        foreground: string
-      }
-    };
-    danger: {
-      default: {
-        background: string;
-        foreground: string
-      };
-      hover: {
-        background: string;
-        foreground: string
-      };
-      active: {
-        background: string;
-        foreground: string
-      };
-      focus: {
-        background: string;
-        foreground: string
-      };
-      disabled: {
-        background: string;
-        foreground: string
-      }
-    };
-    success: {
-      default: {
-        background: string;
-        foreground: string
-      };
-      hover: {
-        background: string;
-        foreground: string
-      };
-      active: {
-        background: string;
-        foreground: string
-      };
-      focus: {
-        background: string;
-        foreground: string
-      };
-      disabled: {
-        background: string;
-        foreground: string
-      }
-    };
-    warning: {
-      default: {
-        background: string;
-        foreground: string
-      };
-      hover: {
-        background: string;
-        foreground: string
-      };
-      active: {
-        background: string;
-        foreground: string
-      };
-      focus: {
-        background: string;
-        foreground: string
-      };
-      disabled: {
-        background: string;
-        foreground: string
-      }
-    }
-  };
   border: {
-    default: string;
-    hover: string;
     focus: string;
+    hover: string;
+    default: string;
     disabled: string
   };
   sizing: {
-    xs: string;
-    sm: string;
-    md: string;
     lg: string;
-    xl: string
+    md: string;
+    sm: string;
+    xl: string;
+    xs: string
   };
   spacing: {
-    xs: string;
-    sm: string;
-    md: string;
     lg: string;
-    xl: string
-  };
-  'border-radius': {
-    sm: string;
     md: string;
-    lg: string;
-    full: string
+    sm: string;
+    xl: string;
+    xs: string
   };
-  'border-width': {
-    thin: string;
+  'font-size': {
+    lg: string;
+    md: string;
+    sm: string;
+    xs: string
+  };
+  background: {
     default: string;
-    thick: string
+    surface: string;
+    disabled: string;
+    elevated: string
+  };
+  foreground: {
+    subtle: string;
+    default: string;
+    disabled: string;
+    'on-danger': string;
+    'on-success': string;
+    'on-warning': string;
+    'on-interactive': string
   };
   typography: {
-    'heading-xl': {
-      'font-family': string;
-      'font-weight': string;
-      'font-size': string;
-      'line-height': string;
-    };
-    'heading-l': {
-      'font-family': string;
-      'font-weight': string;
-      'font-size': string;
-      'line-height': string;
-    };
-    'heading-m': {
-      'font-family': string;
-      'font-weight': string;
-      'font-size': string;
-      'line-height': string;
-    };
-    'heading-s': {
-      'font-family': string;
-      'font-weight': string;
-      'font-size': string;
-      'line-height': string;
-    };
     'body-l': {
       'font-family': string;
       'font-weight': string;
@@ -210,28 +69,169 @@ export interface ThemeTokens {
       'font-weight': string;
       'font-size': string;
       'line-height': string;
+    };
+    'heading-l': {
+      'font-family': string;
+      'font-weight': string;
+      'font-size': string;
+      'line-height': string;
+    };
+    'heading-m': {
+      'font-family': string;
+      'font-weight': string;
+      'font-size': string;
+      'line-height': string;
+    };
+    'heading-s': {
+      'font-family': string;
+      'font-weight': string;
+      'font-size': string;
+      'line-height': string;
+    };
+    'heading-xl': {
+      'font-family': string;
+      'font-weight': string;
+      'font-size': string;
+      'line-height': string;
     }
   };
   'font-family': {
     body: string;
-    heading: string;
-    mono: string
-  };
-  'font-size': {
-    xs: string;
-    sm: string;
-    md: string;
-    lg: string
+    mono: string;
+    heading: string
   };
   'font-weight': {
-    normal: string;
+    bold: string;
     medium: string;
-    semibold: string;
-    bold: string
+    normal: string;
+    semibold: string
+  };
+  interactive: {
+    danger: {
+      focus: {
+        background: string;
+        foreground: string
+      };
+      hover: {
+        background: string;
+        foreground: string
+      };
+      active: {
+        background: string;
+        foreground: string
+      };
+      default: {
+        background: string;
+        foreground: string
+      };
+      disabled: {
+        background: string;
+        foreground: string
+      }
+    };
+    primary: {
+      focus: {
+        background: string;
+        foreground: string
+      };
+      hover: {
+        background: string;
+        foreground: string
+      };
+      active: {
+        background: string;
+        foreground: string
+      };
+      default: {
+        background: string;
+        foreground: string
+      };
+      disabled: {
+        background: string;
+        foreground: string
+      }
+    };
+    success: {
+      focus: {
+        background: string;
+        foreground: string
+      };
+      hover: {
+        background: string;
+        foreground: string
+      };
+      active: {
+        background: string;
+        foreground: string
+      };
+      default: {
+        background: string;
+        foreground: string
+      };
+      disabled: {
+        background: string;
+        foreground: string
+      }
+    };
+    warning: {
+      focus: {
+        background: string;
+        foreground: string
+      };
+      hover: {
+        background: string;
+        foreground: string
+      };
+      active: {
+        background: string;
+        foreground: string
+      };
+      default: {
+        background: string;
+        foreground: string
+      };
+      disabled: {
+        background: string;
+        foreground: string
+      }
+    };
+    secondary: {
+      focus: {
+        background: string;
+        foreground: string
+      };
+      hover: {
+        background: string;
+        foreground: string
+      };
+      active: {
+        background: string;
+        foreground: string
+      };
+      default: {
+        background: string;
+        foreground: string
+      };
+      disabled: {
+        background: string;
+        foreground: string
+      }
+    }
   };
   'line-height': {
     tight: string;
     normal: string;
     relaxed: string
+  };
+  'border-width': {
+    thin: string;
+    thick: string;
+    default: string
+  };
+  'border-radius': {
+    lg: string;
+    md: string;
+    sm: string;
+    full: string
   };
 }

@@ -5,114 +5,114 @@
 import { tokens } from '../index';
 
 export const buttonBaseStyles = {
-  borderRadius: tokens['border-radius'].md
+  borderRadius: tokens['border-radius'].md,
 };
 
 export const buttonVariants = {
-  'variant': {
-    'primary':   {
-    backgroundColor: tokens.interactive.primary.default.background,
-    color: tokens.interactive.primary.default.foreground,
-    borderColor: tokens.interactive.primary.default.background,
-    selectors: {
-      '&:hover:not(:disabled)': {
-        backgroundColor: tokens.interactive.primary.hover.background,
-        color: tokens.interactive.primary.hover.foreground,
-        borderColor: tokens.interactive.primary.hover.background
-      },
-      '&:active:not(:disabled)': {
-        backgroundColor: tokens.interactive.primary.active.background,
-        color: tokens.interactive.primary.active.foreground,
-        borderColor: tokens.interactive.primary.active.background
-      },
-      '&:focus': {
-        color: tokens.interactive.primary.focus.foreground,
-        borderColor: tokens.border.focus
-      },
-      '&:disabled': {
-        backgroundColor: tokens.interactive.primary.disabled.background,
-        color: tokens.interactive.primary.disabled.foreground,
-        borderColor: tokens.interactive.primary.disabled.background
-      }
-    }
+  size: {
+    large: {
+      minHeight: tokens.sizing.lg,
+      ...tokens.typography['body-l'],
+      paddingBlock: tokens.spacing.md,
+      paddingInline: tokens.spacing.lg,
+    },
+    small: {
+      minHeight: tokens.sizing.sm,
+      ...tokens.typography['body-s'],
+      paddingBlock: tokens.spacing.xs,
+      paddingInline: tokens.spacing.sm,
+    },
+    medium: {
+      minHeight: tokens.sizing.md,
+      ...tokens.typography['body-m'],
+      paddingBlock: tokens.spacing.sm,
+      paddingInline: tokens.spacing.md,
+    },
   },
-    'secondary':   {
-    backgroundColor: tokens.interactive.secondary.default.background,
-    color: tokens.interactive.secondary.default.foreground,
-    borderColor: tokens.border.default,
-    borderWidth: '1px',
-    selectors: {
-      '&:hover:not(:disabled)': {
-        backgroundColor: tokens.interactive.secondary.hover.background,
-        color: tokens.interactive.secondary.hover.foreground,
-        borderColor: tokens.border.hover
+  variant: {
+    danger: {
+      borderColor: tokens.interactive.danger.default.background,
+      backgroundColor: tokens.interactive.danger.default.background,
+      color: tokens.interactive.danger.default.foreground,
+      selectors: {
+        '&:hover:not(:disabled)': {
+          borderColor: tokens.interactive.danger.hover.background,
+          backgroundColor: tokens.interactive.danger.hover.background,
+          color: tokens.interactive.danger.hover.foreground,
+        },
+        '&:active:not(:disabled)': {
+          borderColor: tokens.interactive.danger.active.background,
+          backgroundColor: tokens.interactive.danger.active.background,
+          color: tokens.interactive.danger.active.foreground,
+        },
+        '&:focus': {
+          borderColor: tokens.border.focus,
+          color: tokens.interactive.danger.focus.foreground,
+        },
+        '&:disabled': {
+          borderColor: tokens.interactive.danger.disabled.background,
+          backgroundColor: tokens.interactive.danger.disabled.background,
+          color: tokens.interactive.danger.disabled.foreground,
+        },
       },
-      '&:active:not(:disabled)': {
-        backgroundColor: tokens.interactive.secondary.active.background,
-        color: tokens.interactive.secondary.active.foreground,
-        borderColor: tokens.border.default
+    },
+    primary: {
+      borderColor: tokens.interactive.primary.default.background,
+      backgroundColor: tokens.interactive.primary.default.background,
+      color: tokens.interactive.primary.default.foreground,
+      selectors: {
+        '&:hover:not(:disabled)': {
+          borderColor: tokens.interactive.primary.hover.background,
+          backgroundColor: tokens.interactive.primary.hover.background,
+          color: tokens.interactive.primary.hover.foreground,
+        },
+        '&:active:not(:disabled)': {
+          borderColor: tokens.interactive.primary.active.background,
+          backgroundColor: tokens.interactive.primary.active.background,
+          color: tokens.interactive.primary.active.foreground,
+        },
+        '&:focus': {
+          borderColor: tokens.border.focus,
+          color: tokens.interactive.primary.focus.foreground,
+        },
+        '&:disabled': {
+          borderColor: tokens.interactive.primary.disabled.background,
+          backgroundColor: tokens.interactive.primary.disabled.background,
+          color: tokens.interactive.primary.disabled.foreground,
+        },
       },
-      '&:focus': {
-        color: tokens.interactive.secondary.focus.foreground,
-        borderColor: tokens.border.focus
+    },
+    secondary: {
+      borderColor: tokens.border.default,
+      borderWidth: '1px',
+      backgroundColor: tokens.interactive.secondary.default.background,
+      color: tokens.interactive.secondary.default.foreground,
+      selectors: {
+        '&:hover:not(:disabled)': {
+          borderColor: tokens.border.hover,
+          backgroundColor: tokens.interactive.secondary.hover.background,
+          color: tokens.interactive.secondary.hover.foreground,
+        },
+        '&:active:not(:disabled)': {
+          borderColor: tokens.border.default,
+          backgroundColor: tokens.interactive.secondary.active.background,
+          color: tokens.interactive.secondary.active.foreground,
+        },
+        '&:focus': {
+          borderColor: tokens.border.focus,
+          color: tokens.interactive.secondary.focus.foreground,
+        },
+        '&:disabled': {
+          borderColor: tokens.border.disabled,
+          backgroundColor: tokens.interactive.secondary.disabled.background,
+          color: tokens.interactive.secondary.disabled.foreground,
+        },
       },
-      '&:disabled': {
-        backgroundColor: tokens.interactive.secondary.disabled.background,
-        color: tokens.interactive.secondary.disabled.foreground,
-        borderColor: tokens.border.disabled
-      }
-    }
+    },
   },
-    'danger':   {
-    backgroundColor: tokens.interactive.danger.default.background,
-    color: tokens.interactive.danger.default.foreground,
-    borderColor: tokens.interactive.danger.default.background,
-    selectors: {
-      '&:hover:not(:disabled)': {
-        backgroundColor: tokens.interactive.danger.hover.background,
-        color: tokens.interactive.danger.hover.foreground,
-        borderColor: tokens.interactive.danger.hover.background
-      },
-      '&:active:not(:disabled)': {
-        backgroundColor: tokens.interactive.danger.active.background,
-        color: tokens.interactive.danger.active.foreground,
-        borderColor: tokens.interactive.danger.active.background
-      },
-      '&:focus': {
-        color: tokens.interactive.danger.focus.foreground,
-        borderColor: tokens.border.focus
-      },
-      '&:disabled': {
-        backgroundColor: tokens.interactive.danger.disabled.background,
-        color: tokens.interactive.danger.disabled.foreground,
-        borderColor: tokens.interactive.danger.disabled.background
-      }
-    }
-  }
+  fullWidth: {
+    true: {
+      width: '100%',
+    },
   },
-  'size': {
-    'small':   {
-    paddingBlock: tokens.spacing.xs,
-    paddingInline: tokens.spacing.sm,
-    ...tokens.typography['body-s'],
-    minHeight: tokens.sizing.sm
-  },
-    'medium':   {
-    paddingBlock: tokens.spacing.sm,
-    paddingInline: tokens.spacing.md,
-    ...tokens.typography['body-m'],
-    minHeight: tokens.sizing.md
-  },
-    'large':   {
-    paddingBlock: tokens.spacing.md,
-    paddingInline: tokens.spacing.lg,
-    ...tokens.typography['body-l'],
-    minHeight: tokens.sizing.lg
-  }
-  },
-  'fullWidth': {
-    'true':   {
-    width: '100%'
-  }
-  }
 };

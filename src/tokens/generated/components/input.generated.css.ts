@@ -5,51 +5,51 @@
 import { tokens } from '../index';
 
 export const inputBaseStyles = {
-  borderRadius: tokens['border-radius'].md,
-  borderWidth: tokens['border-width'].thin,
-  paddingInline: tokens.spacing.md,
-  paddingBlock: tokens.spacing.sm,
+  minHeight: tokens.sizing.lg,
   ...tokens.typography['body-m'],
-  minHeight: tokens.sizing.lg
+  borderWidth: tokens['border-width'].thin,
+  borderRadius: tokens['border-radius'].md,
+  paddingBlock: tokens.spacing.sm,
+  paddingInline: tokens.spacing.md,
 };
 
 export const inputVariants = {
-  'variant': {
-    'default':   {
-    backgroundColor: tokens.background.surface,
-    color: tokens.foreground.default,
-    borderColor: tokens.border.default,
-    selectors: {
-      '&:hover:not(:disabled)': {
-        borderColor: tokens.border.hover
+  variant: {
+    error: {
+      borderColor: tokens.interactive.danger.default.background,
+      backgroundColor: tokens.background.surface,
+      color: tokens.foreground.default,
+      selectors: {
+        '&:hover:not(:disabled)': {
+          borderColor: tokens.interactive.danger.hover.background,
+        },
+        '&:focus': {
+          borderColor: tokens.interactive.danger.default.background,
+        },
+        '&:disabled': {
+          borderColor: tokens.border.disabled,
+          backgroundColor: tokens.background.disabled,
+          color: tokens.foreground.disabled,
+        },
       },
-      '&:focus': {
-        borderColor: tokens.border.focus
+    },
+    default: {
+      borderColor: tokens.border.default,
+      backgroundColor: tokens.background.surface,
+      color: tokens.foreground.default,
+      selectors: {
+        '&:hover:not(:disabled)': {
+          borderColor: tokens.border.hover,
+        },
+        '&:focus': {
+          borderColor: tokens.border.focus,
+        },
+        '&:disabled': {
+          borderColor: tokens.border.disabled,
+          backgroundColor: tokens.background.disabled,
+          color: tokens.foreground.disabled,
+        },
       },
-      '&:disabled': {
-        backgroundColor: tokens.background.disabled,
-        color: tokens.foreground.disabled,
-        borderColor: tokens.border.disabled
-      }
-    }
+    },
   },
-    'error':   {
-    backgroundColor: tokens.background.surface,
-    color: tokens.foreground.default,
-    borderColor: tokens.interactive.danger.default.background,
-    selectors: {
-      '&:hover:not(:disabled)': {
-        borderColor: tokens.interactive.danger.hover.background
-      },
-      '&:focus': {
-        borderColor: tokens.interactive.danger.default.background
-      },
-      '&:disabled': {
-        backgroundColor: tokens.background.disabled,
-        color: tokens.foreground.disabled,
-        borderColor: tokens.border.disabled
-      }
-    }
-  }
-  }
 };

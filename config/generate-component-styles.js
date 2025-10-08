@@ -9,6 +9,7 @@
 import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'fs';
 import { join, dirname, basename } from 'path';
 import { fileURLToPath } from 'url';
+import { exec } from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -24,7 +25,7 @@ mkdirSync(OUTPUT_DIR, { recursive: true });
  * Convert kebab-case to camelCase
  */
 function toCamelCase(str) {
-  return str.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+  return str.replace(/-([a-z])/g, g => g[1].toUpperCase());
 }
 
 /**
@@ -58,9 +59,10 @@ function resolveTokenReference(value) {
 
   if (parts[0] === 'semantic') {
     // {semantic.spacing.md} -> tokens.spacing.md
-    const tokenPath = parts.slice(1).map(part =>
-      part.includes('-') ? `['${part}']` : `.${part}`
-    ).join('');
+    const tokenPath = parts
+      .slice(1)
+      .map(part => (part.includes('-') ? `['${part}']` : `.${part}`))
+      .join('');
     return `tokens${tokenPath}`;
   }
 
@@ -79,8 +81,8 @@ function generateBaseStyles(base, componentName) {
 
   for (const [propName, tokenDef] of Object.entries(base)) {
     const cssProp = getCSSProperty(propName);
-    const value = tokenDef.value;
-    const type = tokenDef.type;
+    const value = tokenDef.$value;
+    const type = tokenDef.$type;
 
     if (type === 'typography') {
       // Typography is spread
@@ -106,45 +108,45 @@ function generateVariantOption(optionData) {
     hover: {},
     active: {},
     focus: {},
-    disabled: {}
+    disabled: {},
   };
 
   for (const [propName, value] of Object.entries(optionData)) {
     const cssProp = getCSSProperty(propName);
 
     // Check if value has states (default, hover, etc.)
-    if (value && typeof value === 'object' && !value.value) {
+    if (value && typeof value === 'object' && !value.$value) {
       // Has states
       const states = value;
 
       // Default state
       if (states.default) {
-        const tokenRef = resolveTokenReference(states.default.value);
+        const tokenRef = resolveTokenReference(states.default.$value);
         defaultStyles.push(`    ${cssProp}: ${tokenRef}`);
       }
 
       // Collect selectors
       if (states.hover) {
-        selectorsMap.hover[cssProp] = resolveTokenReference(states.hover.value);
+        selectorsMap.hover[cssProp] = resolveTokenReference(states.hover.$value);
       }
       if (states.active) {
-        selectorsMap.active[cssProp] = resolveTokenReference(states.active.value);
+        selectorsMap.active[cssProp] = resolveTokenReference(states.active.$value);
       }
       if (states.focus && propName !== 'background-color') {
-        selectorsMap.focus[cssProp] = resolveTokenReference(states.focus.value);
+        selectorsMap.focus[cssProp] = resolveTokenReference(states.focus.$value);
       }
       if (states.disabled) {
-        selectorsMap.disabled[cssProp] = resolveTokenReference(states.disabled.value);
+        selectorsMap.disabled[cssProp] = resolveTokenReference(states.disabled.$value);
       }
-    } else if (value && value.value !== undefined) {
+    } else if (value && value.$value !== undefined) {
       // Simple property
-      const type = value.type;
+      const type = value.$type;
 
       if (type === 'typography') {
-        const tokenRef = resolveTokenReference(value.value);
+        const tokenRef = resolveTokenReference(value.$value);
         defaultStyles.push(`    ...${tokenRef}`);
       } else {
-        const tokenRef = resolveTokenReference(value.value);
+        const tokenRef = resolveTokenReference(value.$value);
         defaultStyles.push(`    ${cssProp}: ${tokenRef}`);
       }
     }
@@ -251,6 +253,20 @@ function generateComponentStyles(componentData, componentName) {
   return parts.join('\n');
 }
 
+function formatFile(outputPath) {
+  exec(`pnpm exec prettier --write ${outputPath}`, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`❌ Prettier error: ${error.message}`);
+      return;
+    }
+    if (stderr) {
+      console.error(`❌ Prettier stderr: ${stderr}`);
+      return;
+    }
+    console.log(`   🎨 Formatted ${basename(outputPath)} with Prettier`);
+  });
+}
+
 /**
  * Process a single component token file
  */
@@ -270,6 +286,9 @@ function processComponentFile(filepath) {
   writeFileSync(outputPath, styles, 'utf8');
 
   console.log(`   ✅ Generated ${basename(outputPath)}`);
+
+  // Format with Prettier
+  formatFile(outputPath);
 }
 
 /**
