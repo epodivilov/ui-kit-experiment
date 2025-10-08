@@ -1,0 +1,145 @@
+name: Prepublish Main Storybook
+
+# Trigger workflow on push to main branch
+on:
+  push:
+    branches:
+      - main
+
+# Set permissions for GitHub Actions
+# These are required for:
+# - contents: write - Push to gh-pages branch
+permissions:
+  contents: write
+
+jobs:
+  prepublish-storybook:
+    name: Build and Prepublish Main Storybook
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for proper git operations
+
+      # Setup Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'  # Use latest LTS version
+          cache: 'pnpm'
+
+      # Setup pnpm package manager
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      # Install dependencies
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Run quality checks - Build library
+      - name: Build library
+        run: pnpm build
+
+      # Run quality checks - Type checking
+      - name: Run type check
+        run: pnpm typecheck
+
+      # Run quality checks - Linting
+      - name: Run linter
+        run: pnpm lint
+
+      # Build Storybook
+      - name: Build Storybook
+        run: pnpm storybook:build
+
+      # Checkout gh-pages branch to deploy
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages-branch
+          fetch-depth: 0
+
+      # Deploy Storybook to main directory
+      - name: Deploy to gh-pages
+        run: |
+          MAIN_DIR="gh-pages-branch/main"
+
+          # Remove existing main directory if it exists
+          if [ -d "$MAIN_DIR" ]; then
+            echo "Removing existing main branch deployment"
+            rm -rf "$MAIN_DIR"
+          fi
+
+          # Create main directory and copy Storybook build
+          echo "Deploying Storybook to: $MAIN_DIR"
+          mkdir -p "$MAIN_DIR"
+          cp -r storybook-static/* "$MAIN_DIR/"
+
+          # Configure git
+          cd gh-pages-branch
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Commit and push changes
+          git add .
+          if git diff --staged --quiet; then
+            echo "No changes to deploy"
+          else
+            git commit -m "Deploy main branch Storybook (commit: ${{ github.sha }})"
+            git push origin gh-pages
+            echo "Successfully deployed main branch Storybook"
+          fi
+
+      # Generate branch index page
+      - name: Generate branch index
+        run: |
+          cd gh-pages-branch
+
+          # Generate updated index.html
+          node ../scripts/generate-branch-index.js .
+
+          # Configure git (in case it's a new session)
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Commit and push index.html if it changed
+          git add index.html
+          if git diff --staged --quiet; then
+            echo "No changes to branch index"
+          else
+            git commit -m "Update branch index for main branch deployment"
+            git push origin gh-pages
+            echo "Successfully updated branch index"
+          fi
+
+      # Report success with deployment URL
+      - name: Report deployment success
+        run: |
+          REPO_OWNER="${{ github.repository_owner }}"
+          REPO_NAME="${{ github.event.repository.name }}"
+          MAIN_URL="https://${REPO_OWNER}.github.io/${REPO_NAME}/main/"
+          INDEX_URL="https://${REPO_OWNER}.github.io/${REPO_NAME}/"
+
+          echo "::notice::Main branch Storybook deployed successfully!"
+          echo "::notice::Main Storybook URL: ${MAIN_URL}"
+          echo "::notice::All branches index: ${INDEX_URL}"
+
+      # Handle deployment failures
+      - name: Report deployment failure
+        if: failure()
+        run: |
+          echo "::error::Failed to deploy main branch Storybook"
+          echo "::error::Check the workflow logs for more details: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          echo "::error::Common issues:"
+          echo "::error::  - Build errors in the library or Storybook"
+          echo "::error::  - Type checking failures"
+          echo "::error::  - Linting errors"
+          echo "::error::  - Missing dependencies"
+          echo "::error::  - Git push conflicts"
+          exit 1
