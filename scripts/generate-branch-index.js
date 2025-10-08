@@ -14,7 +14,7 @@
  *   output-dir - Directory where index.html will be generated (default: current directory)
  */
 
-import { readdir, stat, writeFile, mkdir } from 'node:fs/promises';
+import { readdir, readFile, stat, writeFile, mkdir } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { existsSync } from 'node:fs';
 
@@ -29,11 +29,36 @@ const EXCLUDED_DIRS = new Set([
 ]);
 
 /**
+ * Read branch metadata from file
+ * @param {string} baseDir - Base directory containing metadata file
+ * @returns {Promise<Record<string, {published: string, updated: string}>>}
+ */
+async function readBranchMetadata(baseDir) {
+  try {
+    const metadataPath = join(baseDir, 'branch-metadata.json');
+    if (!existsSync(metadataPath)) {
+      console.log('No branch-metadata.json found. Using file timestamps as fallback.');
+      return {};
+    }
+
+    const content = await readFile(metadataPath, 'utf-8');
+    const metadata = JSON.parse(content);
+    console.log(`Loaded branch metadata from: ${metadataPath}`);
+    return metadata;
+  } catch (error) {
+    console.error(`Error reading branch metadata: ${error.message}`);
+    console.log('Falling back to file timestamps.');
+    return {};
+  }
+}
+
+/**
  * Get all branch directories with their metadata
  * @param {string} baseDir - Base directory to scan
- * @returns {Promise<Array<{name: string, path: string, lastModified: Date}>>}
+ * @param {Record<string, {published: string, updated: string}>} metadata - Branch metadata
+ * @returns {Promise<Array<{name: string, path: string, lastModified: Date, published?: Date}>>}
  */
-async function getBranchDirectories(baseDir) {
+async function getBranchDirectories(baseDir, metadata) {
   try {
     const entries = await readdir(baseDir, { withFileTypes: true });
     const branches = [];
@@ -47,10 +72,24 @@ async function getBranchDirectories(baseDir) {
       const fullPath = join(baseDir, entry.name);
       const stats = await stat(fullPath);
 
+      // Use metadata if available, otherwise fall back to file stats
+      let lastModified;
+      let published;
+
+      if (metadata[entry.name]) {
+        lastModified = new Date(metadata[entry.name].updated);
+        published = new Date(metadata[entry.name].published);
+        console.log(`  Using metadata for '${entry.name}': updated ${metadata[entry.name].updated}`);
+      } else {
+        lastModified = stats.mtime;
+        console.log(`  Using file timestamp for '${entry.name}' (no metadata found)`);
+      }
+
       branches.push({
         name: entry.name,
         path: entry.name,
-        lastModified: stats.mtime,
+        lastModified,
+        published,
       });
     }
 
@@ -362,8 +401,11 @@ async function main() {
     await mkdir(resolvedOutputDir, { recursive: true });
   }
 
+  // Read branch metadata
+  const metadata = await readBranchMetadata(resolvedOutputDir);
+
   // Get all branch directories
-  const branches = await getBranchDirectories(resolvedOutputDir);
+  const branches = await getBranchDirectories(resolvedOutputDir, metadata);
 
   console.log(`Found ${branches.length} branch(es):`);
   branches.forEach((branch) => {
