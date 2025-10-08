@@ -19,7 +19,11 @@ export default tseslint.config(
       'node_modules',
       '.tsbuildinfo',
       '*.tsbuildinfo',
-      'src/tokens/generated/**/*'
+      'src/tokens/generated/**/*',
+      'tsup.config.ts',
+      'src/**/*.stories.*',
+      'src/**/*.test.*',
+      'src/**/*.spec.*',
     ],
   },
   {
@@ -38,16 +42,13 @@ export default tseslint.config(
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
       'jsx-a11y': jsxA11y,
-      'import': importPlugin,
+      import: importPlugin,
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
 
       // React Refresh
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
+      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
 
       // TypeScript specific rules
       '@typescript-eslint/no-unused-vars': [
@@ -55,8 +56,8 @@ export default tseslint.config(
         {
           argsIgnorePattern: '^_',
           varsIgnorePattern: '^_',
-          ignoreRestSiblings: true
-        }
+          ignoreRestSiblings: true,
+        },
       ],
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-inferrable-types': 'warn',
@@ -98,15 +99,7 @@ export default tseslint.config(
       'import/order': [
         'error',
         {
-          groups: [
-            'builtin',
-            'external',
-            'internal',
-            'parent',
-            'sibling',
-            'index',
-            'type'
-          ],
+          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'type'],
           'newlines-between': 'always',
           alphabetize: {
             order: 'asc',
@@ -116,12 +109,12 @@ export default tseslint.config(
       ],
       'import/newline-after-import': 'error',
       'import/no-default-export': 'warn', // Prefer named exports in libraries
-      "import/no-unused-modules": [
-        "warn",
+      'import/no-unused-modules': [
+        'warn',
         {
-          "unusedExports": true,
-          "missingExports": true
-        }
+          unusedExports: true,
+          missingExports: true,
+        },
       ],
 
       // General JavaScript/TypeScript rules
@@ -129,8 +122,8 @@ export default tseslint.config(
       'no-var': 'error',
       'no-console': 'warn',
       'no-debugger': 'error',
-      'eqeqeq': ['error', 'smart'],
-      'curly': ['error', 'multi-line'],
+      eqeqeq: ['error', 'smart'],
+      curly: ['error', 'multi-line'],
       'object-shorthand': 'error',
       'prefer-template': 'error',
       'prefer-arrow-callback': 'error',
@@ -141,11 +134,13 @@ export default tseslint.config(
         'warn',
         {
           name: 'window',
-          message: 'Use feature detection or conditional checks instead of directly accessing window.',
+          message:
+            'Use feature detection or conditional checks instead of directly accessing window.',
         },
         {
           name: 'document',
-          message: 'Use feature detection or conditional checks instead of directly accessing document.',
+          message:
+            'Use feature detection or conditional checks instead of directly accessing document.',
         },
       ],
     },
