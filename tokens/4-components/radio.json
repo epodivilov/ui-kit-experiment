@@ -1,0 +1,228 @@
+{
+  "radio": {
+    "base": {
+      "size": {
+        "$type": "sizing",
+        "$value": "{semantic.sizing.md}"
+      },
+      "border-width": {
+        "$type": "borderWidth",
+        "$value": "{semantic.border-width.default}"
+      },
+      "border-radius": {
+        "$type": "borderRadius",
+        "$value": "{semantic.border-radius.full}"
+      }
+    },
+    "variants": {
+      "variant": {
+        "error": {
+          "border-color": {
+            "focus": {
+              "$type": "color",
+              "$value": "{semantic.interactive.danger.default.background}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{semantic.interactive.danger.hover.background}"
+            },
+            "default": {
+              "$type": "color",
+              "$value": "{semantic.interactive.danger.default.background}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{semantic.interactive.danger.active.background}"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{semantic.border.disabled}"
+            }
+          },
+          "background-color": {
+            "default": {
+              "$type": "color",
+              "$value": "{semantic.background.surface}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{semantic.background.surface}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{semantic.background.surface}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{semantic.background.surface}"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{semantic.background.disabled}"
+            }
+          }
+        },
+        "default": {
+          "border-color": {
+            "focus": {
+              "$type": "color",
+              "$value": "{semantic.border.focus}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{semantic.border.hover}"
+            },
+            "default": {
+              "$type": "color",
+              "$value": "{semantic.border.default}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{semantic.border.default}"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{semantic.border.disabled}"
+            }
+          },
+          "background-color": {
+            "hover": {
+              "$type": "color",
+              "$value": "{semantic.background.surface}"
+            },
+            "default": {
+              "$type": "color",
+              "$value": "{semantic.background.surface}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{semantic.background.surface}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{semantic.background.surface}"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{semantic.background.disabled}"
+            }
+          }
+        }
+      }
+    },
+    "defaultVariants": {
+      "variant": {
+        "$type": "other",
+        "$value": "default"
+      }
+    }
+  },
+  "radio-group": {
+    "base": {
+      "gap": {
+        "$type": "spacing",
+        "$value": "{semantic.spacing.md}"
+      }
+    },
+    "variants": {
+      "orientation": {
+        "vertical": {
+          "flex-direction": {
+            "$type": "other",
+            "$value": "column"
+          }
+        },
+        "horizontal": {
+          "flex-direction": {
+            "$type": "other",
+            "$value": "row"
+          }
+        }
+      }
+    },
+    "defaultVariants": {
+      "orientation": {
+        "$type": "other",
+        "$value": "vertical"
+      }
+    }
+  },
+  "radio-indicator": {
+    "base": {
+      "background-color": {
+        "$type": "color",
+        "$value": "{semantic.interactive.primary.default.background}"
+      },
+      "border-radius": {
+        "$type": "borderRadius",
+        "$value": "{semantic.border-radius.full}"
+      },
+      "width": {
+        "$type": "sizing",
+        "$value": "{semantic.sizing.xs}"
+      },
+      "height": {
+        "$type": "sizing",
+        "$value": "{semantic.sizing.xs}"
+      }
+    },
+    "variants": {
+      "variant": {
+        "error": {
+          "background-color": {
+            "default": {
+              "$type": "color",
+              "$value": "{semantic.interactive.danger.default.background}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{semantic.interactive.danger.hover.background}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{semantic.interactive.danger.active.background}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{semantic.interactive.danger.focus.background}"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{semantic.interactive.danger.disabled.background}"
+            }
+          }
+        },
+        "default": {
+          "background-color": {
+            "default": {
+              "$type": "color",
+              "$value": "{semantic.interactive.primary.default.background}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{semantic.interactive.primary.hover.background}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{semantic.interactive.primary.active.background}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{semantic.interactive.primary.focus.background}"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{semantic.interactive.primary.disabled.background}"
+            }
+          }
+        }
+      }
+    },
+    "defaultVariants": {
+      "variant": {
+        "$type": "other",
+        "$value": "default"
+      }
+    }
+  }
+}

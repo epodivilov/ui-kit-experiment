@@ -14,7 +14,8 @@
       "4-components/toast": "enabled",
       "4-components/input": "enabled",
       "4-components/checkbox": "enabled",
-      "4-components/button": "enabled"
+      "4-components/button": "enabled",
+      "4-components/radio": "enabled"
     },
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {}
@@ -34,7 +35,8 @@
       "4-components/toast": "enabled",
       "4-components/input": "enabled",
       "4-components/checkbox": "enabled",
-      "4-components/button": "enabled"
+      "4-components/button": "enabled",
+      "4-components/radio": "enabled"
     },
     "$figmaStyleReferences": {},
     "$figmaVariableReferences": {}
