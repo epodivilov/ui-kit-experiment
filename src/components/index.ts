@@ -7,6 +7,9 @@ export type { CheckboxProps } from './Checkbox';
 export { Input } from './Input';
 export type { InputProps } from './Input';
 
+export { Radio, RadioGroup, RadioIndicator } from './Radio';
+export type { RadioProps, RadioGroupProps, RadioIndicatorProps } from './Radio';
+
 export {
   Toast,
   ToastProvider,
