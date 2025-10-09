@@ -54,6 +54,7 @@ export interface RadioProps extends RadioVariants {
  * Visual indicator for the selected radio state.
  * NO className or style props - use predefined variants only.
  */
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface RadioIndicatorProps extends RadioVariants {
   // No additional props - inherits variant from context
 }
