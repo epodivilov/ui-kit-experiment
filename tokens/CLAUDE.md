@@ -16,6 +16,7 @@ This project uses a **4-tier hierarchical token architecture** following the [DT
 ## Token Format
 
 All tokens follow the DTCG standard:
+
 ```json
 {
   "token-name": {
@@ -26,6 +27,7 @@ All tokens follow the DTCG standard:
 ```
 
 **Key format rules:**
+
 - `$type` - Token type (color, sizing, spacing, etc.)
 - `$value` - Token value (hex, rem, reference, etc.)
 - Token names use **kebab-case** (e.g., `font-size`, `border-radius`)
@@ -33,6 +35,7 @@ All tokens follow the DTCG standard:
 ## Critical Rules
 
 ### Root-Level Namespacing
+
 **REQUIRED**: Each layer must have a root-level namespace:
 
 - **Layer 1 (Core)**: Root field MUST be `"core"`
@@ -43,7 +46,9 @@ All tokens follow the DTCG standard:
 **Purpose**: Clear token origin and prevents naming conflicts
 
 ### Interactive States
+
 **REQUIRED** for interactive components - define ALL 5 states:
+
 - `default` - default state
 - `hover` - hover state
 - `active` - active/pressed state
@@ -84,18 +89,21 @@ tokens/
 **Purpose**: Foundation layer with primitive, absolute values.
 
 ### Rules
+
 - ✅ Use ONLY absolute values (hex colors, rem/px units, numeric values)
 - ✅ Names must be generic and value-descriptive (e.g., `color.blue.700`, `size.4`)
 - ❌ NEVER reference other tokens
 - ❌ NEVER use semantic naming (avoid "primary", "danger", "background")
 
 ### File Types
+
 - **colors.json**: Raw color values in hex format
 - **dimensions.json**: Size scale, border radius, border width
 - **opacity.json**: Opacity percentage values (0-1)
 - **typography.json**: Font families, weights, sizes, line heights
 
 ### Example Structure
+
 ```json
 {
   "core": {
@@ -124,6 +132,7 @@ tokens/
 **Purpose**: Theme-agnostic interface that acts as a contract between themes and components.
 
 ### Rules
+
 - ✅ Use semantic, purpose-driven names (e.g., `background.primary`, `foreground.on-interactive`)
 - ✅ ALL values MUST be `"{DO-NOT-USE}"` - this is a contract, not implementation
 - ✅ Define all semantic tokens that components will consume
@@ -131,12 +140,15 @@ tokens/
 - ❌ NEVER use actual values - only placeholder `"{DO-NOT-USE}"`
 
 ### Purpose
+
 This layer defines the vocabulary that:
+
 - Components expect to consume
 - Themes must implement
 - Ensures consistency across all themes
 
 ### Example Structure
+
 ```json
 {
   "semantic": {
@@ -195,12 +207,14 @@ This layer defines the vocabulary that:
 **Purpose**: Concrete theme implementations and shared theme-level tokens.
 
 ### Files
+
 - **base.json**: Shared tokens across ALL themes (typography compositions, sizing scale)
 - **light/theme.json**: Light theme implementation
 - **dark/theme.json**: Dark theme implementation
 - **[custom]/theme.json**: Additional custom theme implementations
 
 ### Rules for `base.json`
+
 - ✅ Reference Layer 1 core tokens using `{core.token.path}` syntax
 - ✅ Create composite tokens (typography, shadows, etc.)
 - ✅ Define theme-independent values
@@ -208,6 +222,7 @@ This layer defines the vocabulary that:
 - ❌ NO absolute values - always reference core tokens
 
 ### Rules for Theme Implementations (`light/`, `dark/`, etc.)
+
 - ✅ MUST implement ALL tokens from Layer 2 semantic contract
 - ✅ Reference Layer 1 tokens with `{core.*}` syntax
 - ✅ Use `rgba()` with opacity references for transparent colors: `"rgba({core.color.blue.700}, {core.opacity.20})"`
@@ -218,6 +233,7 @@ This layer defines the vocabulary that:
 ### Example Structure
 
 **base.json**:
+
 ```json
 {
   "semantic": {
@@ -237,6 +253,7 @@ This layer defines the vocabulary that:
 ```
 
 **light/theme.json**:
+
 ```json
 {
   "semantic": {
@@ -295,29 +312,36 @@ This layer defines the vocabulary that:
 **Purpose**: Component-specific tokens providing customization for individual UI components.
 
 ### Rules
+
 - ✅ Reference Layer 2 semantic tokens using `{semantic.token.path}` syntax
 - ✅ Can reference Layer 3 theme tokens when needed
 - ✅ **MUST use** `base` and `variants` structure for compatibility with code generation
 - ✅ Organize variants by groups (e.g., `variant`, `size`) with options inside
+- ✅ **Root element only**: Component tokens define styles for the root/container element only
+- ✅ **Child element styling**: Style child elements (indicators, icons, etc.) directly in component CSS using semantic tokens
+- ✅ **Multi-root support**: Single file can contain multiple related components (e.g., `radio`, `radio-group`, `radio-indicator`)
+- ✅ **CSS-compatible properties**: Within `component.variant.state` paths, use ONLY CSS-compatible property names (e.g., `color`, `background-color`, `width`, `height`, `border-color`) - NOT semantic names like `foreground`, `size`, or `background`
 - ❌ NEVER reference Layer 1 core tokens directly (always go through semantic layer)
 - ❌ NEVER use absolute values
 - ❌ NEVER use `global` - always use `base` instead
 
 ### Required Structure
-All component token files MUST follow this structure:
+
+Component token files follow a **flexible multi-root structure** where each file can contain one or more related components:
+
 ```json
 {
   "component-name": {
     "base": {
-      "property-name": {
+      "css-property": {
         "$type": "tokenType",
         "$value": "{semantic.token}"
       }
     },
     "variants": {
-      "variant-group-name": {
-        "option-name": {
-          "property-name": {
+      "variant-group": {
+        "option": {
+          "css-property": {
             "state": {
               "$type": "tokenType",
               "$value": "{semantic.token}"
@@ -327,20 +351,44 @@ All component token files MUST follow this structure:
       }
     },
     "defaultVariants": {
-      "variant-group-name": "default-option"
+      "variant-group": {
+        "$type": "other",
+        "$value": "default-option"
+      }
     }
+  },
+  "related-component": {
+    "base": { /* ... */ },
+    "variants": { /* ... */ },
+    "defaultVariants": { /* ... */ }
   }
 }
 ```
 
-### Example Structure
+**Key Points**:
+
+- **Single file, multiple components**: One file can define one component (single-root) or multiple related components (multi-root)
+- **Component grouping**: Group related components together (e.g., `input`, `input-group`, `input-label` in one file)
+- **Naming conventions**:
+  - Component names: kebab-case (e.g., `text-field`, `icon-button`)
+  - Generated exports: camelCase (e.g., `textFieldBaseStyles`, `iconButtonVariants`)
+- **Code generation**: Each component root generates separate exports with `{componentName}BaseStyles` and `{componentName}Variants`
+
+### Example Structures
+
+#### Example 1: Single Component with Interactive States
+
 ```json
 {
-  "button": {
+  "interactive-element": {
     "base": {
       "border-radius": {
         "$type": "borderRadius",
         "$value": "{semantic.border-radius.md}"
+      },
+      "padding-inline": {
+        "$type": "spacing",
+        "$value": "{semantic.spacing.md}"
       }
     },
     "variants": {
@@ -367,33 +415,261 @@ All component token files MUST follow this structure:
               "$type": "color",
               "$value": "{semantic.interactive.primary.disabled.background}"
             }
+          },
+          "color": {
+            "default": {
+              "$type": "color",
+              "$value": "{semantic.interactive.primary.default.foreground}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{semantic.interactive.primary.hover.foreground}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{semantic.interactive.primary.active.foreground}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{semantic.interactive.primary.focus.foreground}"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{semantic.interactive.primary.disabled.foreground}"
+            }
+          }
+        },
+        "secondary": {
+          "border-color": {
+            "default": {
+              "$type": "color",
+              "$value": "{semantic.border.default}"
+            },
+            "hover": {
+              "$type": "color",
+              "$value": "{semantic.border.hover}"
+            },
+            "active": {
+              "$type": "color",
+              "$value": "{semantic.border.active}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{semantic.border.focus}"
+            },
+            "disabled": {
+              "$type": "color",
+              "$value": "{semantic.border.disabled}"
+            }
           }
         }
       },
       "size": {
         "small": {
-          "padding-inline": {
+          "padding-block": {
             "$type": "spacing",
-            "$value": "{semantic.spacing.sm}"
+            "$value": "{semantic.spacing.xs}"
+          },
+          "font-size": {
+            "$type": "fontSizes",
+            "$value": "{semantic.font-size.sm}"
+          }
+        },
+        "large": {
+          "padding-block": {
+            "$type": "spacing",
+            "$value": "{semantic.spacing.lg}"
+          },
+          "font-size": {
+            "$type": "fontSizes",
+            "$value": "{semantic.font-size.lg}"
           }
         }
       }
     },
     "defaultVariants": {
-      "variant": "primary",
-      "size": "medium"
+      "variant": {
+        "$type": "other",
+        "$value": "primary"
+      },
+      "size": {
+        "$type": "other",
+        "$value": "medium"
+      }
     }
   }
 }
 ```
 
-**Note**: Components MUST use DTCG format and reference semantic tokens with full path `{semantic.*}`. ALL interactive states must be referenced.
+#### Example 2: Component Family (Multi-Root)
+
+```json
+{
+  "control": {
+    "base": {
+      "border-radius": {
+        "$type": "borderRadius",
+        "$value": "{semantic.border-radius.sm}"
+      },
+      "width": {
+        "$type": "sizing",
+        "$value": "{semantic.sizing.md}"
+      },
+      "height": {
+        "$type": "sizing",
+        "$value": "{semantic.sizing.md}"
+      }
+    },
+    "variants": {
+      "size": {
+        "small": {
+          "width": {
+            "$type": "sizing",
+            "$value": "{semantic.sizing.sm}"
+          },
+          "height": {
+            "$type": "sizing",
+            "$value": "{semantic.sizing.sm}"
+          }
+        },
+        "large": {
+          "width": {
+            "$type": "sizing",
+            "$value": "{semantic.sizing.lg}"
+          },
+          "height": {
+            "$type": "sizing",
+            "$value": "{semantic.sizing.lg}"
+          }
+        }
+      }
+    },
+    "defaultVariants": {
+      "size": {
+        "$type": "other",
+        "$value": "medium"
+      }
+    }
+  },
+  "control-group": {
+    "base": {
+      "gap": {
+        "$type": "spacing",
+        "$value": "{semantic.spacing.md}"
+      }
+    },
+    "variants": {
+      "orientation": {
+        "vertical": {
+          "flex-direction": {
+            "$type": "other",
+            "$value": "column"
+          }
+        },
+        "horizontal": {
+          "flex-direction": {
+            "$type": "other",
+            "$value": "row"
+          }
+        }
+      }
+    },
+    "defaultVariants": {
+      "orientation": {
+        "$type": "other",
+        "$value": "vertical"
+      }
+    }
+  },
+  "control-indicator": {
+    "base": {
+      "background-color": {
+        "$type": "color",
+        "$value": "{semantic.interactive.primary.default.background}"
+      },
+      "border-radius": {
+        "$type": "borderRadius",
+        "$value": "{semantic.border-radius.full}"
+      }
+    },
+    "variants": {
+      "size": {
+        "small": {
+          "width": {
+            "$type": "sizing",
+            "$value": "{semantic.sizing.xs}"
+          },
+          "height": {
+            "$type": "sizing",
+            "$value": "{semantic.sizing.xs}"
+          }
+        },
+        "large": {
+          "width": {
+            "$type": "sizing",
+            "$value": "{semantic.sizing.sm}"
+          },
+          "height": {
+            "$type": "sizing",
+            "$value": "{semantic.sizing.sm}"
+          }
+        }
+      }
+    },
+    "defaultVariants": {
+      "size": {
+        "$type": "other",
+        "$value": "medium"
+      }
+    }
+  }
+}
+```
+
+**Generated output** (`control.generated.css.ts`):
+
+```typescript
+import { tokens } from '../index';
+
+// Control component
+export const controlBaseStyles = {
+  /* ... */
+};
+export const controlVariants = {
+  /* ... */
+};
+
+// Control group component
+export const controlGroupBaseStyles = {
+  /* ... */
+};
+export const controlGroupVariants = {
+  /* ... */
+};
+
+// Control indicator component
+export const controlIndicatorBaseStyles = {
+  /* ... */
+};
+export const controlIndicatorVariants = {
+  /* ... */
+};
+```
+
+**Critical Notes**:
+
+- ✅ Components MUST use DTCG format (`$type`, `$value`)
+- ✅ Reference semantic tokens with full path `{semantic.*}`
+- ✅ Use **CSS property names** within variant states: `color`, `background-color`, `width`, `height`, `border-color`, etc.
+- ✅ ALL interactive states must be defined (default, hover, active, focus, disabled)
+- ❌ NEVER use semantic property names like `foreground`, `size`, or `background` within `component.variant.state` paths
 
 ## Token Studio Configuration (`$themes.json`)
 
 **Purpose**: Defines theme configurations and controls which token sets are active for each theme.
 
 ### Structure
+
 ```json
 {
   "$themes": [
@@ -430,11 +706,13 @@ All component token files MUST follow this structure:
 ```
 
 ### Token Set Statuses
+
 - **`"source"`**: Core tokens available as reference but not directly used (Layer 1)
 - **`"enabled"`**: Tokens that are active and resolved for this theme
 - **`"disabled"`**: Tokens not included in this theme
 
 ### Rules for `$themes`
+
 - ✅ Each theme MUST have a unique `name`
 - ✅ Layer 1 core tokens should always be `"source"`
 - ✅ Layer 2 semantic contract must be `"enabled"`
@@ -447,6 +725,7 @@ All component token files MUST follow this structure:
 Token Studio supports **multi-dimensional theming** for combining multiple independent theme dimensions (e.g., Light/Dark × Brand A/Brand B × Mobile/Desktop).
 
 ### File Organization for Multi-Dimensional
+
 ```
 3-themes/
 ├── base/                    # Shared across all combinations
@@ -462,6 +741,7 @@ Token Studio supports **multi-dimensional theming** for combining multiple indep
 ```
 
 ### Multi-Dimensional `$themes` Configuration
+
 ```json
 {
   "$themes": [
@@ -482,6 +762,7 @@ Token Studio supports **multi-dimensional theming** for combining multiple indep
 ```
 
 ### Rules for Multi-Dimensional Themes
+
 - ✅ Each dimension should modify different token subsets
 - ✅ Later enabled sets override earlier ones (order matters)
 - ✅ Use clear naming: `dimension-name/variant-name`
@@ -492,20 +773,23 @@ Token Studio supports **multi-dimensional theming** for combining multiple indep
 Reference tokens using curly braces: `{path.to.token}`
 
 ### Examples
+
 ```json
 {
-  "$value": "{core.color.blue.700}",                        // Reference core color
-  "$value": "{semantic.background.default}",                // Reference semantic token
-  "$value": "{core.size.4}",                                // Reference dimension
+  "$value": "{core.color.blue.700}", // Reference core color
+  "$value": "{semantic.background.default}", // Reference semantic token
+  "$value": "{core.size.4}", // Reference dimension
   "$value": "rgba({core.color.red.500}, {core.opacity.20})", // Composition with opacity
-  "$value": "{core.size.4} * 2"                             // Math calculation
+  "$value": "{core.size.4} * 2" // Math calculation
 }
 ```
 
 **⚠️ IMPORTANT**: Always use `"$value"` (not `"value"`) when referencing tokens - DTCG format required.
 
 ### Composite Tokens (Typography)
+
 Typography tokens use composite values with specific property names:
+
 ```json
 {
   "typography": {
@@ -527,28 +811,36 @@ Typography tokens use composite values with specific property names:
 ## Critical Rules Summary
 
 ### DTCG Format (MOST IMPORTANT)
+
 **ALL tokens MUST use DTCG format:**
+
 ```json
 {
   "token-name": {
-    "$type": "color",    // NOT "type"
-    "$value": "#ffffff"  // NOT "value"
+    "$type": "color", // NOT "type"
+    "$value": "#ffffff" // NOT "value"
   }
 }
 ```
+
 ✅ Use `$type` and `$value` (with dollar sign)
 ❌ NEVER use `type` and `value` (without dollar sign)
 
 ### Never Skip Layers
+
 The token resolution path MUST follow this hierarchy:
+
 ```
 Components (Layer 4) → Semantic (Layer 2) → Themes (Layer 3) → Core (Layer 1)
 ```
+
 ❌ NEVER jump directly from Layer 4 to Layer 1
 ❌ NEVER jump directly from Layer 4 to Layer 3
 
 ### Token Type Requirements
+
 Always specify the `"$type"` field for every token (DTCG format):
+
 - Colors: `"$type": "color"`
 - Spacing: `"$type": "spacing"`
 - Sizing: `"$type": "sizing"`
@@ -562,9 +854,11 @@ Always specify the `"$type"` field for every token (DTCG format):
 - Line Heights: `"$type": "lineHeights"`
 
 ### Theme Parity
+
 All theme implementations MUST provide the same token paths to maintain consistency.
 
 ### Naming Conventions
+
 - **Layer 1**: Generic, value-descriptive (`color.blue.700`, `size.4`)
 - **Layer 2**: Semantic, purpose-driven (`background.primary`, `interactive.danger.hover.background`)
 - **Layer 3**: Theme-specific or shared (`typography.heading-l`, `background.primary`)
@@ -573,6 +867,7 @@ All theme implementations MUST provide the same token paths to maintain consiste
 ## Working with Token Files
 
 ### When Adding New Tokens
+
 1. Identify the appropriate layer
 2. Add to the correct JSON file in `tokens/`
 3. Follow naming conventions for that layer
@@ -580,6 +875,7 @@ All theme implementations MUST provide the same token paths to maintain consiste
 5. Add to `$themes.json` if creating new token sets
 
 ### When Creating New Themes
+
 1. Create new directory under `3-themes/[theme-name]/`
 2. Create `theme.json` file
 3. Implement ALL tokens from `2-semantic/contract.json`
@@ -587,13 +883,19 @@ All theme implementations MUST provide the same token paths to maintain consiste
 5. Test theme has no `{DO-NOT-USE}` values
 
 ### When Adding New Components
+
 1. Create new file `4-components/[component-name].json`
-2. Reference only Layer 2 semantic tokens with `{semantic.*}` syntax
-3. **REQUIRED**: Use structure `base`, `variants` (with groups like `variant`, `size`), `defaultVariants`
-4. Add to `selectedTokenSets` in `$themes.json` (if needed)
-5. Run `pnpm build:components` to generate Vanilla Extract styles from tokens
+2. Decide component grouping:
+   - **Single component**: One root (e.g., `"button"` in `button.json`)
+   - **Component family**: Multiple related roots (e.g., `"input"`, `"input-group"`, `"input-label"` in `input.json`)
+3. Reference only Layer 2 semantic tokens with `{semantic.*}` syntax
+4. **REQUIRED**: Each component MUST have `base`, `variants`, `defaultVariants` structure
+5. **CSS properties only**: Within variant states, use CSS-compatible property names (`color`, `background-color`, `width`, `height`) - NOT semantic names (`foreground`, `size`)
+6. Add to `selectedTokenSets` in `$themes.json` (if needed)
+7. Run `pnpm build:components` to generate Vanilla Extract styles from tokens
 
 #### Component Token Structure
+
 ```json
 {
   "component-name": {
@@ -601,6 +903,10 @@ All theme implementations MUST provide the same token paths to maintain consiste
       "border-radius": {
         "$type": "borderRadius",
         "$value": "{semantic.border-radius.md}"
+      },
+      "padding-inline": {
+        "$type": "spacing",
+        "$value": "{semantic.spacing.md}"
       }
     },
     "variants": {
@@ -615,6 +921,14 @@ All theme implementations MUST provide the same token paths to maintain consiste
               "$type": "color",
               "$value": "{semantic.interactive.primary.hover.background}"
             },
+            "active": {
+              "$type": "color",
+              "$value": "{semantic.interactive.primary.active.background}"
+            },
+            "focus": {
+              "$type": "color",
+              "$value": "{semantic.interactive.primary.focus.background}"
+            },
             "disabled": {
               "$type": "color",
               "$value": "{semantic.interactive.primary.disabled.background}"
@@ -628,51 +942,77 @@ All theme implementations MUST provide the same token paths to maintain consiste
             "$type": "spacing",
             "$value": "{semantic.spacing.xs}"
           },
-          "typography": {
-            "$type": "typography",
-            "$value": "{semantic.typography.body-s}"
+          "font-size": {
+            "$type": "fontSizes",
+            "$value": "{semantic.font-size.sm}"
           }
         }
       }
     },
     "defaultVariants": {
-      "variant": "primary",
-      "size": "medium"
+      "variant": {
+        "$type": "other",
+        "$value": "primary"
+      },
+      "size": {
+        "$type": "other",
+        "$value": "medium"
+      }
     }
   }
 }
 ```
 
 #### Component Variants
-- **`base`**: Styles applied to all instances (only design tokens, no CSS specifics)
+
+- **`base`**: Styles applied to all instances (only design tokens, no CSS implementation details)
 - **`variants`**: Groups of options
-  - `variant`: Visual styles (primary, secondary, danger)
-  - `size`: Sizing variations (small, medium, large)
+  - `variant`: Visual styles (primary, secondary, danger, etc.)
+  - `size`: Sizing variations (small, medium, large, etc.)
+  - `orientation`, `alignment`, etc.: Other variant dimensions
   - Boolean variants: Separate groups with `"true"` key (e.g., `full-width`)
-- **Interactive states**: Use `default`, `hover`, `active`, `focus`, `disabled` within properties
-- **NO CSS implementation details**: No `display`, `cursor`, `box-sizing` in tokens
+- **Interactive states**: Use `default`, `hover`, `active`, `focus`, `disabled` within CSS properties
+- **CSS-compatible properties**: Within variant states, use ONLY valid CSS property names:
+  - ✅ Use: `color`, `background-color`, `border-color`, `width`, `height`, `padding-inline`, `font-size`
+  - ❌ NEVER: `foreground`, `background`, `size`, or other semantic names
+- **NO CSS implementation details**: No `display`, `cursor`, `box-sizing`, `position` in tokens (handle in component CSS)
 
 #### Code Generation
+
 Component tokens automatically generate Vanilla Extract styles:
+
 ```bash
 pnpm build:components
 ```
 
 Output: `src/tokens/generated/components/{component}.generated.css.ts`
 
-Usage in component:
-```typescript
-import { buttonBaseStyles, buttonVariants } from '../../tokens/generated/components/button.generated.css';
+**Usage in component**:
 
-export const button = recipe({
+```typescript
+import {
+  componentBaseStyles,
+  componentVariants,
+} from '../../tokens/generated/components/component.generated.css';
+
+export const componentRecipe = recipe({
   base: {
-    all: 'unset',              // CSS implementation
-    display: 'inline-flex',    // CSS implementation
-    ...buttonBaseStyles,       // From tokens
+    // CSS implementation details (NOT in tokens)
+    all: 'unset',
+    display: 'inline-flex',
+    cursor: 'pointer',
+    boxSizing: 'border-box',
+
+    // Design tokens (FROM tokens)
+    ...componentBaseStyles,
   },
-  variants: buttonVariants,    // From tokens
+  variants: componentVariants, // From tokens
 });
 ```
+
+**Separation of concerns**:
+- **Tokens**: Visual design (colors, spacing, sizing, typography)
+- **Component CSS**: Implementation details (display, position, cursor, box-sizing)
 
 ## Common Mistakes to Avoid
 
@@ -691,10 +1031,12 @@ export const button = recipe({
 This project uses **Token Studio for Figma** to manage design tokens. Token Studio exports tokens in DTCG format.
 
 ### Service Files (DO NOT MODIFY MANUALLY)
+
 - `$themes.json` - Theme configurations (Light, Dark, etc.)
 - `$metadata.json` - Token set order for resolution
 
 **⚠️ Important**: These files are managed by Token Studio. Only modify them when:
+
 - Adding new token sets (new files in tokens/)
 - Creating new themes
 - Changing theme configurations
@@ -702,6 +1044,7 @@ This project uses **Token Studio for Figma** to manage design tokens. Token Stud
 ### Token Studio Features
 
 **Math expressions** - Calculate values dynamically:
+
 ```json
 {
   "$value": "{core.size.4} * 2"
@@ -709,6 +1052,7 @@ This project uses **Token Studio for Figma** to manage design tokens. Token Stud
 ```
 
 **Color with opacity** - Compose colors with alpha:
+
 ```json
 {
   "$value": "rgba({core.color.blue.700}, {core.opacity.20})"
@@ -720,16 +1064,19 @@ This project uses **Token Studio for Figma** to manage design tokens. Token Stud
 ### Common Issues
 
 **Issue**: Tokens not resolving
+
 - ✅ Check `$metadata.json` has correct tokenSetOrder
 - ✅ Verify token references use correct layer prefix (`{core.*}`, `{semantic.*}`)
 - ✅ Ensure all tokens use DTCG format (`$type`, `$value`)
 
 **Issue**: Theme not working correctly
+
 - ✅ Verify all semantic contract tokens are implemented
 - ✅ Check `$themes.json` has correct selectedTokenSets
 - ✅ Ensure no `{DO-NOT-USE}` placeholders in theme files
 
 **Issue**: Component tokens not applying
+
 - ✅ Confirm component references semantic tokens (not core)
 - ✅ Verify component file has `base` and `variants` structure
 - ✅ Check all interactive states are defined (default, hover, active, focus, disabled)
@@ -737,6 +1084,7 @@ This project uses **Token Studio for Figma** to manage design tokens. Token Stud
 ### Validation Checklist
 
 Before committing token changes:
+
 1. ✅ All tokens use DTCG format (`$type`, `$value`)
 2. ✅ Layer hierarchy respected (no layer skipping)
 3. ✅ All interactive tokens have 5 states
@@ -748,14 +1096,14 @@ Before committing token changes:
 
 ## Quick Reference
 
-| Task | Layer | Root Namespace | Value Type | Reference Pattern |
-|------|-------|---------------|------------|-------------------|
-| Add color scale | 1-core/colors.json | `"core"` | Absolute (hex) | N/A |
-| Add size/spacing | 1-core/dimensions.json | `"core"` | Absolute (rem/px) | N/A |
-| Define semantic token | 2-semantic/contract.json | `"semantic"` | `{DO-NOT-USE}` | N/A |
-| Implement theme color | 3-themes/light/theme.json | `"semantic"` | Reference | `{core.color.*}` |
-| Define typography | 3-themes/base.json | `"semantic"` | Composite reference | `{core.font-*}` |
-| Add component style | 4-components/button.json | Component name | Reference | `{semantic.*}` |
+| Task                  | Layer                     | Root Namespace | Value Type          | Reference Pattern |
+| --------------------- | ------------------------- | -------------- | ------------------- | ----------------- |
+| Add color scale       | 1-core/colors.json        | `"core"`       | Absolute (hex)      | N/A               |
+| Add size/spacing      | 1-core/dimensions.json    | `"core"`       | Absolute (rem/px)   | N/A               |
+| Define semantic token | 2-semantic/contract.json  | `"semantic"`   | `{DO-NOT-USE}`      | N/A               |
+| Implement theme color | 3-themes/light/theme.json | `"semantic"`   | Reference           | `{core.color.*}`  |
+| Define typography     | 3-themes/base.json        | `"semantic"`   | Composite reference | `{core.font-*}`   |
+| Add component style   | 4-components/button.json  | Component name | Reference           | `{semantic.*}`    |
 
 ### Layer Decision Tree
 

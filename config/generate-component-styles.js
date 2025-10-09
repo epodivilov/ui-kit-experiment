@@ -94,7 +94,10 @@ function generateBaseStyles(base, componentName) {
     }
   }
 
-  return `export const ${componentName}BaseStyles = {
+  // Convert kebab-case to camelCase for variable names
+  const varName = toCamelCase(componentName);
+
+  return `export const ${varName}BaseStyles = {
 ${styles.join(',\n')}
 };`;
 }
@@ -217,7 +220,10 @@ ${variantOptions.join(',\n')}
   }`);
   }
 
-  return `export const ${componentName}Variants = {
+  // Convert kebab-case to camelCase for variable names
+  const varName = toCamelCase(componentName);
+
+  return `export const ${varName}Variants = {
 ${variantGroups.join(',\n')}
 };`;
 }
@@ -268,27 +274,98 @@ function formatFile(outputPath) {
 }
 
 /**
+ * Detect if a token object is a component definition (has base/variants)
+ * or a container for multiple components
+ */
+function isComponentDefinition(obj) {
+  return obj && typeof obj === 'object' && ('base' in obj || 'variants' in obj);
+}
+
+/**
  * Process a single component token file
+ * Supports both single-root and multi-root component token files
  */
 function processComponentFile(filepath) {
   const content = readFileSync(filepath, 'utf8');
   const tokens = JSON.parse(content);
 
-  // Get component name from tokens (first key)
-  const componentName = Object.keys(tokens)[0];
-  const componentData = tokens[componentName];
+  const rootKeys = Object.keys(tokens);
 
-  console.log(`📦 Processing ${componentName}...`);
+  if (rootKeys.length === 0) {
+    console.warn(`⚠️  Empty token file: ${basename(filepath)}`);
+    return;
+  }
 
-  const styles = generateComponentStyles(componentData, componentName);
+  // Detect multi-root vs single-root structure:
+  // Single-root: { "component-name": { base: {}, variants: {} } }  -> 1 root key
+  // Multi-root: { "comp-1": { base: {} }, "comp-2": { base: {} } } -> multiple root keys with component definitions
 
-  const outputPath = join(OUTPUT_DIR, `${componentName}.generated.css.ts`);
-  writeFileSync(outputPath, styles, 'utf8');
+  // If we have multiple root keys AND they're all component definitions, it's multi-root
+  const isMultiRoot = rootKeys.length > 1 && rootKeys.every(key => isComponentDefinition(tokens[key]));
 
-  console.log(`   ✅ Generated ${basename(outputPath)}`);
+  if (isMultiRoot) {
+    // Multi-root: file contains multiple components
+    console.log(`📦 Processing multi-root file: ${basename(filepath)}`);
 
-  // Format with Prettier
-  formatFile(outputPath);
+    const allStyles = [];
+    const componentNames = [];
+
+    for (const componentName of rootKeys) {
+      const componentData = tokens[componentName];
+
+      if (!isComponentDefinition(componentData)) {
+        console.warn(`   ⚠️  Skipping non-component root: ${componentName}`);
+        continue;
+      }
+
+      console.log(`   📝 Generating styles for: ${componentName}`);
+      componentNames.push(componentName);
+
+      const componentStyles = generateComponentStyles(componentData, componentName);
+      allStyles.push(componentStyles);
+    }
+
+    // Combine all component styles with headers
+    const filename = basename(filepath, '.json');
+    const combinedStyles = [
+      `/**`,
+      ` * ${toPascalCase(filename)} Component Styles`,
+      ` * Auto-generated from design tokens - DO NOT EDIT`,
+      ` * `,
+      ` * This file contains styles for:`,
+      ...componentNames.map(name => ` * - ${name}`),
+      ` */`,
+      `import { tokens } from '../index';`,
+      ``,
+      ...allStyles.map(s => {
+        // Remove individual file headers and imports
+        const lines = s.split('\n');
+        const startIndex = lines.findIndex(line => line.startsWith('export'));
+        return lines.slice(startIndex).join('\n');
+      })
+    ].join('\n');
+
+    const outputPath = join(OUTPUT_DIR, `${filename}.generated.css.ts`);
+    writeFileSync(outputPath, combinedStyles, 'utf8');
+
+    console.log(`   ✅ Generated ${basename(outputPath)} with ${componentNames.length} component(s)`);
+    formatFile(outputPath);
+
+  } else {
+    // Single-root: file contains one component (legacy behavior)
+    const componentName = rootKeys[0];
+    const componentData = tokens[componentName];
+
+    console.log(`📦 Processing ${componentName}...`);
+
+    const styles = generateComponentStyles(componentData, componentName);
+
+    const outputPath = join(OUTPUT_DIR, `${componentName}.generated.css.ts`);
+    writeFileSync(outputPath, styles, 'utf8');
+
+    console.log(`   ✅ Generated ${basename(outputPath)}`);
+    formatFile(outputPath);
+  }
 }
 
 /**
